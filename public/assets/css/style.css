@@ -1,0 +1,28 @@
+@font-face {
+    font-family: NotoSansLao;
+    src: url(../font/NotoSansLao-Regular.ttf);
+}
+
+@font-face {
+    font-family: TimesNewRoman;
+    src: url(../font/TimesNewRoman-Regular.ttf);
+}
+
+:root {
+    padding: 0;
+    margin: 0;
+    --black-color: #000000;
+    --white-color: #FFFFFF;
+    --dark-color: #91CFB7;
+    --light-color: #F0FFF7;
+    --background-color: #F3F3F3;
+    --lao-font: 'NotoSansLao';
+    --english-font: 'TimesNewRoman';
+}
+
+body {
+    font-family: var(--lao-font) !important;
+}
+
+/* Sidebar */
+
