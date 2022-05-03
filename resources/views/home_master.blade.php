@@ -149,6 +149,7 @@
     <script src="{{ asset('assets/vendors/jquery/jquery-slick.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/aos/js/aos.js') }}"></script>
     <script src="{{ asset('assets/vendors/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/chart/chart.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/datatable/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/datatable/js/dataTables.bootstrap5.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/glightbox/js/glightbox.js') }}"></script>
@@ -156,8 +157,59 @@
 
     <!-- JS Script -->
     <script>
+        $(window).scroll(function() {
+            if ($(window).scrollTop()) {
+                $(".home-content-top").addClass("sticky");
+            } else {
+                $(".home-content-top").removeClass("sticky");
+            }
+        })
+
         $(document).ready(function() {
             $('#mytable').DataTable();
+        });
+
+        const bar = document.getElementById('myBar');
+        const myBar = new Chart(bar, {
+            type: 'bar',
+            data: {
+                labels: ['ເດືອນ 1', 'ເດືອນ 2', 'ເດືອນ 3', 'ເດືອນ 4', 'ເດືອນ 5', 'ເດືອນ 6', ],
+                datasets: [{
+                    label: 'ຈຳນວນຄົນເຈັບ',
+                    data: [12],
+                    backgroundColor: [
+                        '#059BFF',
+                    ],
+                    borderColor: [
+                        '#059BFF',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        const donut = document.getElementById('myDonut');
+        const myDonut = new Chart(donut, {
+            type: 'doughnut',
+            data: {
+                labels: ['Red', 'Blue'],
+                datasets: [{
+                    label: 'My First Dataset',
+                    data: [300, 50],
+                    backgroundColor: [
+                        '#FF6384',
+                        '#059BFF',
+                    ],
+                    hoverOffset: 4
+                }]
+            }
         });
     </script>
 </body>
