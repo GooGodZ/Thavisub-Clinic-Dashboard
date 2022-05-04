@@ -337,6 +337,7 @@ body {
 }
 
 .card-body-content-table table tbody td form a i {
+    font-size: 1.25rem;
     color: var(--blue-color);
 }
 
