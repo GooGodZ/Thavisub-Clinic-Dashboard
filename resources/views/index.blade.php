@@ -58,35 +58,37 @@
                     <p>ລາຍຮັບລວມ</p>
                     <span>1290.00</span>
                 </div>
-                <table id="mytable" class="table table-hover">
-                    <thead>
-                        <td>ລຳດັບ</td>
-                        <td>ວັນທີ ເດືອນ ປີ</td>
-                        <td>ຈຳນວນ</td>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>21/2/2021</td>
-                            <td>100.000</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>22/2/2021</td>
-                            <td>200.000</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>23/2/2021</td>
-                            <td>300.000</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>24/2/2021</td>
-                            <td>400.000</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="card-body-content-table">
+                    <table id="mytable" class="table table-hover">
+                        <thead>
+                            <td>ລຳດັບ</td>
+                            <td>ວັນທີ ເດືອນ ປີ</td>
+                            <td>ຈຳນວນ</td>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>21/2/2021</td>
+                                <td>100.000</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>22/2/2021</td>
+                                <td>200.000</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>23/2/2021</td>
+                                <td>300.000</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>24/2/2021</td>
+                                <td>400.000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

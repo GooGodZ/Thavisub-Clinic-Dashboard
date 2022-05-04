@@ -11,11 +11,14 @@
 :root {
     padding: 0;
     margin: 0;
+    background: var(--background-color);
     --black-color: #000000;
     --white-color: #FFFFFF;
     --dark-color: #91CFB7;
     --light-color: #F0FFF7;
     --grey-color: #8C8C8C;
+    --blue-color: #059BFF;
+    --red-color: #FF3333;
     --background-color: #F3F3F3;
     --lao-font: 'NotoSansLao';
     --english-font: 'TimesNewRoman';
@@ -275,14 +278,14 @@ body {
     margin-bottom: 1rem;
 }
 
-.card .container .card-head-top {
+.card-head-top {
     margin: 1rem 0;
     color: var(--grey-color);
     font-size: 1.25rem;
     font-weight: 500;
 }
 
-.card .container .card-body-content {
+.card-body-content {
     margin-bottom: 2rem;
     color: var(--black-color);
     font-size: 2.5rem;
@@ -293,28 +296,79 @@ body {
     border-bottom: 0.063rem solid var(--background-color);
 }
 
-.card .container .card-body-content span {
+.card-body-content span {
     color: var(--black-color);
     font-size: 1.25rem;
     font-family: var(--lao-font);
 }
 
-.card .container .card-body-content-total p {
+.card-body-content-total p {
     color: var(--black-color);
     font-size: 1.25rem;
     font-family: var(--lao-font);
     margin-bottom: 0;
 }
 
-.card .container .card-body-content-total span {
+.card-body-content-total span {
     padding-left: 6rem;
     color: var(--black-color);
     font-size: 1.25rem;
     font-family: var(--english-font);
 }
 
-.card .container .table {
-    margin-bottom: 1.2rem;
+.card-body-content-button {
+    text-align: end;
+}
+
+.card-body-content-button a button {
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0 0 1rem;
+    padding: 0.5rem 1.875rem;
+    color: var(--white-color);
+    background: var(--blue-color);
+    border: none;
+    border-radius: 0.625rem;
+    font-size: 1.25rem;
+}
+
+.card-body-content-table {
+    margin: 1rem 0;
+}
+
+.card-body-content-table table tbody td form a i {
+    color: var(--blue-color);
+}
+
+.card-body-content-table table tbody td form button {
+    border: none;
+    background: transparent;
+    color: var(--red-color);
+}
+
+.card-body-content-form {
+    margin: 1rem 0;
+    text-align: center;
+}
+
+.card-body-content-form form .row {
+    margin-bottom: 1rem;
+}
+
+.card-body-content-form form .row label {
+    text-align: end;
+}
+
+.card-body-content-form form button {
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0 1rem 1rem;
+    padding: 0.5rem 1.875rem;
+    color: var(--white-color);
+    background: var(--blue-color);
+    border: none;
+    border-radius: 0.625rem;
+    font-size: 1.25rem;
 }
 
 .card-body-content-bar {

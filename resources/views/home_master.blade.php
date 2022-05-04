@@ -26,13 +26,13 @@
 <body>
 
     <section class="sidebar">
-        <a href="{{ url('/') }}" class="logo-details">
+        <a href="{{ route('index') }}" class="logo-details">
             <img class="icons" src="{{ asset('assets/images/logo_icon.png') }}" alt="">
             <img class="logo" src="{{ asset('assets/images/logo_dashboard.png') }}" alt="">
         </a>
         <ul class="nav-links">
             <li>
-                <a href="#">
+                <a href="{{ route('index') }}">
                     <i class='bx bx-grid-alt'></i>
                     <span class="link_name">ໜ້າຫຼັກ</span>
                 </a>
@@ -48,7 +48,7 @@
                 </div>
                 <ul class="sub-menu">
                     <li><a class="link_name" href="#">ລົງທະບຽນ</a></li>
-                    <li><a href="">ຟອມຂໍ້ມູນຄົນເຈັບ</a></li>
+                    <li><a href="{{ route('patients.index') }}">ຟອມຂໍ້ມູນຄົນເຈັບ</a></li>
                     <li><a href="">ຟອມລົງທະບຽນກວດ</a></li>
                 </ul>
             </li>
@@ -166,7 +166,9 @@
         })
 
         $(document).ready(function() {
-            $('#mytable').DataTable();
+            $('#mytable').DataTable({
+                responsive: true
+            });
         });
 
         const bar = document.getElementById('myBar');
