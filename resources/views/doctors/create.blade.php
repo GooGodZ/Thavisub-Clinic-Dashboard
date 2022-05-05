@@ -5,7 +5,7 @@
     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="card">
             <div class="container">
-                <p class="card-head-top">ຂໍ້ມູນຄົນເຈັບ</p>
+                <p class="card-head-top">ຂໍ້ມູນທ່ານໝໍ</p>
             </div>
         </div>
     </div>
@@ -15,7 +15,7 @@
         <div class="card">
             <div class="container">
                 <div class="card-body-content-button">
-                    <a href="{{ route('patients.index') }}"><button><i class="fa-solid fa-backward"></i>&nbsp;ກັບໄປຂໍ້ມູນຄົນເຈັບ</button></a>
+                    <a href="{{ route('doctors.index') }}"><button><i class="fa-solid fa-backward"></i>&nbsp;ກັບໄປຂໍ້ມູນຄົນເຈັບ</button></a>
                 </div>
                 @if($errors->any())
                 <ul class="errors">
@@ -25,7 +25,7 @@
                 </ul>
                 @endif
                 <div class="card-body-content-form">
-                    <form action="{{ route('patients.store') }}" method="post">
+                    <form action="{{ route('doctors.store') }}" method="post">
                         @csrf
                         <div class="row">
                             <label class="col-3 col-form-label">ຊື່ ແລະ ນາມສະກຸນ</label>
@@ -47,6 +47,12 @@
                                     <option value="ຊາຍ">ຊາຍ</option>
                                     <option value="ຍິງ">ຍິງ</option>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-3 col-form-label">ທີ່ຢູ່</label>
+                            <div class="col-9">
+                                <input type="text" name="address" class="form-control" placeholder="ປ້ອນທີ່ຢູ່">
                             </div>
                         </div>
                         <div class="row">

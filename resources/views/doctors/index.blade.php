@@ -5,7 +5,7 @@
     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="card">
             <div class="container">
-                <p class="card-head-top">ຂໍ້ມູນຄົນເຈັບ</p>
+                <p class="card-head-top">ຂໍ້ມູນທ່ານໝໍ</p>
             </div>
         </div>
     </div>
@@ -23,36 +23,36 @@
         <div class="card">
             <div class="container">
                 <div class="card-body-content-button">
-                    <a href="{{ route('patients.create') }}"><button><i class="fa-solid fa-plus"></i>&nbsp;ເພີ່ມ</button></a>
+                    <a href="{{ route('doctors.create') }}"><button><i class="fa-solid fa-plus"></i>&nbsp;ເພີ່ມ</button></a>
                 </div>
                 <div class="card-body-content-table">
                     <table id="mytable" class="table table-hover" width="100%">
                         <thead>
                             <td>ລຳດັບ</td>
-                            <td>ລະຫັດ</td>
+                            <td>ລະຫັດໝໍ</td>
                             <td>ຊື່ ແລະ ນາມສະກຸນ</td>
-                            <td>ອາຍຸ</td>
-                            <td>ວັນ ເດືອນ ປີເກີດ</td>
                             <td>ເບີໂທຕິດຕໍ່</td>
+                            <td>ທີ່ຢູ່</td>
+                            <td>ວັນ ເດືອນ ປີເກີດ</td>
                             <td>ເພີ່ມເຕີມ</td>
                         </thead>
                         <tbody>
                             @php
                             $number = 1;
                             @endphp
-                            @foreach($patients as $patients)
+                            @foreach($doctors as $doctors)
                             <tr>
                                 <td>{{ $number++ }}</td>
-                                <td>{{ $patients->pt_no }}</td>
-                                <td>{{ $patients->name }}</td>
-                                <td>{{ $patients->getAgeAttribute() }}</td>
-                                <td>{{ date('d-m-Y ', strtotime($patients->dob)) }}</td>
-                                <td>{{ $patients->tel }}</td>
+                                <td>{{ $doctors->doc_no }}</td>
+                                <td>{{ $doctors->name }}</td>
+                                <td>{{ $doctors->tel }}</td>
+                                <td>{{ $doctors->address }}</td>
+                                <td>{{ date('d-m-Y ', strtotime($doctors->dob)) }}</td>
                                 <td>
-                                    <form action="{{ route('patients.destroy', $patients->id) }}" method="POST">
+                                    <form action="{{ route('doctors.destroy', $doctors->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <a href="{{ route('patients.edit', $patients->id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <a href="{{ route('doctors.edit', $doctors->id) }}"><i class="fa-solid fa-pen-to-square"></i></a>
                                         <button type="submit" onclick="return confirm('ທ່ານຕ້ອງການລົບຂໍ້ມູນນີ້ ຫຼື ບໍ?')"><i class="fa-solid fa-trash-can"></i></button>
                                     </form>
                                 </td>

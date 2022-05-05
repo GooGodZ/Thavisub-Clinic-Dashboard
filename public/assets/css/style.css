@@ -19,6 +19,7 @@
     --grey-color: #8C8C8C;
     --blue-color: #059BFF;
     --red-color: #FF3333;
+    --green-color: #00FF00;
     --background-color: #F3F3F3;
     --lao-font: 'NotoSansLao';
     --english-font: 'TimesNewRoman';
@@ -382,4 +383,50 @@ body {
     margin: 1rem auto;
     width: 18.75rem;
     height: 18.75rem;
+}
+
+/* Alert */
+.alert-success {
+    text-align: start;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: var(--green-color);
+    border-radius: 1rem;
+}
+
+.alert-success strong {
+    color: var(--black-text-color);
+}
+
+.alert-danger {
+    text-align: start;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: var(--red-color);
+    border-radius: 1rem;
+}
+
+.alert-danger strong {
+    color: var(--black-text-color);
+}
+
+.close-alert-button {
+    margin-left: 1rem;
+    color: var(--white-text-color);
+    font-weight: bold;
+    float: right;
+    font-size: 1.25rem;
+    line-height: 1.25rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-alert-button:hover {
+    color: var(--black-text-color);
+}
+
+/* Error */
+
+.errors{
+    color: var(--red-color);
 }

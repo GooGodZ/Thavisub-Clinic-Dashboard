@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('pt_no', 11);
             $table->string('name');
             $table->date('dob');
+            $table->string('gender');
             $table->integer('tel');
             $table->timestamps();
         });

@@ -12,9 +12,16 @@ class Patients extends Model
     protected $fillable = [
         'pt_no',
         'name',
-        'age',
+        'dob',
+        'grnder',
         'tel'
     ];
+
+    // Get Age Accessor
+    public function getAgeAttribute()
+    {
+        return now()->diffInYears($this->dob);
+    }
 
     // 1 to N
     public function cases()

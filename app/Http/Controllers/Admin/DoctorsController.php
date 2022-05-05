@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Patients;
+use App\Models\Doctors;
 use Illuminate\Http\Request;
 
-class PatientsController extends Controller
+class DoctorsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class PatientsController extends Controller
      */
     public function index()
     {
-        $patients = Patients::all()->sortByDesc('created_at');
+        $doctors = Doctors::all()->sortByDesc('created_at');
 
-        return view('register.patient.index', compact('patients'));
+        return view('doctors.index', compact('doctors'));
     }
 
     /**
@@ -27,7 +27,7 @@ class PatientsController extends Controller
      */
     public function create()
     {
-        return view('register.patient.create');
+        return view('doctors.create');
     }
 
     /**
@@ -42,23 +42,26 @@ class PatientsController extends Controller
             'name' => 'required',
             'dob' => 'required',
             'gender' => 'required',
+            'address' => 'required',
             'tel' => 'required',
         ], [
             'name.required' => 'ປ້ອນຊື່ ແລະ ນາມສະກຸນ',
             'dob.required' => 'ປ້ອນວັນທີ ເດືອນ ປີເກີດ',
             'gender.required' => 'ເລືອກເພດ',
+            'address.required' => 'ປ້ອນທີ່ຢູ່',
             'tel.required' => 'ປ້ອນເບີໂທຕິດຕໍ່',
         ]);
 
-        $patients = new Patients();
-        $patients->pt_no = 'PAT_No.' . rand(0000, 9999);
-        $patients->name = $request->name;
-        $patients->dob = $request->dob;
-        $patients->gender = $request->gender;
-        $patients->tel = $request->tel;
-        $patients->save();
+        $doctors = new Doctors();
+        $doctors->doc_no = 'DOC_No.' . rand(0000, 9999);
+        $doctors->name = $request->name;
+        $doctors->dob = $request->dob;
+        $doctors->gender = $request->gender;
+        $doctors->address = $request->address;
+        $doctors->tel = $request->tel;
+        $doctors->save();
 
-        return redirect()->route('patients.index')->with('success', 'ເພີ່ມຂໍ້ມູນຄົນເຈັບສຳເລັດແລ້ວ');
+        return redirect()->route('doctors.index')->with('success', 'ເພີ່ມຂໍ້ມູນທ່ານໝໍສຳເລັດແລ້ວ');
     }
 
     /**
@@ -80,9 +83,9 @@ class PatientsController extends Controller
      */
     public function edit($id)
     {
-        $patients = Patients::find($id);
+        $doctors = Doctors::find($id);
 
-        return view('register.patient.edit', compact('patients'));
+        return view('doctors.edit', compact('doctors'));
     }
 
     /**
@@ -98,22 +101,25 @@ class PatientsController extends Controller
             'name' => 'required',
             'dob' => 'required',
             'gender' => 'required',
+            'address' => 'required',
             'tel' => 'required',
         ], [
             'name.required' => 'ປ້ອນຊື່ ແລະ ນາມສະກຸນ',
             'dob.required' => 'ປ້ອນວັນທີ ເດືອນ ປີເກີດ',
             'gender.required' => 'ເລືອກເພດ',
+            'address.required' => 'ປ້ອນທີ່ຢູ່',
             'tel.required' => 'ປ້ອນເບີໂທຕິດຕໍ່',
         ]);
 
-        $patients = Patients::where('id', '=', $id)->first();
-        $patients->name = $request->name;
-        $patients->dob = $request->dob;
-        $patients->gender = $request->gender;
-        $patients->tel = $request->tel;
-        $patients->save();
+        $doctors = Doctors::where('id', '=', $id)->first();
+        $doctors->name = $request->name;
+        $doctors->dob = $request->dob;
+        $doctors->gender = $request->gender;
+        $doctors->address = $request->address;
+        $doctors->tel = $request->tel;
+        $doctors->save();
 
-        return redirect()->route('patients.index')->with('success', 'ແກ້ໄຂຂໍ້ມູນຄົນເຈັບສຳເລັດແລ້ວ');
+        return redirect()->route('doctors.index')->with('success', 'ແກ້ໄຂຂໍ້ມູນທ່ານໝໍສຳເລັດແລ້ວ');
     }
 
     /**
@@ -124,9 +130,9 @@ class PatientsController extends Controller
      */
     public function destroy($id)
     {
-        $patients = Patients::findOrFail($id);
-        $patients->delete();
+        $doctors = Doctors::findOrFail($id);
+        $doctors->delete();
 
-        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນຄົນເຈັບສຳເລັດແລ້ວ');
+        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນທ່ານໝໍສຳເລັດແລ້ວ');
     }
 }

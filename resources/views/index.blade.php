@@ -59,7 +59,7 @@
                     <span>1290.00</span>
                 </div>
                 <div class="card-body-content-table">
-                    <table id="mytable" class="table table-hover">
+                    <table id="mytable" class="table table-hover" width="100%">
                         <thead>
                             <td>ລຳດັບ</td>
                             <td>ວັນທີ ເດືອນ ປີ</td>

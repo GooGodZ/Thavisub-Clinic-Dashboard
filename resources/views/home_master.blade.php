@@ -49,7 +49,7 @@
                 <ul class="sub-menu">
                     <li><a class="link_name" href="#">ລົງທະບຽນ</a></li>
                     <li><a href="{{ route('patients.index') }}">ຟອມຂໍ້ມູນຄົນເຈັບ</a></li>
-                    <li><a href="">ຟອມລົງທະບຽນກວດ</a></li>
+                    <li><a href="{{ route('cases.index') }}">ຟອມລົງທະບຽນກວດ</a></li>
                 </ul>
             </li>
             <li>
@@ -84,7 +84,7 @@
                 </div>
                 <ul class="sub-menu">
                     <li><a class="link_name" href="#">ທ່ານໝໍ</a></li>
-                    <li><a href="">ຂໍ້ມູນທ່ານໝໍ</a></li>
+                    <li><a href="{{ route('doctors.index') }}">ຂໍ້ມູນທ່ານໝໍ</a></li>
                 </ul>
             </li>
             <li>
@@ -167,7 +167,7 @@
 
         $(document).ready(function() {
             $('#mytable').DataTable({
-                responsive: true
+                responsive: true,
             });
         });
 
