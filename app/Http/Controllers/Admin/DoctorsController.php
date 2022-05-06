@@ -53,7 +53,7 @@ class DoctorsController extends Controller
         ]);
 
         $doctors = new Doctors();
-        $doctors->doc_no = 'DOC_No.' . rand(0000, 9999);
+        $doctors->doc_no = 'Doc-No.' . rand(0000, 9999);
         $doctors->name = $request->name;
         $doctors->dob = $request->dob;
         $doctors->gender = $request->gender;

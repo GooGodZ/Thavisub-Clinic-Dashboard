@@ -51,7 +51,7 @@ class PatientsController extends Controller
         ]);
 
         $patients = new Patients();
-        $patients->pt_no = 'PAT_No.' . rand(0000, 9999);
+        $patients->pt_no = 'Pat-No.' . rand(0000, 9999);
         $patients->name = $request->name;
         $patients->dob = $request->dob;
         $patients->gender = $request->gender;

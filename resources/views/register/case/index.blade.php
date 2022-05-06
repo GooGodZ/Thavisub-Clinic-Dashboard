@@ -48,7 +48,7 @@
                                 <td>{{ $cases->c_no }}</td>
                                 <td>{{ $cases->patients->name }}</td>
                                 <td>{{ $cases->pressure }}</td>
-                                <td>{{ $cases->temper }}</td>
+                                <td>{{ $cases->temper }} °C</td>
                                 <td>{{ $cases->respira }}</td>
                                 <td>{{ $cases->pulse }}</td>
                                 <td>{{ $cases->disea }}</td>

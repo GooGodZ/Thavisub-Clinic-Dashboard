@@ -15,7 +15,7 @@
         <div class="card">
             <div class="container">
                 <div class="card-body-content-button">
-                    <a href="{{ route('doctors.index') }}"><button><i class="fa-solid fa-backward"></i>&nbsp;ກັບໄປຂໍ້ມູນຄົນເຈັບ</button></a>
+                    <a href="{{ route('doctors.index') }}"><button><i class="fa-solid fa-backward"></i>&nbsp;ກັບໄປຂໍ້ມູນທ່ານໝໍ</button></a>
                 </div>
                 @if($errors->any())
                 <ul class="errors">

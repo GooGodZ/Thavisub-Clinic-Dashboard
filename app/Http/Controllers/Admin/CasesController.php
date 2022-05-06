@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Cases;
+use App\Models\Doctors;
+use App\Models\Patients;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CasesController extends Controller
@@ -27,7 +30,10 @@ class CasesController extends Controller
      */
     public function create()
     {
-        //
+        $patients = Patients::all();
+        $doctors = Doctors::all();
+
+        return view('register.case.create', compact('patients', 'doctors'));
     }
 
     /**
@@ -38,7 +44,39 @@ class CasesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'pressure1' => 'required',
+            'pressure2' => 'required',
+            'temper' => 'required',
+            'respira' => 'required',
+            'pulse' => 'required',
+            'disea' => 'required',
+            'pt_id' => 'required',
+            'doc_id' => 'required',
+        ], [
+            'pressure1.required' => 'ປ້ອນຄວາມດັນ',
+            'pressure2.required' => 'ປ້ອນຄວາມດັນ',
+            'temper.required' => 'ປ້ອນອຸນຫະພູມ',
+            'respira.required' => 'ປ້ອນທາງເດີນຫາຍໃຈ',
+            'pulse.required' => 'ປ້ອນຊີບພະຈອນ',
+            'disea.required' => 'ປ້ອນອາການ',
+            'pt_id.required' => 'ເລືອກຄົນເຈັບ',
+            'doc_id.required' => 'ເລືອກທ່ານໝໍ',
+        ]);
+
+        $cases = new Cases();
+        $cases->c_no = 'Cas-No.' . rand(0000, 9999);
+        $cases->date = Carbon::now()->format('Y-m-d');
+        $cases->pressure = $request->pressure1 . ' / ' . $request->pressure2;
+        $cases->temper = $request->temper;
+        $cases->respira = $request->respira;
+        $cases->pulse = $request->pulse;
+        $cases->disea = $request->disea;
+        $cases->pt_id = $request->pt_id;
+        $cases->doc_id = $request->doc_id;
+        $cases->save();
+
+        return redirect()->route('cases.index')->with('success', 'ເພີ່ມຂໍ້ມູນລົງທະບຽນກວດສຳເລັດແລ້ວ');
     }
 
     /**
@@ -60,7 +98,11 @@ class CasesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cases = Cases::find($id);
+        $patients = Patients::all();
+        $doctors = Doctors::all();
+
+        return view('register.case.edit', compact('cases', 'patients', 'doctors'));
     }
 
     /**
@@ -72,7 +114,37 @@ class CasesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'pressure1' => 'required',
+            'pressure2' => 'required',
+            'temper' => 'required',
+            'respira' => 'required',
+            'pulse' => 'required',
+            'disea' => 'required',
+            'pt_id' => 'required',
+            'doc_id' => 'required',
+        ], [
+            'pressure1.required' => 'ປ້ອນຄວາມດັນ',
+            'pressure2.required' => 'ປ້ອນຄວາມດັນ',
+            'temper.required' => 'ປ້ອນອຸນຫະພູມ',
+            'respira.required' => 'ປ້ອນທາງເດີນຫາຍໃຈ',
+            'pulse.required' => 'ປ້ອນຊີບພະຈອນ',
+            'disea.required' => 'ປ້ອນອາການ',
+            'pt_id.required' => 'ເລືອກຄົນເຈັບ',
+            'doc_id.required' => 'ເລືອກທ່ານໝໍ',
+        ]);
+
+        $cases = Cases::where('id', '=', $id)->first();
+        $cases->pressure = $request->pressure1 . ' / ' . $request->pressure2;
+        $cases->temper = $request->temper;
+        $cases->respira = $request->respira;
+        $cases->pulse = $request->pulse;
+        $cases->disea = $request->disea;
+        $cases->pt_id = $request->pt_id;
+        $cases->doc_id = $request->doc_id;
+        $cases->save();
+
+        return redirect()->route('cases.index')->with('success', 'ເພີ່ມຂໍ້ມູນລົງທະບຽນກວດສຳເລັດແລ້ວ');
     }
 
     /**
@@ -83,6 +155,9 @@ class CasesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cases = Cases::findOrFail($id);
+        $cases->delete();
+
+        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນລົງທະບຽນກວດສຳເລັດແລ້ວ');
     }
 }
