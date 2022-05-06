@@ -348,6 +348,10 @@ body {
     color: var(--red-color);
 }
 
+.table-english {
+    font-family: var(--english-font);
+}
+
 .card-body-content-form {
     margin: 1rem 0;
     text-align: center;
@@ -427,6 +431,6 @@ body {
 
 /* Error */
 
-.errors{
+.errors {
     color: var(--red-color);
 }

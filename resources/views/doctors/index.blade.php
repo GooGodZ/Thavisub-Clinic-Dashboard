@@ -42,12 +42,12 @@
                             @endphp
                             @foreach($doctors as $doctors)
                             <tr>
-                                <td>{{ $number++ }}</td>
-                                <td>{{ $doctors->doc_no }}</td>
+                                <td class="table-english">{{ $number++ }}</td>
+                                <td class="table-english">{{ $doctors->doc_no }}</td>
                                 <td>{{ $doctors->name }}</td>
-                                <td>{{ $doctors->tel }}</td>
+                                <td class="table-english">{{ $doctors->tel }}</td>
                                 <td>{{ $doctors->address }}</td>
-                                <td>{{ date('d-m-Y ', strtotime($doctors->dob)) }}</td>
+                                <td class="table-english">{{ date('d-m-Y ', strtotime($doctors->dob)) }}</td>
                                 <td>
                                     <form action="{{ route('doctors.destroy', $doctors->id) }}" method="POST">
                                         @csrf

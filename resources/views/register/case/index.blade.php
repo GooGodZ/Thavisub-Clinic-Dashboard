@@ -44,13 +44,13 @@
                             @endphp
                             @foreach($cases as $cases)
                             <tr>
-                                <td>{{ $number++ }}</td>
-                                <td>{{ $cases->c_no }}</td>
+                                <td class="table-english">{{ $number++ }}</td>
+                                <td class="table-english">{{ $cases->c_no }}</td>
                                 <td>{{ $cases->patients->name }}</td>
-                                <td>{{ $cases->pressure }}</td>
-                                <td>{{ $cases->temper }} °C</td>
-                                <td>{{ $cases->respira }}</td>
-                                <td>{{ $cases->pulse }}</td>
+                                <td class="table-english">{{ $cases->pressure }}</td>
+                                <td class="table-english">{{ $cases->temper }} °C</td>
+                                <td class="table-english">{{ $cases->respira }}</td>
+                                <td class="table-english">{{ $cases->pulse }}</td>
                                 <td>{{ $cases->disea }}</td>
                                 <td>
                                     <form action="{{ route('cases.destroy', $cases->id) }}" method="POST">
