@@ -49,7 +49,7 @@ class Evaluation_TypesController extends Controller
         $evaluation_types->name = $request->name;
         $evaluation_types->save();
 
-        return redirect()->route('evaluation_types.index')->with('success', 'ເພີ່ມຂໍ້ມູນທ່ານໝໍສຳເລັດແລ້ວ');
+        return redirect()->route('evaluation_types.index')->with('success', 'ເພີ່ມຂໍ້ມູນປະເພດຜົນກວດສຳເລັດແລ້ວ');
     }
 
     /**
@@ -95,7 +95,7 @@ class Evaluation_TypesController extends Controller
         $evaluation_types->name = $request->name;
         $evaluation_types->save();
 
-        return redirect()->route('evaluation_types.index')->with('success', 'ເພີ່ມຂໍ້ມູນທ່ານໝໍສຳເລັດແລ້ວ');
+        return redirect()->route('evaluation_types.index')->with('success', 'ແກ້ໄຂຂໍ້ມູນປະເພດຜົນກວດສຳເລັດແລ້ວ');
     }
 
     /**
@@ -109,6 +109,6 @@ class Evaluation_TypesController extends Controller
         $evaluation_types = Evaluation_Types::findOrFail($id);
         $evaluation_types->delete();
 
-        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນທ່ານໝໍສຳເລັດແລ້ວ');
+        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນປະເພດຜົນກວດສຳເລັດແລ້ວ');
     }
 }

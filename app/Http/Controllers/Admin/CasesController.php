@@ -144,7 +144,7 @@ class CasesController extends Controller
         $cases->doc_id = $request->doc_id;
         $cases->save();
 
-        return redirect()->route('cases.index')->with('success', 'ເພີ່ມຂໍ້ມູນລົງທະບຽນກວດສຳເລັດແລ້ວ');
+        return redirect()->route('cases.index')->with('success', 'ແກ້ໄຂຂໍ້ມູນລົງທະບຽນກວດສຳເລັດແລ້ວ');
     }
 
     /**

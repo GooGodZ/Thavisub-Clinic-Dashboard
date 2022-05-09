@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Appointments;
+use App\Models\Cases;
+use App\Models\Doctors;
 use Illuminate\Http\Request;
 
 class AppointmentsController extends Controller
@@ -27,7 +29,10 @@ class AppointmentsController extends Controller
      */
     public function create()
     {
-        //
+        $cases = Cases::all()->sortByDesc('created_at');
+        $doctors = Doctors::all();
+
+        return view('services.appointments.create', compact('cases', 'doctors'));
     }
 
     /**
@@ -38,7 +43,27 @@ class AppointmentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'date' => 'required',
+            'time' => 'required',
+            'doc_id' => 'required',
+            'c_id' => 'required',
+        ], [
+            'date.required' => 'ເລືອກວັນທີ ເດືອນ ປີນັດ',
+            'time.required' => 'ເລືອກເວລານັດ',
+            'doc_id.required' => 'ເລືອກທ່ານໝໍນັດ',
+            'c_id.required' => 'ເລືອກລົງທະບຽນກວດ',
+        ]);
+
+        $appointments = new Appointments();
+        $appointments->ap_no = 'App-No.' . rand(0000, 9999);
+        $appointments->date = $request->date;
+        $appointments->time = $request->time;
+        $appointments->doc_id = $request->doc_id;
+        $appointments->c_id = $request->c_id;
+        $appointments->save();
+
+        return redirect()->route('appointments.index')->with('success', 'ເພີ່ມຂໍ້ມູນນັດກວດສຳເລັດແລ້ວ');
     }
 
     /**
@@ -60,7 +85,11 @@ class AppointmentsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $appointments = Appointments::find($id);
+        $cases = Cases::all()->sortByDesc('created_at');
+        $doctors = Doctors::all();
+
+        return view('services.appointments.edit', compact('appointments', 'cases', 'doctors'));
     }
 
     /**
@@ -72,7 +101,26 @@ class AppointmentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'date' => 'required',
+            'time' => 'required',
+            'doc_id' => 'required',
+            'c_id' => 'required',
+        ], [
+            'date.required' => 'ເລືອກວັນທີ ເດືອນ ປີນັດ',
+            'time.required' => 'ເລືອກເວລານັດ',
+            'doc_id.required' => 'ເລືອກທ່ານໝໍນັດ',
+            'c_id.required' => 'ເລືອກລົງທະບຽນກວດ',
+        ]);
+
+        $appointments = Appointments::where('id', '=', $id)->first();
+        $appointments->date = $request->date;
+        $appointments->time = $request->time;
+        $appointments->doc_id = $request->doc_id;
+        $appointments->c_id = $request->c_id;
+        $appointments->save();
+
+        return redirect()->route('appointments.index')->with('success', 'ແກ້ໄຂຂໍ້ມູນນັດກວດສຳເລັດແລ້ວ');
     }
 
     /**
@@ -83,6 +131,9 @@ class AppointmentsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $appointments = Appointments::findOrFail($id);
+        $appointments->delete();
+
+        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນນັດກວດສຳເລັດແລ້ວ');
     }
 }

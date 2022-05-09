@@ -15,4 +15,16 @@ class Appointments extends Model
         'doc_id',
         'c_id'
     ];
+
+    // N to 1
+    public function cases()
+    {
+        return $this->belongsTo(Cases::class, 'c_id', 'id');
+    }
+
+    // N to 1
+    public function doctors()
+    {
+        return $this->belongsTo(Doctors::class, 'doc_id', 'id');
+    }
 }

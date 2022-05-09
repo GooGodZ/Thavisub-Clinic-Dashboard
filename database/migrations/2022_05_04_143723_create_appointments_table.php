@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('ap_no', 11);
             $table->date('date');
+            $table->string('time');
             $table->unsignedBigInteger('doc_id');
             $table->foreign('doc_id')->references('id')->on('doctors');
             $table->unsignedBigInteger('c_id');

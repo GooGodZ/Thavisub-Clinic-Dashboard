@@ -62,7 +62,7 @@ class EvaluationsController extends Controller
         $evaluations->et_id = $request->et_id;
         $evaluations->save();
 
-        return redirect()->route('evaluations.index')->with('success', 'ເພີ່ມຂໍ້ມູນລົງທະບຽນກວດສຳເລັດແລ້ວ');
+        return redirect()->route('evaluations.index')->with('success', 'ເພີ່ມຂໍ້ມູນຜົນກວດສຳເລັດແລ້ວ');
     }
 
     /**
@@ -116,7 +116,7 @@ class EvaluationsController extends Controller
         $evaluations->et_id = $request->et_id;
         $evaluations->save();
 
-        return redirect()->route('evaluations.index')->with('success', 'ເພີ່ມຂໍ້ມູນລົງທະບຽນກວດສຳເລັດແລ້ວ');
+        return redirect()->route('evaluations.index')->with('success', 'ແກ້ໄຂຂໍ້ມູນຜົນກວດສຳເລັດແລ້ວ');
     }
 
     /**
@@ -130,6 +130,6 @@ class EvaluationsController extends Controller
         $evaluations = Evaluations::findOrFail($id);
         $evaluations->delete();
 
-        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນລົງທະບຽນກວດສຳເລັດແລ້ວ');
+        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນຜົນກວດສຳເລັດແລ້ວ');
     }
 }
