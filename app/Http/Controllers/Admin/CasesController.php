@@ -30,7 +30,7 @@ class CasesController extends Controller
      */
     public function create()
     {
-        $patients = Patients::all();
+        $patients = Patients::all()->sortByDesc('created_at');
         $doctors = Doctors::all();
 
         return view('register.case.create', compact('patients', 'doctors'));
@@ -99,7 +99,7 @@ class CasesController extends Controller
     public function edit($id)
     {
         $cases = Cases::find($id);
-        $patients = Patients::all();
+        $patients = Patients::all()->sortByDesc('created_at');
         $doctors = Doctors::all();
 
         return view('register.case.edit', compact('cases', 'patients', 'doctors'));

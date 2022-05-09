@@ -16,4 +16,16 @@ class Evaluations extends Model
         'c_id',
         'et_id'
     ];
+
+    // N to 1
+    public function evaluation_types()
+    {
+        return $this->belongsTo(Evaluation_Types::class, 'et_id', 'id');
+    }
+
+    // N to 1
+    public function cases()
+    {
+        return $this->belongsTo(Cases::class, 'c_id', 'id');
+    }
 }

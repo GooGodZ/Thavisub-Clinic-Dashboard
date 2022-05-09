@@ -5,7 +5,7 @@
     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="card">
             <div class="container">
-                <p class="card-head-top">ຂໍ້ມູນຄົນເຈັບ</p>
+                <p class="card-head-top">ຟອມຂໍ້ມູນຄົນເຈັບ</p>
             </div>
         </div>
     </div>
@@ -15,7 +15,7 @@
         <div class="card">
             <div class="container">
                 <div class="card-body-content-button">
-                    <a href="{{ route('patients.index') }}"><button><i class="fa-solid fa-backward"></i>&nbsp;ກັບໄປຂໍ້ມູນຄົນເຈັບ</button></a>
+                    <a href="{{ route('patients.index') }}"><button><i class="fa-solid fa-backward"></i>&nbsp;ຍ້ອນກັບ</button></a>
                 </div>
                 @if($errors->any())
                 <ul class="errors">
@@ -55,7 +55,7 @@
                                 <input type="text" name="tel" class="form-control" placeholder="ປ້ອນເບີໂທຕິດຕໍ່">
                             </div>
                         </div>
-                        <button type="submit"><i class="fa-solid fa-upload"></i>&nbsp;ບັນທືກຄົນເຈັບ</button>
+                        <button type="submit"><i class="fa-solid fa-upload"></i>&nbsp;ບັນທືກ</button>
                     </form>
                 </div>
             </div>

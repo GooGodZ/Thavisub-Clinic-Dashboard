@@ -60,9 +60,9 @@
                 </div>
                 <ul class="sub-menu">
                     <li><a class="link_name" href="#">ບໍລິການ</a></li>
-                    <li><a href="">ຟອມຂໍ້ມູນການກວດ</a></li>
+                    <li><a href="{{ route('evaluations.index') }}">ຟອມຂໍ້ມູນການກວດ</a></li>
                     <li><a href="">ຟອມການວາງຢາ</a></li>
-                    <li><a href="">ຟອມນັດກວດ</a></li>
+                    <li><a href="{{ route('appointments.index') }}">ຟອມນັດກວດ</a></li>
                 </ul>
             </li>
             <li>
@@ -128,6 +128,18 @@
                     <li><a href="">ລາຍງານຈຳນວນສິນຄ້າ</a></li>
                     <li><a href="">ລາຍງານລາຍຈ່າຍ</a></li>
                     <li><a href="">ລາຍງານລາຍຮັບ</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="category-menu">
+                    <i class="fa-solid fa-gear"></i>
+                    <span class="link_name">ຕັ້ງຄ່າ</span>
+                    <i class='bx bxs-chevron-down arrow'></i>
+                </div>
+                <ul class="sub-menu">
+                    <li><a class="link_name" href="#">ຕັ້ງຄ່າ</a></li>
+                    <li><a href="{{ route('evaluation_types.index') }}">ປະເພດຜົນກວດ</a></li>
+                    <li><a href="">ປະເພດສິນຄ້າ</a></li>
                 </ul>
             </li>
         </ul>

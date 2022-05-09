@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\AppointmentsController;
 use App\Http\Controllers\Admin\CasesController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DoctorsController;
+use App\Http\Controllers\Admin\Evaluation_TypesController;
+use App\Http\Controllers\Admin\EvaluationsController;
 use App\Http\Controllers\Admin\PatientsController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,3 +25,6 @@ Route::get('/', [DashboardController::class, 'index'])->name('index');
 Route::resource('/patients', PatientsController::class);
 Route::resource('/cases', CasesController::class);
 Route::resource('/doctors', DoctorsController::class);
+Route::resource('/appointments', AppointmentsController::class);
+Route::resource('/evaluations', EvaluationsController::class);
+Route::resource('/evaluation_types', Evaluation_TypesController::class);
