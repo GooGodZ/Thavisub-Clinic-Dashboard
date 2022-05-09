@@ -46,7 +46,7 @@
                                 <td class="table-english">{{ $patients->pt_no }}</td>
                                 <td>{{ $patients->name }}</td>
                                 <td class="table-english">{{ $patients->getAgeAttribute() }}</td>
-                                <td class="table-english">{{ date('d-m-Y ', strtotime($patients->dob)) }}</td>
+                                <td class="table-english">{{ date('d-M-Y ', strtotime($patients->dob)) }}</td>
                                 <td class="table-english">{{ $patients->tel }}</td>
                                 <td>
                                     <form action="{{ route('patients.destroy', $patients->id) }}" method="POST">

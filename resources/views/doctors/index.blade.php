@@ -47,7 +47,7 @@
                                 <td>{{ $doctors->name }}</td>
                                 <td class="table-english">{{ $doctors->tel }}</td>
                                 <td>{{ $doctors->address }}</td>
-                                <td class="table-english">{{ date('d-m-Y ', strtotime($doctors->dob)) }}</td>
+                                <td class="table-english">{{ date('d-M-Y ', strtotime($doctors->dob)) }}</td>
                                 <td>
                                     <form action="{{ route('doctors.destroy', $doctors->id) }}" method="POST">
                                         @csrf
