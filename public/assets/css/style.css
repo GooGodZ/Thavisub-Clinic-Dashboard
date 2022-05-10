@@ -13,16 +13,16 @@
     margin: 0;
     background: var(--background-color);
     --black-color: #000000;
-    --white-color: #FFFFFF;
-    --dark-color: #91CFB7;
-    --light-color: #F0FFF7;
-    --grey-color: #8C8C8C;
-    --blue-color: #059BFF;
-    --red-color: #FF3333;
-    --green-color: #00FF00;
-    --background-color: #F3F3F3;
-    --lao-font: 'NotoSansLao';
-    --english-font: 'TimesNewRoman';
+    --white-color: #ffffff;
+    --dark-color: #91cfb7;
+    --light-color: #f0fff7;
+    --grey-color: #8c8c8c;
+    --blue-color: #059bff;
+    --red-color: #ff3333;
+    --green-color: #00ff00;
+    --background-color: #f3f3f3;
+    --lao-font: "NotoSansLao";
+    --english-font: "TimesNewRoman";
 }
 
 body {
