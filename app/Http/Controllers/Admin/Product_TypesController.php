@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Evaluation_Types;
+use App\Models\Product_Types;
 use Illuminate\Http\Request;
 
-class Evaluation_TypesController extends Controller
+class Product_TypesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class Evaluation_TypesController extends Controller
      */
     public function index()
     {
-        $evaluation_types = Evaluation_Types::all()->sortByDesc('created_at');
+        $product_types = Product_Types::all()->sortByDesc('created_at');
 
-        return view('settings.evaluation_types.index', compact('evaluation_types'));
+        return view('settings.product_types.index', compact('product_types'));
     }
 
     /**
@@ -27,7 +27,7 @@ class Evaluation_TypesController extends Controller
      */
     public function create()
     {
-        return view('settings.evaluation_types.create');
+        return view('settings.product_types.create');
     }
 
     /**
@@ -41,15 +41,15 @@ class Evaluation_TypesController extends Controller
         $request->validate([
             'name' => 'required',
         ], [
-            'name.required' => 'ປ້ອນຊື່ປະເພດຜົນກວດ',
+            'name.required' => 'ປ້ອນຊື່ປະເພດສິນຄ້າ',
         ]);
 
-        $evaluation_types = new Evaluation_Types();
-        $evaluation_types->et_no = 'ET-No.' . rand(0000, 9999);
-        $evaluation_types->name = $request->name;
-        $evaluation_types->save();
+        $product_types = new Product_Types();
+        $product_types->pt_no = 'PT-No.' . rand(0000, 9999);
+        $product_types->name = $request->name;
+        $product_types->save();
 
-        return redirect()->route('evaluation_types.index')->with('success', 'ເພີ່ມຂໍ້ມູນປະເພດຜົນກວດສຳເລັດແລ້ວ');
+        return redirect()->route('product_types.index')->with('success', 'ເພີ່ມຂໍ້ມູນປະເພດສິນຄ້າສຳເລັດແລ້ວ');
     }
 
     /**
@@ -71,9 +71,9 @@ class Evaluation_TypesController extends Controller
      */
     public function edit($id)
     {
-        $evaluation_types = Evaluation_Types::find($id);
+        $product_types = Product_Types::find($id);
 
-        return view('settings.evaluation_types.edit', compact('evaluation_types'));
+        return view('settings.product_types.edit', compact('product_types'));
     }
 
     /**
@@ -88,14 +88,14 @@ class Evaluation_TypesController extends Controller
         $request->validate([
             'name' => 'required',
         ], [
-            'name.required' => 'ປ້ອນຊື່ປະເພດຜົນກວດ',
+            'name.required' => 'ປ້ອນຊື່ປະເພດສິນຄ້າ',
         ]);
 
-        $evaluation_types = Evaluation_Types::where('id', '=', $id)->first();
-        $evaluation_types->name = $request->name;
-        $evaluation_types->save();
+        $product_types = Product_Types::where('id', '=', $id)->first();
+        $product_types->name = $request->name;
+        $product_types->save();
 
-        return redirect()->route('evaluation_types.index')->with('success', 'ແກ້ໄຂຂໍ້ມູນປະເພດຜົນກວດສຳເລັດແລ້ວ');
+        return redirect()->route('product_types.index')->with('success', 'ແກ້ໄຂຂໍ້ມູນປະເພດສິນຄ້າສຳເລັດແລ້ວ');
     }
 
     /**
@@ -106,9 +106,9 @@ class Evaluation_TypesController extends Controller
      */
     public function destroy($id)
     {
-        $evaluation_types = Evaluation_Types::findOrFail($id);
-        $evaluation_types->delete();
+        $product_types = Product_Types::findOrFail($id);
+        $product_types->delete();
 
-        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນປະເພດຜົນກວດສຳເລັດແລ້ວ');
+        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນປະເພດສິນຄ້າສຳເລັດແລ້ວ');
     }
 }

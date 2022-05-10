@@ -49,10 +49,10 @@
                                         <td class="table-english">{{ $number++ }}</td>
                                         <td class="table-english">{{ $cases->c_no }}</td>
                                         <td>{{ $cases->patients->name }}</td>
-                                        <td class="table-english">{{ $cases->pressure }}</td>
+                                        <td class="table-english">{{ $cases->pressure }} mmHg</td>
                                         <td class="table-english">{{ $cases->temper }} °C</td>
-                                        <td class="table-english">{{ $cases->respira }}</td>
-                                        <td class="table-english">{{ $cases->pulse }}</td>
+                                        <td class="table-english">{{ $cases->respira }} bpm</td>
+                                        <td class="table-english">{{ $cases->pulse }} bpm</td>
                                         <td>{{ $cases->disea }}</td>
                                         <td>
                                             <form action="{{ route('cases.destroy', $cases->id) }}" method="POST">

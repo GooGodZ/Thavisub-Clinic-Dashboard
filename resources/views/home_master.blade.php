@@ -95,8 +95,7 @@
                 </div>
                 <ul class="sub-menu">
                     <li><a class="link_name" href="#">ສາງ</a></li>
-                    <li><a href="">ຂໍ້ມູນສິນຄ້າ</a></li>
-                    <li><a href="">ຂໍ້ມູນປະເພດສິນຄ້າ</a></li>
+                    <li><a href="{{ route('products.index') }}">ຂໍ້ມູນສິນຄ້າ</a></li>
                     <li><a href="">ຂໍ້ມູນການສັ່ງຊື່</a></li>
                 </ul>
             </li>
@@ -108,7 +107,7 @@
                 </div>
                 <ul class="sub-menu">
                     <li><a class="link_name" href="#">ຜູ້ສະໝອງ</a></li>
-                    <li><a href="">ຂໍ້ມູນຜູ້ສະໜອງ</a></li>
+                    <li><a href="{{ route('suppliers.index') }}">ຂໍ້ມູນຜູ້ສະໜອງ</a></li>
                 </ul>
             </li>
             <li>
@@ -139,7 +138,7 @@
                 <ul class="sub-menu">
                     <li><a class="link_name" href="#">ຕັ້ງຄ່າ</a></li>
                     <li><a href="{{ route('evaluation_types.index') }}">ປະເພດຜົນກວດ</a></li>
-                    <li><a href="">ປະເພດສິນຄ້າ</a></li>
+                    <li><a href="{{ route('product_types.index') }}">ປະເພດສິນຄ້າ</a></li>
                 </ul>
             </li>
         </ul>

@@ -17,7 +17,7 @@ class PatientsController extends Controller
     {
         $patients = Patients::all()->sortByDesc('created_at');
 
-        return view('register.patient.index', compact('patients'));
+        return view('registers.patient.index', compact('patients'));
     }
 
     /**
@@ -27,7 +27,7 @@ class PatientsController extends Controller
      */
     public function create()
     {
-        return view('register.patient.create');
+        return view('registers.patient.create');
     }
 
     /**
@@ -82,7 +82,7 @@ class PatientsController extends Controller
     {
         $patients = Patients::find($id);
 
-        return view('register.patient.edit', compact('patients'));
+        return view('registers.patient.edit', compact('patients'));
     }
 
     /**

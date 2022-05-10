@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="container">
                     <p class="card-head-top">ຄົນເຈັບໃນມື້ນີ້</p>
-                    <p class="card-body-content">29&nbsp;<span>ຄົນ</span></p>
+                    <p class="card-body-content">{{$casesDay}}&nbsp;<span>ຄົນ</span></p>
                 </div>
             </div>
         </div>
@@ -14,7 +14,7 @@
             <div class="card">
                 <div class="container">
                     <p class="card-head-top">ຄົນເຈັບນັດກວດມື້ນີ້</p>
-                    <p class="card-body-content">29&nbsp;<span>ຄົນ</span></p>
+                    <p class="card-body-content">{{ $appointments }}&nbsp;<span>ຄົນ</span></p>
                 </div>
             </div>
         </div>
@@ -22,7 +22,7 @@
             <div class="card">
                 <div class="container">
                     <p class="card-head-top">ຄົນເຈັບພາຍໃນເດືອນ</p>
-                    <p class="card-body-content">29&nbsp;<span>ຄົນ</span></p>
+                    <p class="card-body-content">{{ $casesMonth }}&nbsp;<span>ຄົນ</span></p>
                 </div>
             </div>
         </div>
@@ -30,7 +30,7 @@
             <div class="card">
                 <div class="container">
                     <p class="card-head-top">ຂໍ້ມູນທ່ານໝໍ</p>
-                    <p class="card-body-content">29&nbsp;<span>ຄົນ</span></p>
+                    <p class="card-body-content">{{ $doctors }}&nbsp;<span>ຄົນ</span></p>
                 </div>
             </div>
         </div>

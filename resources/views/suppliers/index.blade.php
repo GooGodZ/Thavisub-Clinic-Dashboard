@@ -5,7 +5,7 @@
         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div class="card">
                 <div class="container">
-                    <p class="card-head-top">ຂໍ້ມູນປະເພດສິນຄ້າ</p>
+                    <p class="card-head-top">ຂໍ້ມູນຜູ້ສະໝອງ</p>
                 </div>
             </div>
         </div>
@@ -23,7 +23,7 @@
             <div class="card">
                 <div class="container">
                     <div class="card-body-content-button">
-                        <a href="{{ route('product_types.create') }}">
+                        <a href="{{ route('suppliers.create') }}">
                             <button><i class="fa-solid fa-plus"></i>&nbsp;ເພີ່ມ</button>
                         </a>
                     </div>
@@ -31,25 +31,30 @@
                         <table id="mytable" class="table table-hover" width="100%">
                             <thead>
                                 <td>ລຳດັບ</td>
-                                <td>ລະຫັດປະເພດສິນຄ້າ</td>
-                                <td>ຊື່ປະເພດສິນຄ້າ</td>
+                                <td>ລະຫັດຜູ້ສະໝອງ</td>
+                                <td>ຊື່ຜູ້ສະໝອງ</td>
+                                <td>ເບີໂທຕິດຕໍ່</td>
+                                <td>ອີເມວ</td>
+                                <td>ທີ່ຢູ່</td>
                                 <td>ເພີ່ມເຕີມ</td>
                             </thead>
                             <tbody>
                                 @php
                                     $number = 1;
                                 @endphp
-                                @foreach ($product_types as $product_types)
+                                @foreach ($suppliers as $suppliers)
                                     <tr>
                                         <td class="table-english">{{ $number++ }}</td>
-                                        <td class="table-english">{{ $product_types->pt_no }}</td>
-                                        <td>{{ $product_types->name }}</td>
+                                        <td class="table-english">{{ $suppliers->sup_no }}</td>
+                                        <td>{{ $suppliers->name }}</td>
+                                        <td class="table-english">{{ $suppliers->tel }}</td>
+                                        <td class="table-english">{{ $suppliers->email }}</td>
+                                        <td>{{ $suppliers->address }}</td>
                                         <td>
-                                            <form action="{{ route('product_types.destroy', $product_types->id) }}"
-                                                method="POST">
+                                            <form action="{{ route('suppliers.destroy', $suppliers->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <a href="{{ route('product_types.edit', $product_types->id) }}">
+                                                <a href="{{ route('suppliers.edit', $suppliers->id) }}">
                                                     <i class="fa-solid fa-pen-to-square"></i>
                                                 </a>
                                                 <button type="submit"

@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('sup_no', 11);
             $table->string('name');
             $table->integer('tel');
+            $table->string('email');
+            $table->string('address');
             $table->timestamps();
         });
     }

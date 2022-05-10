@@ -7,6 +7,9 @@ use App\Http\Controllers\Admin\DoctorsController;
 use App\Http\Controllers\Admin\Evaluation_TypesController;
 use App\Http\Controllers\Admin\EvaluationsController;
 use App\Http\Controllers\Admin\PatientsController;
+use App\Http\Controllers\Admin\Product_TypesController;
+use App\Http\Controllers\Admin\ProductsController;
+use App\Http\Controllers\Admin\SuppliersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,3 +31,6 @@ Route::resource('/doctors', DoctorsController::class);
 Route::resource('/appointments', AppointmentsController::class);
 Route::resource('/evaluations', EvaluationsController::class);
 Route::resource('/evaluation_types', Evaluation_TypesController::class);
+Route::resource('/products', ProductsController::class);
+Route::resource('/product_types', Product_TypesController::class);
+Route::resource('/suppliers', SuppliersController::class);

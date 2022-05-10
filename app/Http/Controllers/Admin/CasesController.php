@@ -20,7 +20,7 @@ class CasesController extends Controller
     {
         $cases = Cases::all()->sortByDesc('created_at');
 
-        return view('register.case.index', compact('cases'));
+        return view('registers.case.index', compact('cases'));
     }
 
     /**
@@ -33,7 +33,7 @@ class CasesController extends Controller
         $patients = Patients::all()->sortByDesc('created_at');
         $doctors = Doctors::all();
 
-        return view('register.case.create', compact('patients', 'doctors'));
+        return view('registers.case.create', compact('patients', 'doctors'));
     }
 
     /**
@@ -102,7 +102,7 @@ class CasesController extends Controller
         $patients = Patients::all()->sortByDesc('created_at');
         $doctors = Doctors::all();
 
-        return view('register.case.edit', compact('cases', 'patients', 'doctors'));
+        return view('registers.case.edit', compact('cases', 'patients', 'doctors'));
     }
 
     /**
