@@ -49,7 +49,7 @@
                             <div class="row">
                                 <label class="col-3 col-form-label">ເພດ</label>
                                 <div class="col-9">
-                                    <select name="gender" class="form-select">
+                                    <select name="gender" class="form-select search">
                                         <option selected>ເລືອກເພດ</option>
                                         <option value="ຊາຍ"
                                             {{ old('doctors', $doctors->gender ?? null) == 'ຊາຍ' ? 'selected' : '' }}>

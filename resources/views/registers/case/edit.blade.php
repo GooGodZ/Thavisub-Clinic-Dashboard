@@ -35,7 +35,7 @@
                                     <div class="row">
                                         <label class="col-3 col-form-label label-start">ຊື່ຄົນເຈັບ</label>
                                         <div class="col-9">
-                                            <select name="pt_id" class="form-select">
+                                            <select name="pt_id" class="form-select search">
                                                 <option selected>ເລືອກຄົນເຈັບ</option>
                                                 @foreach ($patients as $patients)
                                                     <option value="{{ $patients->id }}"
@@ -50,7 +50,7 @@
                                     <div class="row">
                                         <label class="col-3 col-form-label label-start">ຊື່ທ່ານໝໍ</label>
                                         <div class="col-9">
-                                            <select name="doc_id" class="form-select">
+                                            <select name="doc_id" class="form-select search">
                                                 <option selected>ເລືອກທ່ານໝໍ</option>
                                                 @foreach ($doctors as $doctors)
                                                     <option value="{{ $doctors->id }}"

@@ -34,7 +34,7 @@
                                     <div class="row">
                                         <label class="col-3 col-form-label">ຊື່ຄົນເຈັບ</label>
                                         <div class="col-9">
-                                            <select name="c_id" class="form-select">
+                                            <select name="c_id" class="form-select search">
                                                 <option selected>ເລືອກຄົນເຈັບ</option>
                                                 @foreach ($cases as $cases)
                                                     <option value="{{ $cases->id }}">
@@ -48,7 +48,7 @@
                                     <div class="row">
                                         <label class="col-3 col-form-label">ປະເພດຜົນກວດ</label>
                                         <div class="col-9">
-                                            <select name="et_id" class="form-select">
+                                            <select name="et_id" class="form-select search">
                                                 <option selected>ເລືອກປະເພດຜົນກວດ</option>
                                                 @foreach ($evaluation_types as $evaluation_types)
                                                     <option value="{{ $evaluation_types->id }}">

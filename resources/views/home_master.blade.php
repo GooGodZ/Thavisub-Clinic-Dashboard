@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{{ asset('assets/vendors/datatable/css/dataTables.bootstrap5.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/fontawesome/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/glightbox/css/glightbox.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendors/semantic/css/semantic.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/slick/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/slick/slick-theme.css') }}">
 </head>
@@ -164,6 +165,7 @@
     <script src="{{ asset('assets/vendors/datatable/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/datatable/js/dataTables.bootstrap5.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/glightbox/js/glightbox.js') }}"></script>
+    <script src="{{ asset('assets/vendors/semantic/js/semantic.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/slick/slick.js') }}"></script>
 
     <!-- JS Script -->
@@ -180,6 +182,7 @@
             $('#mytable').DataTable({
                 responsive: true,
             });
+            $('.search').dropdown();
         });
 
         const bar = document.getElementById('myBar');
