@@ -62,7 +62,7 @@
                 <ul class="sub-menu">
                     <li><a class="link_name" href="#">ບໍລິການ</a></li>
                     <li><a href="{{ route('evaluations.index') }}">ຟອມຂໍ້ມູນຜົນກວດ</a></li>
-                    <li><a href="">ຟອມການວາງຢາ</a></li>
+                    <li><a href="{{ route('medicates.index') }}">ຟອມການວາງຢາ</a></li>
                     <li><a href="{{ route('appointments.index') }}">ຟອມນັດກວດ</a></li>
                 </ul>
             </li>
