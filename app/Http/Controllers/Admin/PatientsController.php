@@ -40,12 +40,16 @@ class PatientsController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'dob' => 'required',
+            'day' => 'required',
+            'month' => 'required',
+            'year' => 'required',
             'gender' => 'required',
             'tel' => 'required',
         ], [
             'name.required' => 'ປ້ອນຊື່ ແລະ ນາມສະກຸນ',
-            'dob.required' => 'ປ້ອນວັນທີ ເດືອນ ປີເກີດ',
+            'day.required' => 'ປ້ອນວັນທີເກີດ',
+            'month.required' => 'ປ້ອນເດືອນເກີດ',
+            'year.required' => 'ປ້ອນປີເກີດ',
             'gender.required' => 'ເລືອກເພດ',
             'tel.required' => 'ປ້ອນເບີໂທຕິດຕໍ່',
         ]);
@@ -53,7 +57,7 @@ class PatientsController extends Controller
         $patients = new Patients();
         $patients->pt_no = 'Pat-No.' . rand(0000, 9999);
         $patients->name = $request->name;
-        $patients->dob = $request->dob;
+        $patients->dob = $request->year . '-' . $request->month . '-' . $request->day;
         $patients->gender = $request->gender;
         $patients->tel = $request->tel;
         $patients->save();
@@ -96,19 +100,23 @@ class PatientsController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'dob' => 'required',
+            'day' => 'required',
+            'month' => 'required',
+            'year' => 'required',
             'gender' => 'required',
             'tel' => 'required',
         ], [
             'name.required' => 'ປ້ອນຊື່ ແລະ ນາມສະກຸນ',
-            'dob.required' => 'ປ້ອນວັນທີ ເດືອນ ປີເກີດ',
+            'day.required' => 'ປ້ອນວັນທີເກີດ',
+            'month.required' => 'ປ້ອນເດືອນເກີດ',
+            'year.required' => 'ປ້ອນປີເກີດ',
             'gender.required' => 'ເລືອກເພດ',
             'tel.required' => 'ປ້ອນເບີໂທຕິດຕໍ່',
         ]);
 
         $patients = Patients::where('id', '=', $id)->first();
         $patients->name = $request->name;
-        $patients->dob = $request->dob;
+        $patients->dob = $request->year . '-' . $request->month . '-' . $request->day;
         $patients->gender = $request->gender;
         $patients->tel = $request->tel;
         $patients->save();

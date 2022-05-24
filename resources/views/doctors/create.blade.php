@@ -36,10 +36,17 @@
                                         placeholder="ປ້ອນຊື່ ແລະ ນາມສະກຸນ">
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row mb-0">
                                 <label class="col-3 col-form-label">ວັນ ເດືອນ ປີເກິດ</label>
                                 <div class="col-9">
-                                    <input type="date" name="dob" class="form-control" placeholder="ປ້ອນວັນ ເດືອນ ປີເກິດ">
+                                    <div class="row">
+                                        <div class="col-4"><input type="text" name="day" class="form-control"
+                                                placeholder="ປ້ອນວັນ"></div>
+                                        <div class="col-4"><input type="text" name="month" class="form-control"
+                                                placeholder="ປ້ອນເດືອນ"></div>
+                                        <div class="col-4"><input type="text" name="year" class="form-control"
+                                                placeholder="ປ້ອນປີເກິດ"></div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">

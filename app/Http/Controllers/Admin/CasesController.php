@@ -8,6 +8,7 @@ use App\Models\Doctors;
 use App\Models\Patients;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CasesController extends Controller
 {
@@ -19,6 +20,10 @@ class CasesController extends Controller
     public function index()
     {
         $cases = Cases::all()->sortByDesc('created_at');
+        // $cases = DB::table('cases')
+        //     ->groupBy('date')
+        //     ->orderBy('created_at', 'desc');
+        // dd($cases);
 
         return view('registers.case.index', compact('cases'));
     }

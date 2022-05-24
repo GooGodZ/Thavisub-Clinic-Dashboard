@@ -54,6 +54,9 @@
                                             <form action="{{ route('doctors.destroy', $doctors->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
+                                                <a href="{{ route('doctors.show', $doctors->id) }}">
+                                                    <i class="fa-regular fa-eye"></i>
+                                                </a>
                                                 <a href="{{ route('doctors.edit', $doctors->id) }}">
                                                     <i class="fa-solid fa-pen-to-square"></i>
                                                 </a>

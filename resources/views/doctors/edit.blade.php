@@ -38,12 +38,26 @@
                                         placeholder="ປ້ອນຊື່ ແລະ ນາມສະກຸນ">
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row mb-0">
                                 <label class="col-3 col-form-label">ວັນ ເດືອນ ປີເກິດ</label>
                                 <div class="col-9">
-                                    <input type="date" name="dob" class="form-control"
-                                        value="{{ old('doctors', $doctors->dob ?? null) }}"
-                                        placeholder="ປ້ອນວັນ ເດືອນ ປີເກິດ">
+                                    <div class="row">
+                                        <div class="col">
+                                            <input type="text" name="day"
+                                                value="{{ old('doctors', date('d', strtotime($doctors->dob)) ?? null) }}"
+                                                class="form-control" placeholder="ປ້ອນວັນ">
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" name="month"
+                                                value="{{ old('doctors', date('m', strtotime($doctors->dob)) ?? null) }}"
+                                                class="form-control" placeholder="ປ້ອນເດືອນ">
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" name="year"
+                                                value="{{ old('doctors', date('Y', strtotime($doctors->dob)) ?? null) }}"
+                                                class="form-control" placeholder="ປ້ອນປີເກິດ">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -71,7 +85,8 @@
                                 <label class="col-3 col-form-label">ເບີໂທຕິດຕໍ່</label>
                                 <div class="col-9">
                                     <input type="text" name="tel" class="form-control"
-                                        value="{{ old('doctors', $doctors->tel ?? null) }}" placeholder="ປ້ອນເບີໂທຕິດຕໍ່">
+                                        value="{{ old('doctors', $doctors->tel ?? null) }}"
+                                        placeholder="ປ້ອນເບີໂທຕິດຕໍ່">
                                 </div>
                             </div>
                             <button type="submit"><i class="fa-solid fa-upload"></i>&nbsp;ບັນທືກ</button>

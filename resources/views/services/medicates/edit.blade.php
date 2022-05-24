@@ -10,6 +10,14 @@
             </div>
         </div>
     </div>
+
+    @if (Session::has('success'))
+        <div class="alert-danger">
+            <span class="close-alert-button" onclick="this.parentElement.style.display='none';">&times;</span>
+            <strong>{{ session('success') }}</strong>
+        </div>
+    @endif
+
     <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div class="card">
