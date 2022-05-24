@@ -321,6 +321,10 @@ body {
     text-align: end;
 }
 
+.button-start{
+    text-align: start;
+}
+
 .card-body-content-button a button {
     align-items: center;
     justify-content: center;
@@ -339,6 +343,7 @@ body {
 
 .card-body-content-table table tbody td form a {
     text-decoration: none;
+    margin-left: 0.5rem;
 }
 
 .card-body-content-table table tbody td form a i {

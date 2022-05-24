@@ -10,6 +10,14 @@
             </div>
         </div>
     </div>
+
+    @if (Session::has('success'))
+        <div class="alert-success">
+            <span class="close-alert-button" onclick="this.parentElement.style.display='none';">&times;</span>
+            <strong>{{ session('success') }}</strong>
+        </div>
+    @endif
+
     <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div class="card">
@@ -44,6 +52,8 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                                     <div class="row">
                                         <label class="col-3 col-form-label">ຊື່ຢາ</label>
@@ -58,8 +68,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                                     <div class="row">
                                         <label class="col-3 col-form-label">ຈຳນວນຢາ</label>

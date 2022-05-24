@@ -38,12 +38,26 @@
                                         placeholder="ປ້ອນຊື່ ແລະ ນາມສະກຸນ">
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row mb-0">
                                 <label class="col-3 col-form-label">ວັນ ເດືອນ ປີເກິດ</label>
                                 <div class="col-9">
-                                    <input type="date" name="dob" class="form-control"
-                                        value="{{ old('patients', $patients->dob ?? null) }}"
-                                        placeholder="ປ້ອນວັນ ເດືອນ ປີເກິດ">
+                                    <div class="row">
+                                        <div class="col">
+                                            <input type="text" name="day"
+                                                value="{{ old('patients', date('d', strtotime($patients->dob)) ?? null) }}"
+                                                class="form-control" placeholder="ປ້ອນວັນ">
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" name="month"
+                                                value="{{ old('patients', date('m', strtotime($patients->dob)) ?? null) }}"
+                                                class="form-control" placeholder="ປ້ອນເດືອນ">
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" name="year"
+                                                value="{{ old('patients', date('Y', strtotime($patients->dob)) ?? null) }}"
+                                                class="form-control" placeholder="ປ້ອນປີເກິດ">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">

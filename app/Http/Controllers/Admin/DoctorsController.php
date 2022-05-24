@@ -40,13 +40,17 @@ class DoctorsController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'dob' => 'required',
+            'day' => 'required',
+            'month' => 'required',
+            'year' => 'required',
             'gender' => 'required',
             'address' => 'required',
             'tel' => 'required',
         ], [
             'name.required' => 'ປ້ອນຊື່ ແລະ ນາມສະກຸນ',
-            'dob.required' => 'ປ້ອນວັນທີ ເດືອນ ປີເກີດ',
+            'day.required' => 'ປ້ອນວັນທີເກີດ',
+            'month.required' => 'ປ້ອນເດືອນເກີດ',
+            'year.required' => 'ປ້ອນປີເກີດ',
             'gender.required' => 'ເລືອກເພດ',
             'address.required' => 'ປ້ອນທີ່ຢູ່',
             'tel.required' => 'ປ້ອນເບີໂທຕິດຕໍ່',
@@ -55,7 +59,7 @@ class DoctorsController extends Controller
         $doctors = new Doctors();
         $doctors->doc_no = 'Doc-No.' . rand(0000, 9999);
         $doctors->name = $request->name;
-        $doctors->dob = $request->dob;
+        $doctors->dob = $request->year . '-' . $request->month . '-' . $request->day;
         $doctors->gender = $request->gender;
         $doctors->address = $request->address;
         $doctors->tel = $request->tel;
@@ -72,7 +76,9 @@ class DoctorsController extends Controller
      */
     public function show($id)
     {
-        //
+        $doctors = Doctors::find($id);
+
+        return view('doctors.show', compact('doctors'));
     }
 
     /**
@@ -99,13 +105,17 @@ class DoctorsController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'dob' => 'required',
+            'day' => 'required',
+            'month' => 'required',
+            'year' => 'required',
             'gender' => 'required',
             'address' => 'required',
             'tel' => 'required',
         ], [
             'name.required' => 'ປ້ອນຊື່ ແລະ ນາມສະກຸນ',
-            'dob.required' => 'ປ້ອນວັນທີ ເດືອນ ປີເກີດ',
+            'day.required' => 'ປ້ອນວັນທີເກີດ',
+            'month.required' => 'ປ້ອນເດືອນເກີດ',
+            'year.required' => 'ປ້ອນປີເກີດ',
             'gender.required' => 'ເລືອກເພດ',
             'address.required' => 'ປ້ອນທີ່ຢູ່',
             'tel.required' => 'ປ້ອນເບີໂທຕິດຕໍ່',
@@ -113,7 +123,7 @@ class DoctorsController extends Controller
 
         $doctors = Doctors::where('id', '=', $id)->first();
         $doctors->name = $request->name;
-        $doctors->dob = $request->dob;
+        $doctors->dob = $request->year . '-' . $request->month . '-' . $request->day;
         $doctors->gender = $request->gender;
         $doctors->address = $request->address;
         $doctors->tel = $request->tel;
