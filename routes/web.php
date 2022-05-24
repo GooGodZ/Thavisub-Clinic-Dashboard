@@ -24,7 +24,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [DashboardController::class, 'index'])->name('index');
+Route::get('/', function () {
+    // return view('welcome');
+    return redirect('/login');
+});
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('index');
 
 Route::resource('/patients', PatientsController::class);
 Route::resource('/cases', CasesController::class);
@@ -36,3 +41,7 @@ Route::resource('/medicates', MedicatesController::class);
 Route::resource('/products', ProductsController::class);
 Route::resource('/product_types', Product_TypesController::class);
 Route::resource('/suppliers', SuppliersController::class);
+
+Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
