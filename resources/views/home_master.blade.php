@@ -142,11 +142,44 @@
                     <li><a href="{{ route('product_types.index') }}">ປະເພດສິນຄ້າ</a></li>
                 </ul>
             </li>
+
         </ul>
     </section>
     <section class="home-section">
-        <div class="home-content-top">
+        <div class="home-content-top px-4" style="
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: space-between;
+    ">
             <i class='bx bx-menu'></i>
+
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item dropdown">
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        {{ Auth::user()->name }}
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <a style="color: red" class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                         document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </div>
+                </li>
+            </ul>
+            {{-- <a class="btn btn-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                  document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form> --}}
         </div>
         <div class="home-content-body">
             @yield('contents')
