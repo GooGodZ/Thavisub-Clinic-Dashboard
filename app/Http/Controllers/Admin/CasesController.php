@@ -21,8 +21,10 @@ class CasesController extends Controller
     {
         $cases = Cases::all()->sortByDesc('created_at');
         // $cases = DB::table('cases')
-        //     ->groupBy('date')
-        //     ->orderBy('created_at', 'desc');
+        //     ->orderBy('created_at', 'desc')
+        //     ->groupBy('pt_id')
+        //     ->having('date', '<=', Carbon::today())
+        //     ->get();
         // dd($cases);
 
         return view('registers.case.index', compact('cases'));
