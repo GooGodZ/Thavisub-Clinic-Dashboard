@@ -119,7 +119,7 @@
                 </div>
                 <ul class="sub-menu">
                     <li><a class="link_name" href="#">ລາຍງານ</a></li>
-                    <li><a href="">ລາຍງານຈຳນວນຄົນເຈັບ</a></li>
+                    <li><a href="{{ route('reportpatients.index') }}">ລາຍງານຈຳນວນຄົນເຈັບ</a></li>
                     <li><a href="">ລາຍງານສະເໝີກວດ</a></li>
                     <li><a href="">ລາຍງານຜົນກວດ</a></li>
                     <li><a href="">ລາຍງານການນັດກວດ</a></li>
