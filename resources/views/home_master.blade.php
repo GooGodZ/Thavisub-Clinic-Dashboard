@@ -184,50 +184,10 @@
             });
             $('.search').dropdown();
         });
-
-        const bar = document.getElementById('myBar');
-        const myBar = new Chart(bar, {
-            type: 'bar',
-            data: {
-                labels: ['ເດືອນ 1', 'ເດືອນ 2', 'ເດືອນ 3', 'ເດືອນ 4', 'ເດືອນ 5', 'ເດືອນ 6', ],
-                datasets: [{
-                    label: 'ຈຳນວນຄົນເຈັບ',
-                    data: [12],
-                    backgroundColor: [
-                        '#059BFF',
-                    ],
-                    borderColor: [
-                        '#059BFF',
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-
-        const donut = document.getElementById('myDonut');
-        const myDonut = new Chart(donut, {
-            type: 'doughnut',
-            data: {
-                labels: ['Red', 'Blue'],
-                datasets: [{
-                    label: 'My First Dataset',
-                    data: [300, 50],
-                    backgroundColor: [
-                        '#FF6384',
-                        '#059BFF',
-                    ],
-                    hoverOffset: 4
-                }]
-            }
-        });
     </script>
+
+    @yield('script')
+
 </body>
 
 </html>
