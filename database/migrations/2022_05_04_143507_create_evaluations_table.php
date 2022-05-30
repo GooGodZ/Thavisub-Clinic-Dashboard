@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('eva_no', 11);
             $table->date('date');
             $table->string('detail');
+            $table->integer('status');
             $table->unsignedBigInteger('c_id');
             $table->foreign('c_id')->references('id')->on('cases');
             $table->unsignedBigInteger('et_id');

@@ -19,14 +19,26 @@ class Medicates extends Model
     ];
 
     // N to 1
+<<<<<<< HEAD
     public function products()
     {
         return $this->belongsTo(Products::class, 'p_id', 'id');
     }
 
     // N to 1
+=======
+>>>>>>> 43aaa6d7a896433286e8449380dba9bf33824ba8
     public function cases()
     {
         return $this->belongsTo(Cases::class, 'c_id', 'id');
     }
+<<<<<<< HEAD
+=======
+
+    // N to 1
+    public function products()
+    {
+        return $this->belongsTo(Products::class, 'p_id', 'id');
+    }
+>>>>>>> 43aaa6d7a896433286e8449380dba9bf33824ba8
 }

@@ -10,6 +10,7 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 
     @if (Session::has('success'))
         <div class="alert-danger">
@@ -18,6 +19,8 @@
         </div>
     @endif
 
+=======
+>>>>>>> 43aaa6d7a896433286e8449380dba9bf33824ba8
     <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div class="card">

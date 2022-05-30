@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="container">
                     <p class="card-head-top">ຄົນເຈັບໃນມື້ນີ້</p>
-                    <p class="card-body-content">{{$casesDay}}&nbsp;<span>ຄົນ</span></p>
+                    <p class="card-body-content">{{ $casesDay }}&nbsp;<span>ຄົນ</span></p>
                 </div>
             </div>
         </div>
@@ -103,4 +103,72 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        var _ydata = JSON.parse('{!! json_encode($months) !!}');
+        var _xdata = JSON.parse('{!! json_encode($monthCount) !!}');
+
+        const bar = document.getElementById('myBar');
+        const myBar = new Chart(bar, {
+            type: 'bar',
+            data: {
+                labels: _ydata,
+                datasets: [{
+                    data: _xdata,
+                    backgroundColor: [
+                        'rgba(0, 255, 1, 0.75)',
+                        'rgba(255, 255, 1, 0.75)',
+                        'rgba(255, 127, 0, 0.75)',
+                        'rgba(254, 0, 0, 0.75)',
+                        'rgba(255, 0, 254, 0.75)',
+                        'rgba(127, 0, 255, 0.75)',
+                        'rgba(0, 0, 254, 0.75)',
+                        'rgba(1, 255, 255, 0.75)',
+                    ]
+                }]
+            },
+            options: {
+                legend: {
+                    display: false
+                },
+                title: {
+                    display: true,
+                    text: "World Wine Production 2018"
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        var _ydata = JSON.parse('{!! json_encode($productName) !!}');
+        var _xdata = JSON.parse('{!! json_encode($productCount) !!}');
+
+        const donut = document.getElementById('myDonut');
+        const myDonut = new Chart(donut, {
+            type: 'doughnut',
+            data: {
+                labels: _ydata,
+                datasets: [{
+                    label: 'My First Dataset',
+                    data: _xdata,
+                    backgroundColor: [
+                        'rgba(0, 255, 1, 0.75)',
+                        'rgba(255, 255, 1, 0.75)',
+                        'rgba(255, 127, 0, 0.75)',
+                        'rgba(254, 0, 0, 0.75)',
+                        'rgba(255, 0, 254, 0.75)',
+                        'rgba(127, 0, 255, 0.75)',
+                        'rgba(0, 0, 254, 0.75)',
+                        'rgba(1, 255, 255, 0.75)',
+                    ],
+                    hoverOffset: 4
+                }]
+            }
+        });
+    </script>
 @endsection

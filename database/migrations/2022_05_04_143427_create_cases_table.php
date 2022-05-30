@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('respira', 11);
             $table->string('pulse', 11);
             $table->string('disea');
+            $table->integer('status');
             $table->unsignedBigInteger('pt_id');
             $table->foreign('pt_id')->references('id')->on('patients');
             $table->unsignedBigInteger('doc_id');
