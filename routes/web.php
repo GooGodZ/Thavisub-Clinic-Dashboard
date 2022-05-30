@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\MedicatesController;
 use App\Http\Controllers\Admin\PatientsController;
 use App\Http\Controllers\Admin\Product_TypesController;
 use App\Http\Controllers\Admin\ProductsController;
+use App\Http\Controllers\Admin\ReportPatientController;
 use App\Http\Controllers\Admin\SuppliersController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,7 +42,12 @@ Route::resource('/medicates', MedicatesController::class);
 Route::resource('/products', ProductsController::class);
 Route::resource('/product_types', Product_TypesController::class);
 Route::resource('/suppliers', SuppliersController::class);
+<<<<<<< HEAD
 
 Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+=======
+Route::resource('/reportpatients', ReportPatientController::class);
+// Route::get('/reportpatients_search', [ReportPatientController::class, 'search']);
+>>>>>>> 676463ed3c3f2cdb6aa730621fb33e3750f12f5a
