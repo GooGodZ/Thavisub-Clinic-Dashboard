@@ -42,7 +42,7 @@
                         <li><a class="link_name" href="#">ໜ້າຫຼັກ</a></li>
                     </ul>
                 </li>
-            @elseif (Auth::user()->user_type === 'reception')
+                {{-- @elseif (Auth::user()->user_type === 'reception') --}}
                 <li>
                     <div class="category-menu">
                         <i class='bx bx-collection'></i>
@@ -68,7 +68,7 @@
                         <li><a href="{{ route('appointments.index') }}">ຟອມນັດກວດ</a></li>
                     </ul>
                 </li>
-            @elseif (Auth::user()->user_type === 'finance')
+                {{-- @elseif (Auth::user()->user_type === 'finance') --}}
                 <li>
                     <div class="category-menu">
                         <i class='bx bx-money'></i>
@@ -80,7 +80,7 @@
                         <li><a href="">ການຊຳລະເງິນ</a></li>
                     </ul>
                 </li>
-            @elseif (Auth::user()->user_type === 'doctor')
+                {{-- @elseif (Auth::user()->user_type === 'doctor') --}}
                 <li>
                     <div class="category-menu">
                         <i class="fa-solid fa-user-doctor"></i>
@@ -92,61 +92,61 @@
                         <li><a href="{{ route('doctors.index') }}">ຂໍ້ມູນທ່ານໝໍ</a></li>
                     </ul>
                 </li>
+                <li>
+                    <div class="category-menu">
+                        <i class='bx bx-package'></i>
+                        <span class="link_name">ສາງ</span>
+                        <i class='bx bxs-chevron-down arrow'></i>
+                    </div>
+                    <ul class="sub-menu">
+                        <li><a class="link_name" href="#">ສາງ</a></li>
+                        <li><a href="{{ route('products.index') }}">ຂໍ້ມູນສິນຄ້າ</a></li>
+                        <li><a href="">ຂໍ້ມູນການສັ່ງຊື່</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="category-menu">
+                        <i class='bx bx-user-plus'></i>
+                        <span class="link_name">ຜູ້ສະໝອງ</span>
+                        <i class='bx bxs-chevron-down arrow'></i>
+                    </div>
+                    <ul class="sub-menu">
+                        <li><a class="link_name" href="#">ຜູ້ສະໝອງ</a></li>
+                        <li><a href="{{ route('suppliers.index') }}">ຂໍ້ມູນຜູ້ສະໜອງ</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="category-menu">
+                        <i class='bx bxs-report'></i>
+                        <span class="link_name">ລາຍງານ</span>
+                        <i class='bx bxs-chevron-down arrow'></i>
+                    </div>
+                    <ul class="sub-menu">
+                        <li><a class="link_name" href="#">ລາຍງານ</a></li>
+                        <li><a href="">ລາຍງານຈຳນວນຄົນເຈັບ</a></li>
+                        <li><a href="">ລາຍງານສະເໝີກວດ</a></li>
+                        <li><a href="">ລາຍງານຜົນກວດ</a></li>
+                        <li><a href="">ລາຍງານການນັດກວດ</a></li>
+                        <li><a href="">ລາຍງານປະຫວັດການປິ່ນປົ່ວ</a></li>
+                        <li><a href="">ລາຍງານຜູ້ສະໝອງ</a></li>
+                        <li><a href="">ລາຍງານຈຳນວນສິນຄ້າ</a></li>
+                        <li><a href="">ລາຍງານລາຍຈ່າຍ</a></li>
+                        <li><a href="">ລາຍງານລາຍຮັບ</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="category-menu">
+                        <i class="fa-solid fa-gear"></i>
+                        <span class="link_name">ຕັ້ງຄ່າ</span>
+                        <i class='bx bxs-chevron-down arrow'></i>
+                    </div>
+                    <ul class="sub-menu">
+                        <li><a class="link_name" href="#">ຕັ້ງຄ່າ</a></li>
+                        <li><a href="{{ route('evaluation_types.index') }}">ປະເພດຜົນກວດ</a></li>
+                        <li><a href="{{ route('product_types.index') }}">ປະເພດສິນຄ້າ</a></li>
+                    </ul>
+                </li>
             @endif
-            <li>
-                <div class="category-menu">
-                    <i class='bx bx-package'></i>
-                    <span class="link_name">ສາງ</span>
-                    <i class='bx bxs-chevron-down arrow'></i>
-                </div>
-                <ul class="sub-menu">
-                    <li><a class="link_name" href="#">ສາງ</a></li>
-                    <li><a href="{{ route('products.index') }}">ຂໍ້ມູນສິນຄ້າ</a></li>
-                    <li><a href="">ຂໍ້ມູນການສັ່ງຊື່</a></li>
-                </ul>
-            </li>
-            <li>
-                <div class="category-menu">
-                    <i class='bx bx-user-plus'></i>
-                    <span class="link_name">ຜູ້ສະໝອງ</span>
-                    <i class='bx bxs-chevron-down arrow'></i>
-                </div>
-                <ul class="sub-menu">
-                    <li><a class="link_name" href="#">ຜູ້ສະໝອງ</a></li>
-                    <li><a href="{{ route('suppliers.index') }}">ຂໍ້ມູນຜູ້ສະໜອງ</a></li>
-                </ul>
-            </li>
-            <li>
-                <div class="category-menu">
-                    <i class='bx bxs-report'></i>
-                    <span class="link_name">ລາຍງານ</span>
-                    <i class='bx bxs-chevron-down arrow'></i>
-                </div>
-                <ul class="sub-menu">
-                    <li><a class="link_name" href="#">ລາຍງານ</a></li>
-                    <li><a href="">ລາຍງານຈຳນວນຄົນເຈັບ</a></li>
-                    <li><a href="">ລາຍງານສະເໝີກວດ</a></li>
-                    <li><a href="">ລາຍງານຜົນກວດ</a></li>
-                    <li><a href="">ລາຍງານການນັດກວດ</a></li>
-                    <li><a href="">ລາຍງານປະຫວັດການປິ່ນປົ່ວ</a></li>
-                    <li><a href="">ລາຍງານຜູ້ສະໝອງ</a></li>
-                    <li><a href="">ລາຍງານຈຳນວນສິນຄ້າ</a></li>
-                    <li><a href="">ລາຍງານລາຍຈ່າຍ</a></li>
-                    <li><a href="">ລາຍງານລາຍຮັບ</a></li>
-                </ul>
-            </li>
-            <li>
-                <div class="category-menu">
-                    <i class="fa-solid fa-gear"></i>
-                    <span class="link_name">ຕັ້ງຄ່າ</span>
-                    <i class='bx bxs-chevron-down arrow'></i>
-                </div>
-                <ul class="sub-menu">
-                    <li><a class="link_name" href="#">ຕັ້ງຄ່າ</a></li>
-                    <li><a href="{{ route('evaluation_types.index') }}">ປະເພດຜົນກວດ</a></li>
-                    <li><a href="{{ route('product_types.index') }}">ປະເພດສິນຄ້າ</a></li>
-                </ul>
-            </li>
         </ul>
     </section>
     <section class="home-section">

@@ -127,15 +127,9 @@ class MedicatesController extends Controller
         $medicates->c_id = $request->c_id;
 
         if ($oldquantity > $medicates->quantity) {
-<<<<<<< HEAD
             if ($products->quantity + $oldquantity == 0) {
                 return redirect()->back()->with('success', 'ຢາໝົດແລ້ວ');
             } elseif ($products->quantity + $oldquantity < $medicates->quantity) {
-=======
-            if ($products->quantity == 0) {
-                return redirect()->back()->with('success', 'ຢາໝົດແລ້ວ');
-            } elseif ($products->quantity < $medicates->quantity) {
->>>>>>> 43aaa6d7a896433286e8449380dba9bf33824ba8
                 return redirect()->back()->with('success', 'ຢາບໍ່ພຽງພໍ');
             } else {
                 $products = Products::where('id', '=', $medicates->p_id)->first();
@@ -145,15 +139,9 @@ class MedicatesController extends Controller
                 return redirect()->route('medicates.index')->with('success', 'ວາງຢາສຳເລັດແລ້ວ');
             }
         } elseif ($oldquantity < $medicates->quantity) {
-<<<<<<< HEAD
             if ($products->quantity + $oldquantity == 0) {
                 return redirect()->back()->with('success', 'ຢາໝົດແລ້ວ');
             } elseif ($products->quantity + $oldquantity < $medicates->quantity) {
-=======
-            if ($products->quantity == 0) {
-                return redirect()->back()->with('success', 'ຢາໝົດແລ້ວ');
-            } elseif ($products->quantity < $medicates->quantity) {
->>>>>>> 43aaa6d7a896433286e8449380dba9bf33824ba8
                 return redirect()->back()->with('success', 'ຢາບໍ່ພຽງພໍ');
             } else {
                 $products = Products::where('id', '=', $medicates->p_id)->first();
