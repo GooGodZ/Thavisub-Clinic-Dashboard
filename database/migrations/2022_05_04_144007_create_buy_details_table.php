@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('buy_details', function (Blueprint $table) {
             $table->id();
-            $table->string('bd_no', 11);
             $table->integer('quantity');
             $table->integer('price');
             $table->unsignedBigInteger('p_id');

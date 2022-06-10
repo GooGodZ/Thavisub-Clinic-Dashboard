@@ -36,7 +36,7 @@
                                 <td>ວັນ ເດືອນ ປີນັດກວດ</td>
                                 <td>ເວລານັດກວດ</td>
                                 <td>ທ່ານໝໍ</td>
-                                <td>ເພີ່ມເຕີມ</td>
+                                <td>ຕົວເລືອກ</td>
                             </thead>
                             <tbody>
                                 @php
@@ -56,13 +56,9 @@
                                                 method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <a href="{{ route('appointments.edit', $appointments->id) }}">
-                                                    <i class="fa-solid fa-pen-to-square"></i>
+                                                <a href="{{ route('casesCreateLinkAppointments', $appointments->id) }}">
+                                                    <i class="fa-solid fa-magnifying-glass-plus"></i>
                                                 </a>
-                                                <button type="submit"
-                                                    onclick="return confirm('ທ່ານຕ້ອງການລົບຂໍ້ມູນນີ້ ຫຼື ບໍ?')">
-                                                    <i class="fa-solid fa-trash-can"></i>
-                                                </button>
                                             </form>
                                         </td>
                                     </tr>

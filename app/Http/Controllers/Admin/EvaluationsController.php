@@ -18,7 +18,7 @@ class EvaluationsController extends Controller
      */
     public function index()
     {
-        $evaluations = Evaluations::all()->sortByDesc('created_at');
+        $evaluations = Evaluations::all()->where('status', 0);
 
         return view('services.evaluations.index', compact('evaluations'));
     }
@@ -31,9 +31,17 @@ class EvaluationsController extends Controller
     public function create()
     {
         $evaluation_types = Evaluation_Types::all();
-        $cases = Cases::all()->sortByDesc('created_at');
+        $cases = Cases::all()->where('status', 0);
 
         return view('services.evaluations.create', compact('evaluation_types', 'cases'));
+    }
+
+    public function createLink($id)
+    {
+        $evaluation_types = Evaluation_Types::all();
+        $cases = Cases::find($id);
+
+        return view('services.evaluations.createLink', compact('evaluation_types', 'cases'));
     }
 
     /**
@@ -58,11 +66,15 @@ class EvaluationsController extends Controller
         $evaluations->eva_no = 'Eva-No.' . rand(0000, 9999);
         $evaluations->date = Carbon::now()->format('Y-m-d H:i:s');
         $evaluations->detail = $request->detail;
+        $evaluations->status = 0;
         $evaluations->c_id = $request->c_id;
         $evaluations->et_id = $request->et_id;
+        $cases = Cases::where('id', $evaluations->c_id)->first();
+        $cases->status = 1;
+        $cases->save();
         $evaluations->save();
 
-        return redirect()->route('evaluations.index')->with('success', 'ເພີ່ມຂໍ້ມູນຜົນກວດສຳເລັດແລ້ວ');
+        return redirect()->route('medicates.create')->with('success', 'ເພີ່ມຂໍ້ມູນຜົນກວດສຳເລັດແລ້ວ');
     }
 
     /**
@@ -112,6 +124,7 @@ class EvaluationsController extends Controller
 
         $evaluations = Evaluations::where('id', '=', $id)->first();
         $evaluations->detail = $request->detail;
+        $evaluations->status = 0;
         $evaluations->c_id = $request->c_id;
         $evaluations->et_id = $request->et_id;
         $evaluations->save();

@@ -19,13 +19,6 @@
                             <button><i class="fa-solid fa-backward"></i>&nbsp;ຍ້ອນກັບ</button>
                         </a>
                     </div>
-                    @if ($errors->any())
-                        <ul class="errors">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    @endif
                     <div class="card-body-content-form">
                         <form action="{{ route('products.update', $products->id) }}" method="post">
                             @csrf
@@ -38,6 +31,9 @@
                                             <input type="text" name="name" class="form-control"
                                                 value="{{ old('products', $products->name ?? null) }}"
                                                 placeholder="ປ້ອນຊື່ສິນຄ້າ">
+                                            @error('name')
+                                                <strong style="color: red; margin-top: 0.625rem">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -54,6 +50,9 @@
                                                     </option>
                                                 @endforeach
                                             </select>
+                                            @error('pt_id')
+                                                <strong style="color: red; margin-top: 0.625rem">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -66,6 +65,9 @@
                                             <input type="number" name="quantity" class="form-control"
                                                 value="{{ old('products', $products->quantity ?? null) }}"
                                                 placeholder="ປ້ອນຈຳນວນສິນຄ້າ">
+                                            @error('quantity')
+                                                <strong style="color: red; margin-top: 0.625rem">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -76,11 +78,18 @@
                                             <input type="number" name="price" class="form-control"
                                                 value="{{ old('products', $products->price ?? null) }}"
                                                 placeholder="ປ້ອນລາຄາສິນຄ້າ">
+                                            @error('price')
+                                                <strong style="color: red; margin-top: 0.625rem">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit"><i class="fa-solid fa-upload"></i>&nbsp;ບັນທືກ</button>
+                            <div class="row">
+                                <center>
+                                    <button type="submit"><i class="fa-solid fa-upload"></i>&nbsp;ບັນທືກ</button>
+                                </center>
+                            </div>
                         </form>
                     </div>
                 </div>

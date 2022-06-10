@@ -22,43 +22,44 @@
         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div class="card">
                 <div class="container">
-                    {{-- <form action="{{ url('reportpatients_search') }}" method="GET">
-                        <input type="date" name="start_date">
-                        <input type="date" name="end_date">
-                        <button type="submit" class="btn btn-success"></button>
-                    </form> --}}
-                    {{-- <div class="card-body-content-button">
-                        <a href="{{ route('report_patients.create') }}">
-                            <button><i class="fa-solid fa-plus"></i>&nbsp;ເພີ່ມ</button>
-                        </a>
-                    </div> --}}
+                    <div class="card-body-content-search">
+                        <form action="{{ route('reportPatientSearch') }}" method="post">
+                            @csrf
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                                    <label for="" class="form-label">ຕັ້ງແຕ່ວັນທີ</label>
+                                    <input type="date" class="form-control" name="startdate">
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                                    <label for="" class="form-label">ເຖີງວັນທີ</label>
+                                    <input type="date" class="form-control" name="enddate">
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                                    <button type="submit" class="button-search">ຄົ້ນຫາ</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                     <div class="card-body-content-table">
                         <table id="mytable" class="table table-hover" width="100%">
                             <thead>
-                                <td>ລະຫັດ</td>
+                                <td>ລຳດັບ</td>
                                 <td>ຊື່ ແລະ ນາມສະກຸນ</td>
                                 <td>ເບີໂທຕິດຕໍ່</td>
                                 <td>ຈຳນວນຄັ້ງ</td>
                             </thead>
                             <tbody>
-                                @foreach ($report_patients as $key => $report_patients_count)
-                                    @foreach ($report_patients_count as $report_patients_show)
-                                        <tr>
-                                            <td class="table-english">{{ $report_patients_show->patients->id }}</td>
-                                            <td>{{ $report_patients_show->patients->name }}</td>
-                                            <td class="table-english">{{ $report_patients_show->patients->tel }}</td>
-                                            <td class="table-english">{{ $report_patients_count->count() }}</td>
-                                        </tr>
-                                    @endforeach
-                                @endforeach
-                                {{-- @foreach ($search_date as $search_date)
+                                @php
+                                    $number = 1;
+                                @endphp
+                                @foreach ($patient as $patient)
                                     <tr>
-                                        <td class="table-english">{{ $search_date->patients->id }}</td>
-                                        <td>{{ $search_date->patients->name }}</td>
-                                        <td class="table-english">{{ $search_date->patients->tel }}</td>
-                                        <td class="table-english">{{ $search_date->count() }}</td>
+                                        <td class="table-english">{{ $number++ }}</td>
+                                        <td>{{ $patient->name }}</td>
+                                        <td class="table-english">{{ $patient->tel }}</td>
+                                        <td class="table-english">{{ $patient->pt_id }}</td>
                                     </tr>
-                                @endforeach --}}
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

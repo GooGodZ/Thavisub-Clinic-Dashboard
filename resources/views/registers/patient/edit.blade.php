@@ -19,13 +19,6 @@
                             <button><i class="fa-solid fa-backward"></i>&nbsp;ຍ້ອນກັບ</button>
                         </a>
                     </div>
-                    @if ($errors->any())
-                        <ul class="errors">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    @endif
                     <div class="card-body-content-form">
                         <form action="{{ route('patients.update', $patients->id) }}" method="post">
                             @csrf
@@ -36,14 +29,20 @@
                                     <input type="text" name="name" class="form-control"
                                         value="{{ old('patients', $patients->name ?? null) }}"
                                         placeholder="ປ້ອນຊື່ ແລະ ນາມສະກຸນ">
+                                    @error('name')
+                                        <strong style="color: red; margin-top: 0.625rem">{{ $message }}</strong>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="row">
                                 <label class="col-3 col-form-label">ວັນ ເດືອນ ປີເກິດ</label>
                                 <div class="col-9">
-                                    <input type="date" name="dob" class="form-control"
-                                        value="{{ old('patients', $patients->dob ?? null) }}"
-                                        placeholder="ປ້ອນວັນ ເດືອນ ປີເກິດ">
+                                    <input type="date" name="dob"
+                                        value="{{ old('patients', date('d-M-Y', strtotime($patients->dob)) ?? null) }}"
+                                        class="form-control" placeholder="ປ້ອນວັນ">
+                                    @error('dob')
+                                        <strong style="color: red; margin-top: 0.625rem">{{ $message }}</strong>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="row">
@@ -58,6 +57,9 @@
                                             {{ old('patients', $patients->gender ?? null) == 'ຍິງ' ? 'selected' : '' }}>
                                             ຍິງ</option>
                                     </select>
+                                    @error('gender')
+                                        <strong style="color: red; margin-top: 0.625rem">{{ $message }}</strong>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="row">
@@ -66,9 +68,16 @@
                                     <input type="number" name="tel" class="form-control"
                                         value="{{ old('patients', $patients->tel ?? null) }}"
                                         placeholder="ປ້ອນເບີໂທຕິດຕໍ່">
+                                    @error('tel')
+                                        <strong style="color: red; margin-top: 0.625rem">{{ $message }}</strong>
+                                    @enderror
                                 </div>
                             </div>
-                            <button type="submit"><i class="fa-solid fa-upload"></i>&nbsp;ບັນທືກ</button>
+                            <div class="row">
+                                <center>
+                                    <button type="submit"><i class="fa-solid fa-upload"></i>&nbsp;ບັນທືກ</button>
+                                </center>
+                            </div>
                         </form>
                     </div>
                 </div>

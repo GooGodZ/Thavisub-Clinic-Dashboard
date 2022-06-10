@@ -19,13 +19,6 @@
                             <button><i class="fa-solid fa-backward"></i>&nbsp;ຍ້ອນກັບ</button>
                         </a>
                     </div>
-                    @if ($errors->any())
-                        <ul class="errors">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    @endif
                     <div class="card-body-content-form">
                         <form action="{{ route('appointments.update', $appointments->id) }}" method="post">
                             @csrf
@@ -43,6 +36,9 @@
                                                         {{ $cases->c_no . ' ' . $cases->patients->name }}</option>
                                                 @endforeach
                                             </select>
+                                            @error('c_id')
+                                                <strong style="color: red; margin-top: 0.625rem">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -58,6 +54,9 @@
                                                         {{ $doctors->doc_no . ' ' . $doctors->name }}</option>
                                                 @endforeach
                                             </select>
+                                            @error('doc_id')
+                                                <strong style="color: red; margin-top: 0.625rem">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -70,6 +69,9 @@
                                             <input type="date" name="date"
                                                 value="{{ old('appointments', $appointments->date ?? null) }}"
                                                 class="form-control" placeholder="ປ້ອນວັນທີ ເດືອນ ປີນັດ">
+                                            @error('date')
+                                                <strong style="color: red; margin-top: 0.625rem">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -104,11 +106,18 @@
                                                     {{ old('appointments', $appointments->time ?? null) == '20:00' ? 'selected' : '' }}>
                                                     20:00</option>
                                             </select>
+                                            @error('time')
+                                                <strong style="color: red; margin-top: 0.625rem">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit"><i class="fa-solid fa-upload"></i>&nbsp;ບັນທືກ</button>
+                            <div class="row">
+                                <center>
+                                    <button type="submit"><i class="fa-solid fa-upload"></i>&nbsp;ບັນທືກ</button>
+                                </center>
+                            </div>
                         </form>
                     </div>
                 </div>

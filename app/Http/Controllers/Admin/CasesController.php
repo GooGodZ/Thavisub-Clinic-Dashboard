@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Appointments;
 use App\Models\Cases;
 use App\Models\Doctors;
 use App\Models\Patients;
@@ -18,7 +19,7 @@ class CasesController extends Controller
      */
     public function index()
     {
-        $cases = Cases::all()->sortByDesc('created_at');
+        $cases = Cases::all()->where('status', 0);
 
         return view('registers.case.index', compact('cases'));
     }
@@ -31,9 +32,26 @@ class CasesController extends Controller
     public function create()
     {
         $patients = Patients::all()->sortByDesc('created_at');
-        $doctors = Doctors::all();
+        $doctors = Doctors::all()->where('status', 1);
 
         return view('registers.case.create', compact('patients', 'doctors'));
+    }
+
+    public function createLink()
+    {
+        $patients = Patients::all()->last();
+        $doctors = Doctors::all();
+
+        return view('registers.case.createLink', compact('patients', 'doctors'));
+    }
+
+    public function createLinkAppointments($id)
+    {
+        $appointments = Appointments::find($id);
+        $cases = Cases::where('id', $appointments->c_id)->first();
+        $doctors = Doctors::all();
+
+        return view('registers.case.createLinkAppointments', compact('doctors', 'cases', 'appointments'));
     }
 
     /**
@@ -72,9 +90,52 @@ class CasesController extends Controller
         $cases->respira = $request->respira;
         $cases->pulse = $request->pulse;
         $cases->disea = $request->disea;
+        $cases->status = 0;
         $cases->pt_id = $request->pt_id;
         $cases->doc_id = $request->doc_id;
         $cases->save();
+
+        return redirect()->route('cases.index')->with('success', 'ເພີ່ມຂໍ້ມູນລົງທະບຽນກວດສຳເລັດແລ້ວ');
+    }
+
+    public function storeLink(Request $request)
+    {
+        $request->validate([
+            'pressure1' => 'required',
+            'pressure2' => 'required',
+            'temper' => 'required',
+            'respira' => 'required',
+            'pulse' => 'required',
+            'disea' => 'required',
+            'pt_id' => 'required',
+            'doc_id' => 'required',
+        ], [
+            'pressure1.required' => 'ປ້ອນຄວາມດັນ',
+            'pressure2.required' => 'ປ້ອນຄວາມດັນ',
+            'temper.required' => 'ປ້ອນອຸນຫະພູມ',
+            'respira.required' => 'ປ້ອນທາງເດີນຫາຍໃຈ',
+            'pulse.required' => 'ປ້ອນຊີບພະຈອນ',
+            'disea.required' => 'ປ້ອນອາການ',
+            'pt_id.required' => 'ເລືອກຄົນເຈັບ',
+            'doc_id.required' => 'ເລືອກທ່ານໝໍ',
+        ]);
+
+        $cases = new Cases();
+        $cases->c_no = 'Cas-No.' . rand(0000, 9999);
+        $cases->date = Carbon::now()->format('Y-m-d');
+        $cases->pressure = $request->pressure1 . ' / ' . $request->pressure2;
+        $cases->temper = $request->temper;
+        $cases->respira = $request->respira;
+        $cases->pulse = $request->pulse;
+        $cases->disea = $request->disea;
+        $cases->status = 0;
+        // $appointments = Appointments::where('id', $appointments_id)->first();
+        // $appointments->status = 1;
+        $cases->pt_id = $request->pt_id;
+        $cases->doc_id = $request->doc_id;
+        $cases->save();
+        // $appointments->save();
+        // dd($appointments);
 
         return redirect()->route('cases.index')->with('success', 'ເພີ່ມຂໍ້ມູນລົງທະບຽນກວດສຳເລັດແລ້ວ');
     }
@@ -140,6 +201,7 @@ class CasesController extends Controller
         $cases->respira = $request->respira;
         $cases->pulse = $request->pulse;
         $cases->disea = $request->disea;
+        $cases->status = 0;
         $cases->pt_id = $request->pt_id;
         $cases->doc_id = $request->doc_id;
         $cases->save();

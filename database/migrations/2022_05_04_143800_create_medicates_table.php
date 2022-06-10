@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('medicates', function (Blueprint $table) {
             $table->id();
-            $table->string('m_no', 11);
             $table->integer('quantity');
             $table->integer('price');
             $table->date('date');

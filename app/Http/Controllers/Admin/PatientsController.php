@@ -58,7 +58,7 @@ class PatientsController extends Controller
         $patients->tel = $request->tel;
         $patients->save();
 
-        return redirect()->route('patients.index')->with('success', 'ເພີ່ມຂໍ້ມູນຄົນເຈັບສຳເລັດແລ້ວ');
+        return redirect()->route('casesCreateLink')->with('success', 'ເພີ່ມຂໍ້ມູນຄົນເຈັບສຳເລັດແລ້ວ');
     }
 
     /**

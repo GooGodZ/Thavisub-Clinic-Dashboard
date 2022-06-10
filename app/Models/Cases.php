@@ -17,6 +17,7 @@ class Cases extends Model
         'respira',
         'pulse',
         'disea',
+        'status',
         'pt_id',
         'doc_id'
     ];

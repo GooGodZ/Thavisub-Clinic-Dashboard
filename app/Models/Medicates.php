@@ -10,7 +10,6 @@ class Medicates extends Model
     use HasFactory;
     protected $table = 'medicates';
     protected $fillable = [
-        'm_no',
         'quantity',
         'price',
         'date',

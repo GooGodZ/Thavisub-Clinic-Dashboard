@@ -36,6 +36,9 @@
                                     <input type="text" name="name"
                                         value="{{ old('suppliers', $suppliers->name ?? null) }}" class="form-control"
                                         placeholder="ປ້ອນຊື່ຜູ້ສະໝອງ">
+                                    @error('name')
+                                        <strong style="color: red; margin-top: 0.625rem">{{ $message }}</strong>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="row">
@@ -43,6 +46,9 @@
                                 <div class="col-9">
                                     <input type="text" name="tel" value="{{ old('suppliers', $suppliers->tel ?? null) }}"
                                         class="form-control" placeholder="ປ້ອນເບີໂທ">
+                                    @error('tel')
+                                        <strong style="color: red; margin-top: 0.625rem">{{ $message }}</strong>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="row">
@@ -51,6 +57,9 @@
                                     <input type="email" name="email"
                                         value="{{ old('suppliers', $suppliers->email ?? null) }}" class="form-control"
                                         placeholder="ປ້ອນອີເມວ">
+                                    @error('email')
+                                        <strong style="color: red; margin-top: 0.625rem">{{ $message }}</strong>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="row">
@@ -59,9 +68,16 @@
                                     <input type="text" name="address"
                                         value="{{ old('suppliers', $suppliers->address ?? null) }}" class="form-control"
                                         placeholder="ປ້ອນທີ່ຢູ່">
+                                    @error('address')
+                                        <strong style="color: red; margin-top: 0.625rem">{{ $message }}</strong>
+                                    @enderror
                                 </div>
                             </div>
-                            <button type="submit"><i class="fa-solid fa-upload"></i>&nbsp;ບັນທືກ</button>
+                            <div class="row">
+                                <center>
+                                    <button type="submit"><i class="fa-solid fa-upload"></i>&nbsp;ບັນທືກ</button>
+                                </center>
+                            </div>
                         </form>
                     </div>
                 </div>

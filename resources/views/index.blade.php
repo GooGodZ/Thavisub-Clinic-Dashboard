@@ -116,16 +116,10 @@
             data: {
                 labels: _ydata,
                 datasets: [{
+                    label: 'ຈຳນວນຄົນເຈັບແຕ່ລະເດືອນ',
                     data: _xdata,
                     backgroundColor: [
                         'rgba(0, 255, 1, 0.75)',
-                        'rgba(255, 255, 1, 0.75)',
-                        'rgba(255, 127, 0, 0.75)',
-                        'rgba(254, 0, 0, 0.75)',
-                        'rgba(255, 0, 254, 0.75)',
-                        'rgba(127, 0, 255, 0.75)',
-                        'rgba(0, 0, 254, 0.75)',
-                        'rgba(1, 255, 255, 0.75)',
                     ]
                 }]
             },
@@ -154,7 +148,6 @@
             data: {
                 labels: _ydata,
                 datasets: [{
-                    label: 'My First Dataset',
                     data: _xdata,
                     backgroundColor: [
                         'rgba(0, 255, 1, 0.75)',

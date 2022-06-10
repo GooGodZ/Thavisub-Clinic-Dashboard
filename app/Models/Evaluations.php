@@ -13,6 +13,7 @@ class Evaluations extends Model
         'eva_no',
         'date',
         'detail',
+        'status',
         'c_id',
         'et_id'
     ];

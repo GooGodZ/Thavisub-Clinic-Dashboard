@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Appointments;
 use App\Models\Cases;
 use App\Models\Doctors;
+use App\Models\Evaluations;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AppointmentsController extends Controller
@@ -17,8 +19,7 @@ class AppointmentsController extends Controller
      */
     public function index()
     {
-        $appointments = Appointments::all()->sortByDesc('created_at');
-
+        $appointments = Appointments::where('date', Carbon::today())->get();
         return view('services.appointments.index', compact('appointments'));
     }
 
@@ -33,6 +34,15 @@ class AppointmentsController extends Controller
         $doctors = Doctors::all();
 
         return view('services.appointments.create', compact('cases', 'doctors'));
+    }
+
+    public function createLink($id)
+    {
+        $evaluations = Evaluations::find($id);
+        $appointments = Appointments::all()->where('c_id', $evaluations->c_id);
+        $doctors = Doctors::all();
+
+        return view('services.appointments.createLink', compact('appointments', 'evaluations', 'doctors'));
     }
 
     /**

@@ -14,7 +14,6 @@ class DashboardController extends Controller
 {
     public function index()
     {
-
         $casesDay = Cases::whereDate('created_at', Carbon::today())->count();
         $appointments = Appointments::whereDate('date', Carbon::today())->count();
         $casesMonth = Cases::whereMonth('created_at', Carbon::now()->format('m'))->count();

@@ -38,7 +38,8 @@
                                 <td>ລະບົບທາງເດີນຫາຍໃຈ</td>
                                 <td>ຊີບພະຈອນ</td>
                                 <td>ອາການ</td>
-                                <td>ເພີ່ມເຕີມ</td>
+                                <td>ສະຸຖານະ</td>
+                                <td>ຕົວເລືອກ</td>
                             </thead>
                             <tbody>
                                 @php
@@ -54,10 +55,14 @@
                                         <td class="table-english">{{ $cases->respira }} bpm</td>
                                         <td class="table-english">{{ $cases->pulse }} bpm</td>
                                         <td>{{ $cases->disea }}</td>
+                                        <td>{{ $cases->status == 0 ? 'ລໍຖ້າຜົນກວດ' : 'ກວດແລ້ວ' }}</td>
                                         <td>
                                             <form action="{{ route('cases.destroy', $cases->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
+                                                <a href="{{ route('evaluationsCreateLink', $cases->id) }}">
+                                                    <i class="fa-solid fa-magnifying-glass-plus"></i>
+                                                </a>
                                                 <a href="{{ route('cases.edit', $cases->id) }}">
                                                     <i class="fa-solid fa-pen-to-square"></i>
                                                 </a>

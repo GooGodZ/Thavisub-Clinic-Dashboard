@@ -31,42 +31,33 @@
                         <table id="mytable" class="table table-hover" width="100%">
                             <thead>
                                 <td>ລຳດັບ</td>
-                                <td>ລະຫັດວາງຢາ</td>
+                                <td>ລະຫັດຜົນກວດ</td>
                                 <td>ຊື່ຄົນເຈັບ</td>
-                                <td>ຊື່ຢາ</td>
-                                <td>ປະເພດສິນຄ້າ</td>
-                                <td>ຈຳນວນ</td>
-                                <td>ລາຄາ</td>
-                                <td>ລະຫັດລົງທະບຽນກວດ</td>
-                                <td>ລະຫັດທ່ານໝໍ</td>
-                                <td>ເພີ່ມເຕີມ</td>
+                                <td>ວັນທີຜົນກວດ</td>
+                                <td>ສະຖານະ</td>
+                                <td>ສະແດງຂໍ້ມູນ</td>
                             </thead>
                             <tbody>
                                 @php
                                     $number = 1;
                                 @endphp
-                                @foreach ($medicates as $medicates)
+                                @foreach ($evaluations as $evaluations)
                                     <tr>
                                         <td class="table-english">{{ $number++ }}</td>
-                                        <td class="table-english">{{ $medicates->m_no }}</td>
-                                        <td class="table-english">{{ $medicates->cases->patients->name }}</td>
-                                        <td class="table-english">{{ $medicates->products->name }}</td>
-                                        <td class="table-english">{{ $medicates->products->product_types->name }}</td>
-                                        <td class="table-english">{{ $medicates->quantity }}</td>
-                                        <td class="table-english">{{ $medicates->price }}</td>
-                                        <td class="table-english">{{ $medicates->cases->c_no }}</td>
-                                        <td class="table-english">{{ $medicates->cases->doctors->doc_no }}</td>
+                                        <td class="table-english">{{ $evaluations->eva_no }}</td>
+                                        <td class="table-english">{{ $evaluations->cases->patients->name }}</td>
+                                        <td class="table-english">{{ date('d-M-Y', strtotime($evaluations->date)) }}</td>
+                                        <td class="table-english">
+                                            {{ $evaluations->status == 1 ? 'ວາງຢາແລ້ວ' : 'ລໍຖ້າວາງຢາ' }}</td>
                                         <td>
-                                            <form action="{{ route('medicates.destroy', $medicates->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <a href="{{ route('medicates.edit', $medicates->id) }}">
-                                                    <i class="fa-solid fa-pen-to-square"></i>
+                                            <form action="{{ route('evaluations.destroy', $evaluations->id) }}"
+                                                method="POST">
+                                                <a href="{{ route('medicates.show', $evaluations->id) }}">
+                                                    <i class="fa-regular fa-file-lines"></i>
                                                 </a>
-                                                <button type="submit"
-                                                    onclick="return confirm('ທ່ານຕ້ອງການລົບຂໍ້ມູນນີ້ ຫຼື ບໍ?')">
-                                                    <i class="fa-solid fa-trash-can"></i>
-                                                </button>
+                                                <a href="{{ route('medicatesCreateLink', $evaluations->id) }}"">
+                                                    <i class="fa-solid fa-magnifying-glass-plus"></i>
+                                                </a>
                                             </form>
                                         </td>
                                     </tr>

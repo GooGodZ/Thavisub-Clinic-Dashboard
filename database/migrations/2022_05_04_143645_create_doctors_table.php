@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('gender');
             $table->string('address');
             $table->integer('tel');
+            $table->integer('status');
             $table->timestamps();
         });
     }

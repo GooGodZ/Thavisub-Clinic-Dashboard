@@ -38,11 +38,18 @@
                                             <input type="text" name="name"
                                                 value="{{ old('evaluation_types', $evaluation_types->name ?? null) }}"
                                                 class="form-control" placeholder="ປ້ອນຊື່ປະເພດຜົນກວດ">
+                                            @error('name')
+                                                <strong style="color: red; margin-top: 0.625rem">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit"><i class="fa-solid fa-upload"></i>&nbsp;ບັນທືກ</button>
+                            <div class="row">
+                                <center>
+                                    <button type="submit"><i class="fa-solid fa-upload"></i>&nbsp;ບັນທືກ</button>
+                                </center>
+                            </div>
                         </form>
                     </div>
                 </div>

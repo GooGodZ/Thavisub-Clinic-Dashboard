@@ -22,23 +22,18 @@
         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div class="card">
                 <div class="container">
-                    <div class="card-body-content-button">
-                        <a href="{{ route('evaluations.create') }}">
-                            <button><i class="fa-solid fa-plus"></i>&nbsp;ເພີ່ມ</button>
-                        </a>
-                    </div>
                     <div class="card-body-content-table">
                         <table id="mytable" class="table table-hover" width="100%">
                             <thead>
                                 <td>ລຳດັບ</td>
                                 <td>ລະຫັດຜົນກວດ</td>
                                 <td>ຊື່ຄົນເຈັບ</td>
-                                <td>ວັນ ເດືອນ ປີກວດ</td>
+                                <td>ອາການ</td>
                                 <td>ປະເພດຜົນກວດ</td>
-                                <td>ກໍລະນີກວດ</td>
-                                <td>ລາຍລະອຽດຜົນກວດ</td>
-                                <td>ລະຫັດທ່ານໝໍ</td>
-                                <td>ເພີ່ມເຕີມ</td>
+                                <td>ລາຍລະອຽດ</td>
+                                <td>ວັນທີຜົນກວດ</td>
+                                <td>ສະຖານະ</td>
+                                <td>ຕົວເລືອກ</td>
                             </thead>
                             <tbody>
                                 @php
@@ -49,17 +44,18 @@
                                         <td class="table-english">{{ $number++ }}</td>
                                         <td class="table-english">{{ $evaluations->eva_no }}</td>
                                         <td class="table-english">{{ $evaluations->cases->patients->name }}</td>
-                                        <td class="table-english">{{ date('d-M-Y ', strtotime($evaluations->date)) }}
-                                        </td>
-                                        <td class="table-english">{{ $evaluations->evaluation_types->name }}</td>
                                         <td class="table-english">{{ $evaluations->cases->disea }}</td>
+                                        <td class="table-english">{{ $evaluations->evaluation_types->name }}</td>
                                         <td class="table-english">{{ $evaluations->detail }}</td>
-                                        <td class="table-english">{{ $evaluations->cases->doctors->doc_no }}</td>
+                                        <td class="table-english">{{ date('d-M-Y', strtotime($evaluations->date)) }}</td>
+                                        <td class="table-english">{{ $evaluations->status == 0 ? 'ລໍຖ້າວາງຢາ' : 'ວາງຢາແລ້ວ' }}</td>
                                         <td>
-                                            <form action="{{ route('evaluations.destroy', $evaluations->id) }}"
-                                                method="POST">
+                                            <form action="{{ route('evaluations.destroy', $evaluations->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
+                                                <a href="{{ route('medicatesCreateLink', $evaluations->id) }}">
+                                                    <i class="fa-solid fa-magnifying-glass-plus"></i>
+                                                </a>
                                                 <a href="{{ route('evaluations.edit', $evaluations->id) }}">
                                                     <i class="fa-solid fa-pen-to-square"></i>
                                                 </a>

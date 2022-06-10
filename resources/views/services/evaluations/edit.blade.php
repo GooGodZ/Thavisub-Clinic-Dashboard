@@ -19,13 +19,6 @@
                             <button><i class="fa-solid fa-backward"></i>&nbsp;ຍ້ອນກັບ</button>
                         </a>
                     </div>
-                    @if ($errors->any())
-                        <ul class="errors">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    @endif
                     <div class="card-body-content-form">
                         <form action="{{ route('evaluations.update', $evaluations->id) }}" method="post">
                             @csrf
@@ -43,6 +36,9 @@
                                                         {{ $cases->c_no . ' ' . $cases->patients->name }}</option>
                                                 @endforeach
                                             </select>
+                                            @error('c_id')
+                                                <strong style="color: red; margin-top: 0.625rem">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -58,6 +54,9 @@
                                                         {{ $evaluation_types->name }}</option>
                                                 @endforeach
                                             </select>
+                                            @error('et_id')
+                                                <strong style="color: red; margin-top: 0.625rem">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -70,11 +69,18 @@
                                             <textarea type="text" name="detail" value="{{ old('evaluations', $evaluations->detail ?? null) }}"
                                                 class="form-control" placeholder="ປ້ອນລາຍລະອຽດຜົນກວດ"
                                                 rows="5">{{ $evaluations->detail }}</textarea>
+                                            @error('detail')
+                                                <strong style="color: red; margin-top: 0.625rem">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit"><i class="fa-solid fa-upload"></i>&nbsp;ບັນທືກ</button>
+                            <div class="row">
+                                <center>
+                                    <button type="submit"><i class="fa-solid fa-upload"></i>&nbsp;ບັນທືກ</button>
+                                </center>
+                            </div>
                         </form>
                     </div>
                 </div>

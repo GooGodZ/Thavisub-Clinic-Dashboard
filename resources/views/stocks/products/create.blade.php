@@ -36,6 +36,9 @@
                                         <div class="col-9">
                                             <input type="text" name="name" class="form-control"
                                                 placeholder="ປ້ອນຊື່ສິນຄ້າ">
+                                            @error('name')
+                                                <strong style="color: red; margin-top: 0.625rem">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -50,6 +53,9 @@
                                                     </option>
                                                 @endforeach
                                             </select>
+                                            @error('pt_id')
+                                                <strong style="color: red; margin-top: 0.625rem">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -61,6 +67,9 @@
                                         <div class="col-9">
                                             <input type="number" name="quantity" class="form-control"
                                                 placeholder="ປ້ອນຈຳນວນສິນຄ້າ">
+                                            @error('quantity')
+                                                <strong style="color: red; margin-top: 0.625rem">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -70,11 +79,18 @@
                                         <div class="col-9">
                                             <input type="number" name="price" class="form-control"
                                                 placeholder="ປ້ອນລາຄາສິນຄ້າ">
+                                            @error('price')
+                                                <strong style="color: red; margin-top: 0.625rem">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit"><i class="fa-solid fa-upload"></i>&nbsp;ບັນທືກ</button>
+                            <div class="row">
+                                <center>
+                                    <button type="submit"><i class="fa-solid fa-upload"></i>&nbsp;ບັນທືກ</button>
+                                </center>
+                            </div>
                         </form>
                     </div>
                 </div>

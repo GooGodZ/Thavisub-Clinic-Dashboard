@@ -119,15 +119,15 @@
                 </div>
                 <ul class="sub-menu">
                     <li><a class="link_name" href="#">ລາຍງານ</a></li>
-                    <li><a href="{{ route('reportpatients.index') }}">ລາຍງານຈຳນວນຄົນເຈັບ</a></li>
-                    <li><a href="">ລາຍງານສະເໝີກວດ</a></li>
-                    <li><a href="">ລາຍງານຜົນກວດ</a></li>
-                    <li><a href="">ລາຍງານການນັດກວດ</a></li>
-                    <li><a href="">ລາຍງານປະຫວັດການປິ່ນປົ່ວ</a></li>
-                    <li><a href="">ລາຍງານຜູ້ສະໝອງ</a></li>
-                    <li><a href="">ລາຍງານຈຳນວນສິນຄ້າ</a></li>
-                    <li><a href="">ລາຍງານລາຍຈ່າຍ</a></li>
-                    <li><a href="">ລາຍງານລາຍຮັບ</a></li>
+                    <li><a href="{{ route('reportPatient') }}">ລາຍງານຈຳນວນຄົນເຈັບ</a></li>
+                    <li><a href="{{ route('reportCase') }}">ລາຍງານສະເໝີກວດ</a></li>
+                    <li><a href="{{ route('reportEvaluation') }}">ລາຍງານຜົນກວດ</a></li>
+                    <li><a href="{{ route('reportAppointment') }}">ລາຍງານການນັດກວດ</a></li>
+                    <li><a href="{{ route('reportTreatment') }}">ລາຍງານປະຫວັດການປິ່ນປົ່ວ</a></li>
+                    <li><a href="{{ route('reportSupplier') }}">ລາຍງານຜູ້ສະໝອງ</a></li>
+                    <li><a href="{{ route('reportProduct') }}">ລາຍງານຈຳນວນສິນຄ້າ</a></li>
+                    <li><a href="{{ route('reportExpense') }}">ລາຍງານລາຍຈ່າຍ</a></li>
+                    <li><a href="{{ route('reportIncome') }}">ລາຍງານລາຍຮັບ</a></li>
                 </ul>
             </li>
             <li>
@@ -181,6 +181,7 @@
         $(document).ready(function() {
             $('#mytable').DataTable({
                 responsive: true,
+                ordering: false
             });
             $('.search').dropdown();
         });

@@ -19,13 +19,6 @@
                             <button><i class="fa-solid fa-backward"></i>&nbsp;ຍ້ອນກັບ</button>
                         </a>
                     </div>
-                    @if ($errors->any())
-                        <ul class="errors">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    @endif
                     <div class="card-body-content-form">
                         <form action="{{ route('cases.update', $cases->id) }}" method="post">
                             @csrf
@@ -43,6 +36,9 @@
                                                         {{ $patients->name }}</option>
                                                 @endforeach
                                             </select>
+                                            @error('pt_id')
+                                                <strong style="color: red; text-alig: start">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -58,6 +54,9 @@
                                                         {{ $doctors->name }}</option>
                                                 @endforeach
                                             </select>
+                                            @error('doc_id')
+                                                <strong style="color: red; text-alig: start">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -67,12 +66,20 @@
                                     <div class="row">
                                         <label class="col-3 col-form-label label-start">ຄວາມດັນ</label>
                                         <div class="col">
-                                            <input type="text" name="pressure1" class="form-control"
-                                                placeholder="ປ້ອນຄວາມດັນ">
+                                            <input type="text" name="pressure1"
+                                                value="{{ old('cases', Str::substr($cases->pressure, 0, 3) ?? null) }}"
+                                                class="form-control" placeholder="ປ້ອນຄວາມດັນ">
+                                            @error('pressure1')
+                                                <strong style="color: red; text-alig: start">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                         <div class="col">
-                                            <input type="text" name="pressure2" class="form-control"
-                                                placeholder="ປ້ອນຄວາມດັນ">
+                                            <input type="text" name="pressure2"
+                                                value="{{ old('cases', Str::substr($cases->pressure, 5, 8) ?? null) }}"
+                                                class="form-control" placeholder="ປ້ອນຄວາມດັນ">
+                                            @error('pressure2')
+                                                <strong style="color: red; text-alig: start">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -83,6 +90,9 @@
                                             <input type="text" name="temper"
                                                 value="{{ old('cases', $cases->temper ?? null) }}" class="form-control"
                                                 placeholder="ປ້ອນອຸນຫະພູມ (ອົງສາ °C)">
+                                            @error('temper')
+                                                <strong style="color: red; text-alig: start">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -93,8 +103,11 @@
                                         <label class="col-3 col-form-label label-start">ທາງເດີນຫາຍໃຈ</label>
                                         <div class="col-9">
                                             <input type="text" name="respira"
-                                                value="{{ old('cases', $cases->respira ?? null) }}" class="form-control"
-                                                placeholder="ປ້ອນທາງເດີນຫາຍໃຈ">
+                                                value="{{ old('cases', $cases->respira ?? null) }}"
+                                                class="form-control" placeholder="ປ້ອນທາງເດີນຫາຍໃຈ">
+                                            @error('respira')
+                                                <strong style="color: red; text-alig: start">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -105,6 +118,9 @@
                                             <input type="text" name="pulse"
                                                 value="{{ old('cases', $cases->pulse ?? null) }}" class="form-control"
                                                 placeholder="ປ້ອນຊີບພະຈອນ">
+                                            @error('pulse')
+                                                <strong style="color: red; text-alig: start">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -117,11 +133,18 @@
                                             <input type="text" name="disea"
                                                 value="{{ old('cases', $cases->disea ?? null) }}" class="form-control"
                                                 placeholder="ປ້ອນອາການ">
+                                            @error('disea')
+                                                <strong style="color: red; text-alig: start">{{ $message }}</strong>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit"><i class="fa-solid fa-upload"></i>&nbsp;ບັນທືກ</button>
+                            <div class="row">
+                                <center>
+                                    <button type="submit"><i class="fa-solid fa-upload"></i>&nbsp;ບັນທືກ</button>
+                                </center>
+                            </div>
                         </form>
                     </div>
                 </div>
