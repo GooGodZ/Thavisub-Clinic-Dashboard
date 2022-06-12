@@ -14,4 +14,9 @@ class Orders extends Model
         'name',
         'sup_id'
     ];
+
+    public function suppliers()
+    {
+        return $this->belongsTo(Suppliers::class, 'sup_id', 'id');
+    }
 }

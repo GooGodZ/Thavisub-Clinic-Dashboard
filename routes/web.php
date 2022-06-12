@@ -1,13 +1,17 @@
 <?php
 
 use App\Http\Controllers\Admin\AppointmentsController;
+use App\Http\Controllers\Admin\BuysController;
 use App\Http\Controllers\Admin\CasesController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DoctorsController;
 use App\Http\Controllers\Admin\Evaluation_TypesController;
 use App\Http\Controllers\Admin\EvaluationsController;
 use App\Http\Controllers\Admin\MedicatesController;
+use App\Http\Controllers\Admin\Order_DetailsController;
+use App\Http\Controllers\Admin\OrdersController;
 use App\Http\Controllers\Admin\PatientsController;
+use App\Http\Controllers\Admin\PaymentsController;
 use App\Http\Controllers\Admin\Product_TypesController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\ReportController;
@@ -52,6 +56,15 @@ Route::resource('/products', ProductsController::class);
 Route::resource('/product_types', Product_TypesController::class);
 
 Route::resource('/suppliers', SuppliersController::class);
+
+Route::resource('/orders', OrdersController::class);
+
+Route::resource('/order_details', Order_DetailsController::class);
+Route::get('/order_detailscreatelink', [Order_DetailsController::class, 'createLink'])->name('order_DetailsCreateLink');
+
+Route::resource('/buys', BuysController::class);
+
+Route::resource('payments', PaymentsController::class);
 
 Route::get('/reportpatient', [ReportController::class, 'reportPatient'])->name('reportPatient');
 Route::post('/reportpatient', [ReportController::class, 'reportPatientSearch'])->name('reportPatientSearch');

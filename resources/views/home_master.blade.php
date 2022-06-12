@@ -74,7 +74,7 @@
                 </div>
                 <ul class="sub-menu">
                     <li><a class="link_name" href="#">ການເງິນ</a></li>
-                    <li><a href="">ການຊຳລະເງິນ</a></li>
+                    <li><a href="{{ route('payments.index') }}">ການຊຳລະເງິນ</a></li>
                 </ul>
             </li>
             <li>
@@ -97,7 +97,7 @@
                 <ul class="sub-menu">
                     <li><a class="link_name" href="#">ສາງ</a></li>
                     <li><a href="{{ route('products.index') }}">ຂໍ້ມູນສິນຄ້າ</a></li>
-                    <li><a href="">ຂໍ້ມູນການສັ່ງຊື່</a></li>
+                    <li><a href="{{ route('orders.index') }}">ຂໍ້ມູນການສັ່ງຊື່</a></li>
                 </ul>
             </li>
             <li>
