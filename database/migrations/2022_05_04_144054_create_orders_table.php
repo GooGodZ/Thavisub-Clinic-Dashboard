@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('or_no', 11);
             $table->string('name');
+            $table->integer('status');
             $table->unsignedBigInteger('sup_id');
             $table->timestamps();
         });

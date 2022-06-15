@@ -44,7 +44,7 @@
                         <table id="mytable" class="table table-hover" width="100%">
                             <thead>
                                 <td>ລຳດັບ</td>
-                                <td>ວັນທີ ເດືອນ ປີ</td>
+                                <td>ວັນທີ ເດືອນ ປີນັດກວດ</td>
                                 <td>ຊື່ ແລະ ນາມສະກຸນ</td>
                             </thead>
                             <tbody>

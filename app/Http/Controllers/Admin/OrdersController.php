@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Buys;
 use App\Models\Order_Details;
 use App\Models\Orders;
 use App\Models\Products;
@@ -19,8 +20,9 @@ class OrdersController extends Controller
     public function index()
     {
         $orders = Orders::all();
+        $buys = Buys::all();
 
-        return view('stocks.orders.index', compact('orders'));
+        return view('stocks.orders.index', compact('orders', 'buys'));
     }
 
     /**
@@ -32,7 +34,7 @@ class OrdersController extends Controller
     {
         $suppliers = Suppliers::all();
 
-        return view('stocks.orders.create', compact('suppliers'));
+        return view('stocks.orders.orders.create', compact('suppliers'));
     }
 
     /**
@@ -54,10 +56,11 @@ class OrdersController extends Controller
         $orders = new Orders();
         $orders->or_no = 'Or-No.' . rand(0000, 9999);
         $orders->name = $request->name;
+        $orders->status = 0;
         $orders->sup_id = $request->sup_id;
         $orders->save();
 
-        return redirect()->route('order_DetailsCreateLink')->with('success', 'ເພີ່ມຂໍ້ມູນສັ່ງຊື້ສິນຄ້າສຳເລັດແລ້ວ');
+        return redirect()->route('order_details.create')->with('success', 'ເພີ່ມຂໍ້ມູນສັ່ງຊື້ສິນຄ້າສຳເລັດແລ້ວ');
     }
 
     /**
@@ -68,7 +71,10 @@ class OrdersController extends Controller
      */
     public function show($id)
     {
-        //
+        $orders = Orders::find($id);
+        $order_details = Order_Details::where('or_id', $orders->id)->get();
+
+        return view('stocks.orders.orders.print', compact('orders', 'order_details'));
     }
 
     /**
@@ -79,7 +85,10 @@ class OrdersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $orders = Orders::find($id);
+        $suppliers = Suppliers::all();
+
+        return view('stocks.orders.orders.edit', compact('orders', 'suppliers'));
     }
 
     /**
@@ -91,7 +100,21 @@ class OrdersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'sup_id' => 'required'
+        ], [
+            'name.required' => 'ປ້ອນຊື່ໃບບິນ',
+            'sup_id.required' => 'ເລຶອກຜູ້ສະໜອງ'
+        ]);
+
+        $orders = Orders::where('id', '=', $id)->first();
+        $orders->name = $request->name;
+        $orders->status = 0;
+        $orders->sup_id = $request->sup_id;
+        $orders->save();
+
+        return redirect()->route('orders.index')->with('success', 'ແກ້ໄຂຂໍ້ມູນຄົນເຈັບສຳເລັດແລ້ວ');
     }
 
     /**

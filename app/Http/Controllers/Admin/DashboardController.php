@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Appointments;
 use App\Models\Cases;
 use App\Models\Doctors;
+use App\Models\Payments;
 use App\Models\Products;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -14,10 +15,17 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $casesDay = Cases::whereDate('created_at', Carbon::today())->count();
+        $casesDay = Cases::whereDate('date', Carbon::today())->count();
         $appointments = Appointments::whereDate('date', Carbon::today())->count();
-        $casesMonth = Cases::whereMonth('created_at', Carbon::now()->format('m'))->count();
+        $casesMonth = Cases::whereMonth('date', Carbon::now()->format('m'))->count();
         $doctors = Doctors::all()->count();
+
+        $payments_sum = Payments::where('status', 1)->sum('total');
+        $payments = Payments::selectRaw("payments.date, SUM(payments.total) as total")
+            ->groupBy('payments.date')
+            ->orderBy('payments.date', 'DESC')
+            ->limit(6)
+            ->get();
 
         $casesChart = Cases::select('id', 'date')->get()->groupBy(function ($casesChart) {
             return Carbon::parse($casesChart->date)->format('M');
@@ -37,6 +45,6 @@ class DashboardController extends Controller
             $productCount[] = $values->quantity;
         }
 
-        return view('index', compact('casesDay', 'appointments', 'casesMonth', 'doctors', 'months', 'monthCount', 'productName', 'productCount'));
+        return view('index', compact('casesDay', 'appointments', 'casesMonth', 'doctors', 'payments', 'payments_sum', 'months', 'monthCount', 'productName', 'productCount'));
     }
 }

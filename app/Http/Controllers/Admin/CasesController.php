@@ -107,6 +107,7 @@ class CasesController extends Controller
             'respira' => 'required',
             'pulse' => 'required',
             'disea' => 'required',
+            'app_id' => 'required',
             'pt_id' => 'required',
             'doc_id' => 'required',
         ], [
@@ -116,6 +117,7 @@ class CasesController extends Controller
             'respira.required' => 'ປ້ອນທາງເດີນຫາຍໃຈ',
             'pulse.required' => 'ປ້ອນຊີບພະຈອນ',
             'disea.required' => 'ປ້ອນອາການ',
+            'app_id.required' => 'ເລືອກນັດກວດ',
             'pt_id.required' => 'ເລືອກຄົນເຈັບ',
             'doc_id.required' => 'ເລືອກທ່ານໝໍ',
         ]);
@@ -129,13 +131,12 @@ class CasesController extends Controller
         $cases->pulse = $request->pulse;
         $cases->disea = $request->disea;
         $cases->status = 0;
-        // $appointments = Appointments::where('id', $appointments_id)->first();
-        // $appointments->status = 1;
+        $appointments = Appointments::where('id', $request->app_id)->first();
+        $appointments->status = 1;
         $cases->pt_id = $request->pt_id;
         $cases->doc_id = $request->doc_id;
         $cases->save();
-        // $appointments->save();
-        // dd($appointments);
+        $appointments->save();
 
         return redirect()->route('cases.index')->with('success', 'ເພີ່ມຂໍ້ມູນລົງທະບຽນກວດສຳເລັດແລ້ວ');
     }

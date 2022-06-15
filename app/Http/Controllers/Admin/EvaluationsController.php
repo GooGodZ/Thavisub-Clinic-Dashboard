@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Cases;
 use App\Models\Evaluation_Types;
 use App\Models\Evaluations;
+use App\Models\Payments;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -73,6 +74,15 @@ class EvaluationsController extends Controller
         $cases->status = 1;
         $cases->save();
         $evaluations->save();
+        $payments = new Payments();
+        $payments->pay_no = 'Pay-No.' . rand(0000, 9999);
+        $payments->c_id = $evaluations->c_id;
+        $payments->price_p = 0;
+        $payments->price_p = 0;
+        $payments->total = 0;
+        $payments->date = Carbon::now()->format('Y-m-d');
+        $payments->status = 0;
+        $payments->save();
 
         return redirect()->route('medicates.create')->with('success', 'ເພີ່ມຂໍ້ມູນຜົນກວດສຳເລັດແລ້ວ');
     }

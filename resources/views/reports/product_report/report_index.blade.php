@@ -25,28 +25,24 @@
                     <div class="card-body-content-table">
                         <table id="mytable" class="table table-hover" width="100%">
                             <thead>
-                                <td>ລຳດັບ</td>
-                                <td>ຊື່ ແລະ ນາມສະກຸນ</td>
-                                <td>ເບີໂທຕິດຕໍ່</td>
-                                <td>ຈຳນວນຄັ້ງ</td>
+                                <td>ລະຫັດສິນຄ້າ</td>
+                                <td>ຊື່ສິນຄ້າ</td>
+                                <td>ປະເພດ</td>
+                                <td>ຈຳນວນທັງໝົດ</td>
+                                <td>ຈຳນວນທີ່ໃຊ້ໄປ</td>
+                                <td>ຈຳນວນທີ່ຍັງເຫຼືອ</td>
                             </thead>
                             <tbody>
-                                <tr>
-                                        <td class="table-english"></td>
-                                        <td></td>
-                                        <td class="table-english"></td>
-                                        <td class="table-english"></td>
+                                @foreach ($product as $product)
+                                    <tr>
+                                        <td class="table-english">{{ $product->p_no }}</td>
+                                        <td>{{ $product->name }}</td>
+                                        <td>{{ $product->pt_name }}</td>
+                                        <td class="table-english">{{ $product->quantity + $product->usequantity }}</td>
+                                        <td class="table-english">{{ $product->usequantity }}</td>
+                                        <td class="table-english">{{ $product->quantity }}</td>
                                     </tr>
-                                {{-- @foreach ($report_patients as $key => $report_patients_count)
-                                    @foreach ($report_patients_count as $report_patients)
-                                        <tr>
-                                            <td class="table-english">{{ $number++ }}</td>
-                                            <td>{{ $report_patients->patients->name }} </td>
-                                            <td class="table-english">{{ $report_patients->patients->tel }}</td>
-                                            <td class="table-english">{{ $report_patients_count->count() }}</td>
-                                        </tr>
-                                    @endforeach
-                                @endforeach --}}
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

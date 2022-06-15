@@ -28,50 +28,33 @@
                         </a>
                     </div>
                     <div class="card-body-content-form">
-                        <form action="{{ route('order_details.store') }}" method="post">
+                        <form action="{{ route('buy_details.store') }}" method="post">
                             @csrf
                             <div class="row">
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                                     <div class="row">
                                         <label class="col-3 col-form-label">ຊື່ໃບສັ່ງຊື້</label>
                                         <div class="col-9">
-                                            <select name="or_id" class="form-select search">
-                                                <option value="{{ $orders->id }}">
-                                                    {{ $orders->or_no . ' ' . $orders->name }}
+                                            <select name="buy_id" class="form-select search">
+                                                <option value="{{ $buys->id }}">
+                                                    {{ $buys->buy_no . ' ' . $buys->orders->name }}
                                                 </option>
                                             </select>
-                                            @error('c_id')
+                                            @error('buy_id')
                                                 <strong style="color: red; margin-top: 0.625rem">{{ $message }}</strong>
                                             @enderror
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                                    <div class="row">
-                                        <label class="col-3 col-form-label">ຜູ້ສະໜອງ</label>
-                                        <div class="col-9">
-                                            <select class="form-select search">
-                                                <option value="{{ $orders->id }}">
-                                                    {{ $orders->suppliers->name }}
-                                                </option>
-                                            </select>
-                                            @error('c_id')
-                                                <strong style="color: red; margin-top: 0.625rem">{{ $message }}</strong>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                                     <div class="row">
                                         <label class="col-3 col-form-label">ຊື່ຢາ</label>
                                         <div class="col-9">
                                             <select name="p_id" class="form-select search">
                                                 <option selected>ເລືອກຢາ</option>
-                                                @foreach ($products as $products)
-                                                    <option value="{{ $products->id }}">
-                                                        {{ $products->name }}</option>
+                                                @foreach ($order_details as $order_details)
+                                                    <option value="{{ $order_details->p_id }}">
+                                                        {{ $order_details->products->name }}</option>
                                                 @endforeach
                                             </select>
                                             @error('p_id')
@@ -80,6 +63,8 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                                     <div class="row">
                                         <label class="col-3 col-form-label">ຈຳນວນຢາ</label>
@@ -92,10 +77,23 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                    <div class="row">
+                                        <label class="col-3 col-form-label">ລາຄາຢາ</label>
+                                        <div class="col-9">
+                                            <input type="text" name="price" class="form-control"
+                                                placeholder="ປ້ອນລາຄາຢາ">
+                                            @error('price')
+                                                <strong style="color: red; margin-top: 0.625rem">{{ $message }}</strong>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <center>
                                     <button type="submit"><i class="fa-solid fa-upload"></i>&nbsp;ບັນທືກ</button>
+                                    <a href="{{ route('orders.index') }}">ໜ້າສັ່ງຊື້</a>
                                 </center>
                             </div>
                         </form>
@@ -114,25 +112,24 @@
                                 <td>ລຳດັບ</td>
                                 <td>ຊື່ຢາ</td>
                                 <td>ຈຳນວນ</td>
+                                <td>ລາຄາ</td>
                                 <td>ຕົວເລືອກ</td>
                             </thead>
                             <tbody>
                                 @php
                                     $number = 1;
                                 @endphp
-                                @foreach ($order_details as $order_details)
+                                @foreach ($buy_details as $buy_details)
                                     <tr>
                                         <td class="table-english">{{ $number++ }}</td>
-                                        <td class="table-english">{{ $order_details->products->name }}</td>
-                                        <td class="table-english">{{ $order_details->quantity }}</td>
+                                        <td class="table-english">{{ $buy_details->products->name }}</td>
+                                        <td class="table-english">{{ $buy_details->quantity }}</td>
+                                        <td class="table-english">{{ $buy_details->price }}</td>
                                         <td>
-                                            <form action="{{ route('order_details.destroy', $order_details->id) }}"
+                                            <form action="{{ route('buy_details.destroy', $buy_details->id) }}"
                                                 method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <a href="{{ route('order_details.edit', $order_details->id) }}">
-                                                    <i class="fa-solid fa-pen-to-square"></i>
-                                                </a>
                                                 <button type="submit"
                                                     onclick="return confirm('ທ່ານຕ້ອງການລົບຂໍ້ມູນນີ້ ຫຼື ບໍ?')">
                                                     <i class="fa-solid fa-trash-can"></i>

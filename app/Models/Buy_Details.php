@@ -16,4 +16,9 @@ class Buy_Details extends Model
         'p_id',
         'buy_id'
     ];
+
+    public function products()
+    {
+        return $this->belongsTo(Products::class, 'p_id', 'id');
+    }
 }

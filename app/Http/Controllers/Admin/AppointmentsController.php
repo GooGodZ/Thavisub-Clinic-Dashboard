@@ -19,7 +19,10 @@ class AppointmentsController extends Controller
      */
     public function index()
     {
-        $appointments = Appointments::where('date', Carbon::today())->get();
+        $appointments = Appointments::where('date', Carbon::today())
+            ->orderBy('status', 'ASC')
+            ->orderBy('time', 'ASC')
+            ->get();
         return view('services.appointments.index', compact('appointments'));
     }
 

@@ -10,10 +10,6 @@
             </div>
         </div>
     </div>
-
-    @php
-    $appointments_id = $appointments->id;
-@endphp
     <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div class="card">
@@ -35,6 +31,7 @@
                                                 <option value="{{ $cases->pt_id }}">{{ $cases->patients->name }}
                                                 </option>
                                             </select>
+                                            <input type="hidden" name="app_id" value="{{$appointments->id}}">
                                             @error('pt_id')
                                                 <strong style="color: red; margin-top: 0.625rem">{{ $message }}</strong>
                                             @enderror

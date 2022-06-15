@@ -53,39 +53,29 @@
         <div class="col-12 col-sm-12 col-md-6 col-lg-6">
             <div class="card">
                 <div class="container">
-                    <p class="card-head-top text-center">ລາຍຮັບ</p>
+                    <p class="card-head-top2 text-center">ລາຍຮັບ</p>
                     <div class="card-body-content-total">
                         <p>ລາຍຮັບລວມ</p>
-                        <span>1290.00</span>
+                        <span>{{ $payments_sum }} ກີບ</span>
                     </div>
                     <div class="card-body-content-table">
-                        <table id="mytable" class="table table-hover" width="100%">
+                        <table class="table table-hover" width="100%">
                             <thead>
                                 <td>ລຳດັບ</td>
                                 <td>ວັນທີ ເດືອນ ປີ</td>
                                 <td>ຈຳນວນ</td>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>21/2/2021</td>
-                                    <td>100.000</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>22/2/2021</td>
-                                    <td>200.000</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>23/2/2021</td>
-                                    <td>300.000</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>24/2/2021</td>
-                                    <td>400.000</td>
-                                </tr>
+                                @php
+                                    $number = 1;
+                                @endphp
+                                @foreach ($payments as $payments)
+                                    <tr>
+                                        <td>{{ $number++ }}</td>
+                                        <td>{{ date('d-M-Y', strtotime($payments->date)) }}</td>
+                                        <td>{{ $payments->total }}</td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -95,7 +85,7 @@
         <div class="col-12 col-sm-12 col-md-6 col-lg-6">
             <div class="card">
                 <div class="container">
-                    <p class="card-head-top">ລາຍງານການຂາຍຢາ</p>
+                    <p class="card-head-top">ລາຍງານຢາທີ່ເຫຼືອ</p>
                     <div class="card-body-content-donut">
                         <canvas id="myDonut"></canvas>
                     </div>

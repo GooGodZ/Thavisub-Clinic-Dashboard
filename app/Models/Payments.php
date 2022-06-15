@@ -17,4 +17,9 @@ class Payments extends Model
         'date',
         'c_id'
     ];
+
+    public function cases()
+    {
+        return $this->belongsTo(Cases::class, 'c_id', 'id');
+    }
 }

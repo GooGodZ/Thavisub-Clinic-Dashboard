@@ -12,6 +12,7 @@ class Orders extends Model
     protected $fillable = [
         'or_no',
         'name',
+        'status',
         'sup_id'
     ];
 

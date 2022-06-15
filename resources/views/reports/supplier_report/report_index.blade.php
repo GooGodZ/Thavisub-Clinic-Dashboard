@@ -22,31 +22,43 @@
         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div class="card">
                 <div class="container">
+                    <div class="card-body-content-search">
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-10 col-lg-10">
+                                <form action="{{ route('reportSupplierSearch') }}" method="post">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                                            <label for="" class="form-label">ຕັ້ງແຕ່ວັນທີ</label>
+                                            <input type="date" class="form-control" name="startdate">
+                                        </div>
+                                        <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                                            <label for="" class="form-label">ເຖີງວັນທີ</label>
+                                            <input type="date" class="form-control" name="enddate">
+                                        </div>
+                                        <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                                            <button type="submit" class="button-search">ຄົ້ນຫາ</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                     <div class="card-body-content-table">
                         <table id="mytable" class="table table-hover" width="100%">
                             <thead>
-                                <td>ລຳດັບ</td>
-                                <td>ຊື່ ແລະ ນາມສະກຸນ</td>
-                                <td>ເບີໂທຕິດຕໍ່</td>
-                                <td>ຈຳນວນຄັ້ງ</td>
+                                <td>ລະຫັດຜູ້ສະໜອງ</td>
+                                <td>ຊື່ຜູ້ສະໜອງ</td>
+                                <td>ຈຳນວນຄັ້ງທີ່ສັ່ງ</td>
                             </thead>
                             <tbody>
-                                <tr>
-                                        <td class="table-english"></td>
-                                        <td></td>
-                                        <td class="table-english"></td>
-                                        <td class="table-english"></td>
+                                @foreach ($supplier as $supplier)
+                                    <tr>
+                                        <td class="table-english">{{ $supplier->sup_no }}</td>
+                                        <td class="table-english">{{ $supplier->name }}</td>
+                                        <td class="table-english">{{ $supplier->sup_id }}</td>
                                     </tr>
-                                {{-- @foreach ($report_patients as $key => $report_patients_count)
-                                    @foreach ($report_patients_count as $report_patients)
-                                        <tr>
-                                            <td class="table-english">{{ $number++ }}</td>
-                                            <td>{{ $report_patients->patients->name }} </td>
-                                            <td class="table-english">{{ $report_patients->patients->tel }}</td>
-                                            <td class="table-english">{{ $report_patients_count->count() }}</td>
-                                        </tr>
-                                    @endforeach
-                                @endforeach --}}
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

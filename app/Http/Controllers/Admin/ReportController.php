@@ -4,9 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Appointments;
+use App\Models\Buys;
 use App\Models\Cases;
 use App\Models\Evaluations;
+use App\Models\Medicates;
 use App\Models\Patients;
+use App\Models\Payments;
+use App\Models\Products;
+use App\Models\Suppliers;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -208,21 +213,102 @@ class ReportController extends Controller
 
     public function reportSupplier()
     {
-        return view('reports.supplier_report.report_index');
+        $supplier = Suppliers::selectRaw("suppliers.*, COUNT(orders.sup_id) as sup_id, orders.created_at")
+            ->join('orders', 'suppliers.id', '=', 'orders.sup_id')
+            ->groupBy('orders.sup_id')
+            ->get();
+        return view('reports.supplier_report.report_index', compact('supplier'));
+    }
+
+    public function reportSupplierSearch()
+    {
+        if (request()->startdate || request()->enddate) {
+            $startdate = Carbon::parse(request()->startdate)->toDateTimeString();
+            $enddate = Carbon::parse(request()->enddate)->toDateTimeString();
+            $supplier = Suppliers::selectRaw("suppliers.*, COUNT(orders.sup_id) as sup_id, orders.created_at")
+                ->join('orders', 'suppliers.id', '=', 'orders.sup_id')
+                ->groupBy('orders.sup_id')
+                ->whereBetween('orders.created_at', [$startdate, $enddate])
+                ->get();
+        } else {
+            $supplier = Suppliers::selectRaw("suppliers.*, COUNT(orders.sup_id) as sup_id, orders.created_at")
+                ->join('orders', 'suppliers.id', '=', 'orders.sup_id')
+                ->groupBy('orders.sup_id')
+                ->get();
+        }
+        return view('reports.supplier_report.report_index', compact('supplier'));
     }
 
     public function reportProduct()
     {
-        return view('reports.product_report.report_index');
+        $product = Products::selectRaw("products.*, product_types.name as pt_name, SUM(medicates.quantity) as usequantity")
+            ->join('product_types', 'products.pt_id', '=', 'product_types.id')
+            ->join('medicates', 'products.id', '=', 'medicates.p_id')
+            ->groupBy('products.id', 'medicates.p_id')
+            ->get();
+
+        return view('reports.product_report.report_index', compact('product'));
     }
 
     public function reportExpense()
     {
-        return view('reports.expense_report.report_index');
+        $expense = Buys::selectRaw("buys.*, orders.name, SUM(buy_details.price) as price")
+            ->join('buy_details', 'buys.id', '=', 'buy_details.buy_id')
+            ->join('orders', 'buys.or_id', '=', 'orders.id')
+            ->groupBy('buys.date')
+            ->get();
+
+        return view('reports.expense_report.report_index', compact('expense'));
+    }
+
+    public function reportExpenseSearch()
+    {
+        if (request()->startdate || request()->enddate) {
+            $startdate = Carbon::parse(request()->startdate)->toDateTimeString();
+            $enddate = Carbon::parse(request()->enddate)->toDateTimeString();
+            $expense = Buys::selectRaw("buys.*, orders.name, SUM(buy_details.price) as price")
+                ->join('buy_details', 'buys.id', '=', 'buy_details.buy_id')
+                ->join('orders', 'buys.or_id', '=', 'orders.id')
+                ->groupBy('buys.date')
+                ->whereBetween('buys.date', [$startdate, $enddate])
+                ->get();
+        } else {
+            $expense = Buys::selectRaw("buys.*, orders.name, SUM(buy_details.price) as price")
+                ->join('buy_details', 'buys.id', '=', 'buy_details.buy_id')
+                ->join('orders', 'buys.or_id', '=', 'orders.id')
+                ->groupBy('buys.date')
+                ->get();
+        }
+
+        return view('reports.expense_report.report_index', compact('expense'));
     }
 
     public function reportIncome()
     {
-        return view('reports.income_report.report_index');
+        $income = Payments::where('status', 1)->get();
+        $income_sum = Payments::where('status', 1)->sum('total');
+
+        return view('reports.income_report.report_index', compact('income', 'income_sum'));
+    }
+
+    public function reportIncomeSearch()
+    {
+        if (request()->startdate || request()->enddate) {
+            $startdate = Carbon::parse(request()->startdate)->toDateTimeString();
+            $enddate = Carbon::parse(request()->enddate)->toDateTimeString();
+            $income = Payments::where('status', 1)
+                ->whereBetween('date', [$startdate, $enddate])
+                ->get();
+            $income_sum = Payments::where('status', 1)
+                ->whereBetween('date', [$startdate, $enddate])
+                ->sum('total');
+        } else {
+            $income = Payments::where('status', 1)
+                ->get();
+            $income_sum = Payments::where('status', 1)
+                ->sum('total');
+        }
+
+        return view('reports.income_report.report_index', compact('income', 'income_sum'));
     }
 }

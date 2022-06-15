@@ -183,8 +183,13 @@
                 responsive: true,
                 ordering: false
             });
+            $('#mytable2').DataTable({
+                responsive: true,
+                ordering: false
+            });
             $('.search').dropdown();
         });
+
     </script>
 
     @yield('script')

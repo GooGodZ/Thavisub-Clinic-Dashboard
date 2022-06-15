@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AppointmentsController;
+use App\Http\Controllers\Admin\Buy_DetailsController;
 use App\Http\Controllers\Admin\BuysController;
 use App\Http\Controllers\Admin\CasesController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -60,9 +61,13 @@ Route::resource('/suppliers', SuppliersController::class);
 Route::resource('/orders', OrdersController::class);
 
 Route::resource('/order_details', Order_DetailsController::class);
-Route::get('/order_detailscreatelink', [Order_DetailsController::class, 'createLink'])->name('order_DetailsCreateLink');
+Route::get('/order_detailscreatelink/{id}', [Order_DetailsController::class, 'createLink'])->name('order_DetailsCreateLink');
 
 Route::resource('/buys', BuysController::class);
+Route::get('/buyscreatelink/{id}', [BuysController::class, 'createLink'])->name('buysCreateLink');
+
+Route::resource('/buy_details', Buy_DetailsController::class);
+Route::get('/buy_detailscreatelink/{id}', [Buy_DetailsController::class, 'createLink'])->name('buy_DetailsCreateLink');
 
 Route::resource('payments', PaymentsController::class);
 
@@ -86,9 +91,13 @@ Route::post('/reporttreatmentsearch', [ReportController::class, 'reportTreatment
 Route::get('/reporttreatmentprint/{id}', [ReportController::class, 'reportTreatmentPrint'])->name('reportTreatmentPrint');
 
 Route::get('/reportsupplier', [ReportController::class, 'reportSupplier'])->name('reportSupplier');
+Route::post('/reportsuppliersearch', [ReportController::class, 'reportSupplierSearch'])->name('reportSupplierSearch');
 
 Route::get('/reportproduct', [ReportController::class, 'reportProduct'])->name('reportProduct');
 
 Route::get('/reportexpense', [ReportController::class, 'reportExpense'])->name('reportExpense');
+Route::get('/reportexpenseprint', [ReportController::class, 'reportExpensePrint'])->name('reportExpensePrint');
+Route::post('/reportexpensesearch', [ReportController::class, 'reportExpenseSearch'])->name('reportExpenseSearch');
 
 Route::get('/reportincome', [ReportController::class, 'reportIncome'])->name('reportIncome');
+Route::post('/reportincomesearch', [ReportController::class, 'reportIncomeSearch'])->name('reportIncomeSearch');

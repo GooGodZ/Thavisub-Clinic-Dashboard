@@ -14,4 +14,9 @@ class Buys extends Model
         'date',
         'or_id'
     ];
+
+    public function orders()
+    {
+        return $this->belongsTo(Orders::class, 'or_id', 'id');
+    }
 }

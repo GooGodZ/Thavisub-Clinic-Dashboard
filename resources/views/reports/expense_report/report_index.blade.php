@@ -11,42 +11,52 @@
         </div>
     </div>
 
-    @if (Session::has('success'))
-        <div class="alert-success">
-            <span class="close-alert-button" onclick="this.parentElement.style.display='none';">&times;</span>
-            <strong>{{ session('success') }}</strong>
-        </div>
-    @endif
-
     <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div class="card">
                 <div class="container">
+                    <div class="card-body-content-search">
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-10 col-lg-10">
+                                <form action="{{ route('reportExpenseSearch') }}" method="post">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                                            <label for="" class="form-label">ຕັ້ງແຕ່ວັນທີ</label>
+                                            <input type="date" class="form-control" name="startdate">
+                                        </div>
+                                        <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                                            <label for="" class="form-label">ເຖີງວັນທີ</label>
+                                            <input type="date" class="form-control" name="enddate">
+                                        </div>
+                                        <div class="col-12 col-sm-12 col-md-3 col-lg-3">
+                                            <button type="submit" class="button-search">ຄົ້ນຫາ</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-2 col-lg-2 text-end">
+                                <a href="{{ route('reportExpensePrint') }}" target="_blank">
+                                    <button class="button-print">ພີມ</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     <div class="card-body-content-table">
                         <table id="mytable" class="table table-hover" width="100%">
                             <thead>
-                                <td>ລຳດັບ</td>
-                                <td>ຊື່ ແລະ ນາມສະກຸນ</td>
-                                <td>ເບີໂທຕິດຕໍ່</td>
-                                <td>ຈຳນວນຄັ້ງ</td>
+                                <td>ລະຫັດໃບບິນສິນຄ້າ</td>
+                                <td>ວັນທີ ເດືອນ ປີຊື້ເຂົ້າ</td>
+                                <td>ລວມຈຳນວນເງິນ</td>
                             </thead>
                             <tbody>
-                                <tr>
-                                        <td class="table-english"></td>
-                                        <td></td>
-                                        <td class="table-english"></td>
-                                        <td class="table-english"></td>
+                                @foreach ($expense as $expense)
+                                    <tr>
+                                        <td class="table-english">{{ $expense->buy_no }}</td>
+                                        <td class="table-english">{{ date('d-M-Y', strtotime($expense->date)) }}</td>
+                                        <td class="table-english">{{ $expense->price }} ກີບ</td>
                                     </tr>
-                                {{-- @foreach ($report_patients as $key => $report_patients_count)
-                                    @foreach ($report_patients_count as $report_patients)
-                                        <tr>
-                                            <td class="table-english">{{ $number++ }}</td>
-                                            <td>{{ $report_patients->patients->name }} </td>
-                                            <td class="table-english">{{ $report_patients->patients->tel }}</td>
-                                            <td class="table-english">{{ $report_patients_count->count() }}</td>
-                                        </tr>
-                                    @endforeach
-                                @endforeach --}}
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

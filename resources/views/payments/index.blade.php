@@ -23,7 +23,7 @@
             <div class="card">
                 <div class="container">
                     <div class="card-body-content-button">
-                        <a href="{{ route('doctors.create') }}">
+                        <a href="{{ route('payments.create') }}">
                             <button><i class="fa-solid fa-plus"></i>&nbsp;ເພີ່ມ</button>
                         </a>
                     </div>
@@ -31,10 +31,8 @@
                         <table id="mytable" class="table table-hover" width="100%">
                             <thead>
                                 <td>ລຳດັບ</td>
-                                <td>ລະຫັດໝໍ</td>
+                                <td>ລະຫັດໃບບິນ</td>
                                 <td>ຊື່ ແລະ ນາມສະກຸນ</td>
-                                <td>ເບີໂທຕິດຕໍ່</td>
-                                <td>ທີ່ຢູ່</td>
                                 <td>ສະຖານະ</td>
                                 <td>ຕົວເລືອກ</td>
                             </thead>
@@ -42,19 +40,17 @@
                                 @php
                                     $number = 1;
                                 @endphp
-                                @foreach ($doctors as $doctors)
+                                @foreach ($payments as $payments)
                                     <tr>
                                         <td class="table-english">{{ $number++ }}</td>
-                                        <td class="table-english">{{ $doctors->doc_no }}</td>
-                                        <td>{{ $doctors->name }}</td>
-                                        <td class="table-english">{{ $doctors->tel }}</td>
-                                        <td>{{ $doctors->address }}</td>
-                                        <td>{{ $doctors->status == 1 ? 'ປະຈຳການ' : 'ບໍ່ປະຈຳການ' }}</td>
+                                        <td class="table-english">{{$payments->pay_no}}</td>
+                                        <td>{{$payments->cases->patients->name}}</td>
+                                        <td class="table-english">{{ $payments->status == 1 ? 'ຊຳລະແລ້ວ' : 'ຍັງບໍ່ທັນຊຳລະ' }}</td>
                                         <td>
-                                            <form action="{{ route('doctors.destroy', $doctors->id) }}" method="POST">
+                                            <form action="{{ route('payments.destroy', $payments->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <a href="{{ route('doctors.edit', $doctors->id) }}">
+                                                <a href="{{ route('payments.edit', $payments->id) }}">
                                                     <i class="fa-solid fa-pen-to-square"></i>
                                                 </a>
                                                 <button type="submit"

@@ -36,6 +36,7 @@
                                 <td>ວັນ ເດືອນ ປີນັດກວດ</td>
                                 <td>ເວລານັດກວດ</td>
                                 <td>ທ່ານໝໍ</td>
+                                <td>ສະຖານະ</td>
                                 <td>ຕົວເລືອກ</td>
                             </thead>
                             <tbody>
@@ -51,6 +52,7 @@
                                         </td>
                                         <td class="table-english">{{ $appointments->time }}</td>
                                         <td class="table-english">{{ $appointments->doctors->name }}</td>
+                                        <td class="table-english">{{ $appointments->status == 0 ? 'ລໍຖ້າ' : 'ລົງທະບຽນແລ້ວ' }}</td>
                                         <td>
                                             <form action="{{ route('appointments.destroy', $appointments->id) }}"
                                                 method="POST">

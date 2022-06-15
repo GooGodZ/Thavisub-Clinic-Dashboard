@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Medicates;
+use App\Models\Payments;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PaymentsController extends Controller
@@ -14,7 +17,9 @@ class PaymentsController extends Controller
      */
     public function index()
     {
-        //
+        $payments = Payments::where('date', Carbon::today())->orderBy('status','ASC')->get();
+
+        return view('payments.index', compact('payments'));
     }
 
     /**
@@ -24,7 +29,12 @@ class PaymentsController extends Controller
      */
     public function create()
     {
-        //
+        return view('payments.create');
+    }
+
+    public function createLink()
+    {
+        return view('payments.createLink');
     }
 
     /**
@@ -57,7 +67,10 @@ class PaymentsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $payments = Payments::find($id);
+        $medicates_sum = Medicates::where('c_id', $payments->c_id)->sum('price');
+
+        return view('payments.edit', compact('payments', 'medicates_sum'));
     }
 
     /**
@@ -69,7 +82,22 @@ class PaymentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'price_p' => 'required',
+            'price_e' => 'required'
+        ], [
+            'price_p.required' => 'ປ້ອນລາຄາຢາ',
+            'price_e.required' => 'ປ້ອນລາຄາຜົນກວດ'
+        ]);
+
+        $payments = Payments::where('id', '=', $id)->first();
+        $payments->price_p = $request->price_p;
+        $payments->price_e = $request->price_e;
+        $payments->total = $payments->price_p + $payments->price_e;
+        $payments->status = 1;
+        $payments->save();
+
+        return redirect()->route('payments.index')->with('success', 'ແກ້ໄຂຂໍ້ມູນການຊຳລະສຳເລັດແລ້ວ');
     }
 
     /**
@@ -80,6 +108,9 @@ class PaymentsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $payments = Payments::find($id);
+        $payments->delete();
+
+        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນການຊຳລະສຳເລັດແລ້ວ');
     }
 }

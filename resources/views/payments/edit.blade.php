@@ -5,7 +5,7 @@
         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div class="card">
                 <div class="container">
-                    <p class="card-head-top">ຟອມແກ້ໄຂຂໍ້ມູນທ່ານໝໍ</p>
+                    <p class="card-head-top">ຟອມຂໍ້ມູນການຊຳລະ</p>
                 </div>
             </div>
         </div>
@@ -15,87 +15,37 @@
             <div class="card">
                 <div class="container">
                     <div class="card-body-content-button">
-                        <a href="{{ route('doctors.index') }}">
+                        <a href="{{ route('payments.index') }}">
                             <button><i class="fa-solid fa-backward"></i>&nbsp;ຍ້ອນກັບ</button>
                         </a>
                     </div>
                     <div class="card-body-content-form">
-                        <form action="{{ route('doctors.update', $doctors->id) }}" method="post">
+                        <form action="{{ route('payments.update', $payments->id) }}" method="post">
                             @csrf
                             @method('PUT')
                             <div class="row">
                                 <label class="col-3 col-form-label">ຊື່ ແລະ ນາມສະກຸນ</label>
                                 <div class="col-9">
-                                    <input type="text" name="name" class="form-control"
-                                        value="{{ old('doctors', $doctors->name ?? null) }}"
+                                    <input type="" class="form-control"
+                                        value="{{ old('payments', $payments->pay_no.' '.$payments->cases->patients->name) }}"
                                         placeholder="ປ້ອນຊື່ ແລະ ນາມສະກຸນ">
-                                    @error('name')
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-3 col-form-label">ລວມລາຄາຢາ</label>
+                                <div class="col-9">
+                                    <input type="number" name="price_p" class="form-control" value="{{ $medicates_sum }}" placeholder="ປ້ອນລວມລາຄາຢາ">
+                                    @error('price_p')
                                         <strong style="color: red; margin-top: 0.625rem">{{ $message }}</strong>
                                     @enderror
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-3 col-form-label">ວັນ ເດືອນ ປີເກິດ</label>
+                                <label class="col-3 col-form-label">ລວມລາຄາປິ່ນປົວ</label>
                                 <div class="col-9">
-                                    <input type="date" name="dob"
-                                        value="{{ old('doctors', date('d-M-Y', strtotime($doctors->dob)) ?? null) }}"
-                                        class="form-control" placeholder="ປ້ອນວັນ">
-                                    @error('dob')
-                                        <strong style="color: red; margin-top: 0.625rem">{{ $message }}</strong>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-3 col-form-label">ເພດ</label>
-                                <div class="col-9">
-                                    <select name="gender" class="form-select search">
-                                        <option selected>ເລືອກເພດ</option>
-                                        <option value="ຊາຍ"
-                                            {{ old('doctors', $doctors->gender ?? null) == 'ຊາຍ' ? 'selected' : '' }}>
-                                            ຊາຍ</option>
-                                        <option value="ຍິງ"
-                                            {{ old('doctors', $doctors->gender ?? null) == 'ຍິງ' ? 'selected' : '' }}>
-                                            ຍິງ</option>
-                                    </select>
-                                    @error('gender')
-                                        <strong style="color: red; margin-top: 0.625rem">{{ $message }}</strong>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-3 col-form-label">ທີ່ຢູ່</label>
-                                <div class="col-9">
-                                    <input type="text" name="address" class="form-control"
-                                        value="{{ old('doctors', $doctors->address ?? null) }}" placeholder="ປ້ອນທີ່ຢູ່">
-                                    @error('address')
-                                        <strong style="color: red; margin-top: 0.625rem">{{ $message }}</strong>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-3 col-form-label">ເບີໂທຕິດຕໍ່</label>
-                                <div class="col-9">
-                                    <input type="text" name="tel" class="form-control"
-                                        value="{{ old('doctors', $doctors->tel ?? null) }}"
-                                        placeholder="ປ້ອນເບີໂທຕິດຕໍ່">
-                                    @error('tel')
-                                        <strong style="color: red; margin-top: 0.625rem">{{ $message }}</strong>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-3 col-form-label">ສະຖານະ</label>
-                                <div class="col-9">
-                                    <select name="status" class="form-select search">
-                                        <option selected>ເລືອກສະຖານະ</option>
-                                        <option value="0"
-                                            {{ old('doctors', $doctors->status ?? null) == 0 ? 'selected' : '' }}>
-                                            ບໍ່ປະຈຳການ</option>
-                                        <option value="1"
-                                            {{ old('doctors', $doctors->status ?? null) == 1 ? 'selected' : '' }}>ປະຈຳການ
-                                        </option>
-                                    </select>
-                                    @error('status')
+                                    <input type="number" name="price_e" class="form-control"
+                                        placeholder="ປ້ອນລວມລາຄາປິ່ນປົວ">
+                                    @error('price_e')
                                         <strong style="color: red; margin-top: 0.625rem">{{ $message }}</strong>
                                     @enderror
                                 </div>
