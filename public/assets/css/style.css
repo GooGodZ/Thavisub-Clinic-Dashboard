@@ -246,25 +246,16 @@ body {
 .home-section .home-content-top {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     height: 3.75rem;
     top: 0;
     width: 100%;
     background: var(--white-color);
 }
 
-.home-section .home-content-top.sticky {
-    position: fixed;
-    top: 0;
-    background: var(--white-color);
-    z-index: 999;
-}
-
 .home-section .home-content-top .bx-menu {
     color: var(--black-color);
     font-size: 2.5rem;
-}
-
-.home-section .home-content-top .bx-menu {
     margin: 0 1rem;
     cursor: pointer;
 }

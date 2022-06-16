@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\Product_TypesController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\SuppliersController;
+use App\Http\Controllers\Auth\AuthenticationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,74 +31,85 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [DashboardController::class, 'index'])->name('index');
+Route::get('/login', [AuthenticationController::class, 'login'])->name('login');
+Route::post('/authenticate', [AuthenticationController::class, 'authenticate'])->name('authenticate');
 
-Route::resource('/patients', PatientsController::class);
+Route::group([
+    'middleware' => 'AdminMiddleware'
+], function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('index');
 
-Route::resource('/cases', CasesController::class);
-Route::get('/casescreatelink', [CasesController::class, 'createLink'])->name('casesCreateLink');
-Route::get('/casescreatelinkappointments/{id}', [CasesController::class, 'createLinkAppointments'])->name('casesCreateLinkAppointments');
-Route::post('/casesstorelink', [CasesController::class, 'storeLink'])->name('casesStoreLink');
+    Route::post('/register', [AuthenticationController::class, 'register'])->name('register');
+    Route::put('/changepassword', [AuthenticationController::class, 'changepassword'])->name('changepassword');
+    Route::get('/logout', [AuthenticationController::class, 'logout'])->name('logout');
 
-Route::resource('/doctors', DoctorsController::class);
+    Route::resource('/patients', PatientsController::class);
 
-Route::resource('/appointments', AppointmentsController::class);
-Route::get('/appointmentscreatelink/{id}', [AppointmentsController::class, 'createLink'])->name('appointmentsCreateLink');
+    Route::resource('/cases', CasesController::class);
+    Route::get('/casescreatelink', [CasesController::class, 'createLink'])->name('casesCreateLink');
+    Route::get('/casescreatelinkappointments/{id}', [CasesController::class, 'createLinkAppointments'])->name('casesCreateLinkAppointments');
+    Route::post('/casesstorelink', [CasesController::class, 'storeLink'])->name('casesStoreLink');
 
-Route::resource('/evaluations', EvaluationsController::class);
-Route::get('/evaluationscreatelink/{id}', [EvaluationsController::class, 'createLink'])->name('evaluationsCreateLink');
+    Route::resource('/doctors', DoctorsController::class);
 
-Route::resource('/evaluation_types', Evaluation_TypesController::class);
+    Route::resource('/appointments', AppointmentsController::class);
+    Route::get('/appointmentscreatelink/{id}', [AppointmentsController::class, 'createLink'])->name('appointmentsCreateLink');
 
-Route::resource('/medicates', MedicatesController::class);
-Route::get('/medicatescreatelink/{id}', [MedicatesController::class, 'createLink'])->name('medicatesCreateLink');
+    Route::resource('/evaluations', EvaluationsController::class);
+    Route::get('/evaluationscreatelink/{id}', [EvaluationsController::class, 'createLink'])->name('evaluationsCreateLink');
 
-Route::resource('/products', ProductsController::class);
+    Route::resource('/evaluation_types', Evaluation_TypesController::class);
 
-Route::resource('/product_types', Product_TypesController::class);
+    Route::resource('/medicates', MedicatesController::class);
+    Route::get('/medicatescreatelink/{id}', [MedicatesController::class, 'createLink'])->name('medicatesCreateLink');
 
-Route::resource('/suppliers', SuppliersController::class);
+    Route::resource('/products', ProductsController::class);
 
-Route::resource('/orders', OrdersController::class);
+    Route::resource('/product_types', Product_TypesController::class);
 
-Route::resource('/order_details', Order_DetailsController::class);
-Route::get('/order_detailscreatelink/{id}', [Order_DetailsController::class, 'createLink'])->name('order_DetailsCreateLink');
+    Route::resource('/suppliers', SuppliersController::class);
 
-Route::resource('/buys', BuysController::class);
-Route::get('/buyscreatelink/{id}', [BuysController::class, 'createLink'])->name('buysCreateLink');
+    Route::resource('/orders', OrdersController::class);
 
-Route::resource('/buy_details', Buy_DetailsController::class);
-Route::get('/buy_detailscreatelink/{id}', [Buy_DetailsController::class, 'createLink'])->name('buy_DetailsCreateLink');
+    Route::resource('/order_details', Order_DetailsController::class);
+    Route::get('/order_detailscreatelink/{id}', [Order_DetailsController::class, 'createLink'])->name('order_DetailsCreateLink');
 
-Route::resource('payments', PaymentsController::class);
+    Route::resource('/buys', BuysController::class);
+    Route::get('/buyscreatelink/{id}', [BuysController::class, 'createLink'])->name('buysCreateLink');
 
-Route::get('/reportpatient', [ReportController::class, 'reportPatient'])->name('reportPatient');
-Route::post('/reportpatient', [ReportController::class, 'reportPatientSearch'])->name('reportPatientSearch');
+    Route::resource('/buy_details', Buy_DetailsController::class);
+    Route::get('/buy_detailscreatelink/{id}', [Buy_DetailsController::class, 'createLink'])->name('buy_DetailsCreateLink');
 
-Route::get('/reportcase', [ReportController::class, 'reportCase'])->name('reportCase');
-Route::post('/reportcase', [ReportController::class, 'reportCaseSearch'])->name('reportCaseSearch');
+    Route::resource('payments', PaymentsController::class);
 
-Route::get('/reportevaluation', [ReportController::class, 'reportEvaluation'])->name('reportEvaluation');
-Route::post('/reportevaluation', [ReportController::class, 'reportEvaluationSearch'])->name('reportEvaluationSearch');
-Route::get('/reportevaluationprint/{id}', [ReportController::class, 'reportEvaluationPrint'])->name('reportEvaluationPrint');
+    Route::get('/reportpatient', [ReportController::class, 'reportPatient'])->name('reportPatient');
+    Route::post('/reportpatient', [ReportController::class, 'reportPatientSearch'])->name('reportPatientSearch');
 
-Route::get('/reportappointment', [ReportController::class, 'reportAppointment'])->name('reportAppointment');
-Route::post('/reportappointmentsearch', [ReportController::class, 'reportAppointmentSearch'])->name('reportAppointmentSearch');
-Route::get('/reportappointmentprint/{id}', [ReportController::class, 'reportAppointmentPrint'])->name('reportAppointmentPrint');
+    Route::get('/reportcase', [ReportController::class, 'reportCase'])->name('reportCase');
+    Route::post('/reportcase', [ReportController::class, 'reportCaseSearch'])->name('reportCaseSearch');
 
-Route::get('/reporttreatment', [ReportController::class, 'reportTreatment'])->name('reportTreatment');
-Route::get('/reporttreatmentshow/{id}', [ReportController::class, 'reportTreatmentShow'])->name('reportTreatmentShow');
-Route::post('/reporttreatmentsearch', [ReportController::class, 'reportTreatmentSearch'])->name('reportTreatmentSearch');
-Route::get('/reporttreatmentprint/{id}', [ReportController::class, 'reportTreatmentPrint'])->name('reportTreatmentPrint');
+    Route::get('/reportevaluation', [ReportController::class, 'reportEvaluation'])->name('reportEvaluation');
+    Route::post('/reportevaluation', [ReportController::class, 'reportEvaluationSearch'])->name('reportEvaluationSearch');
+    Route::get('/reportevaluationprint/{id}', [ReportController::class, 'reportEvaluationPrint'])->name('reportEvaluationPrint');
 
-Route::get('/reportsupplier', [ReportController::class, 'reportSupplier'])->name('reportSupplier');
-Route::post('/reportsuppliersearch', [ReportController::class, 'reportSupplierSearch'])->name('reportSupplierSearch');
+    Route::get('/reportappointment', [ReportController::class, 'reportAppointment'])->name('reportAppointment');
+    Route::post('/reportappointmentsearch', [ReportController::class, 'reportAppointmentSearch'])->name('reportAppointmentSearch');
+    Route::get('/reportappointmentprint/{id}', [ReportController::class, 'reportAppointmentPrint'])->name('reportAppointmentPrint');
 
-Route::get('/reportproduct', [ReportController::class, 'reportProduct'])->name('reportProduct');
+    Route::get('/reporttreatment', [ReportController::class, 'reportTreatment'])->name('reportTreatment');
+    Route::get('/reporttreatmentshow/{id}', [ReportController::class, 'reportTreatmentShow'])->name('reportTreatmentShow');
+    Route::post('/reporttreatmentsearch', [ReportController::class, 'reportTreatmentSearch'])->name('reportTreatmentSearch');
+    Route::get('/reporttreatmentprint/{id}', [ReportController::class, 'reportTreatmentPrint'])->name('reportTreatmentPrint');
 
-Route::get('/reportexpense', [ReportController::class, 'reportExpense'])->name('reportExpense');
-Route::get('/reportexpenseprint', [ReportController::class, 'reportExpensePrint'])->name('reportExpensePrint');
-Route::post('/reportexpensesearch', [ReportController::class, 'reportExpenseSearch'])->name('reportExpenseSearch');
+    Route::get('/reportsupplier', [ReportController::class, 'reportSupplier'])->name('reportSupplier');
+    Route::post('/reportsuppliersearch', [ReportController::class, 'reportSupplierSearch'])->name('reportSupplierSearch');
 
-Route::get('/reportincome', [ReportController::class, 'reportIncome'])->name('reportIncome');
-Route::post('/reportincomesearch', [ReportController::class, 'reportIncomeSearch'])->name('reportIncomeSearch');
+    Route::get('/reportproduct', [ReportController::class, 'reportProduct'])->name('reportProduct');
+
+    Route::get('/reportexpense', [ReportController::class, 'reportExpense'])->name('reportExpense');
+    Route::get('/reportexpenseprint', [ReportController::class, 'reportExpensePrint'])->name('reportExpensePrint');
+    Route::post('/reportexpensesearch', [ReportController::class, 'reportExpenseSearch'])->name('reportExpenseSearch');
+
+    Route::get('/reportincome', [ReportController::class, 'reportIncome'])->name('reportIncome');
+    Route::post('/reportincomesearch', [ReportController::class, 'reportIncomeSearch'])->name('reportIncomeSearch');
+});

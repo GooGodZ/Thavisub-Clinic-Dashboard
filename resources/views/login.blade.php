@@ -26,9 +26,38 @@
 
 <body>
 
-    <div class="container">
-        @yield('print')
-    </div>
+    <section class="vh-100 bg-secondary">
+        <div class="container py-5 h-100">
+            <div class="row justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-5">
+                    <div class="card bg-white border-0 p-4" style="border-radius: 1rem;">
+                        <div class="card-body text-center">
+                            <img src="{{ asset('assets/images/logo.png') }}" alt="" class="img-fluid mb-4"
+                                width="150px">
+                            <h3 class="text-secondary mb-4">ເຂົ້າສູ່ລະບົບຄລິນິກທະວິຊັບ</h3>
+                            <form action="{{ route('authenticate') }}" method="post">
+                                @csrf
+                                <div class="form-outline mb-4">
+                                    <input type="email" class="form-control" name="email" placeholder="ອີເມວ">
+                                    @error('failed')
+                                        <strong style="color: red; margin-top: 0.625rem">{{ $message }}</strong>
+                                    @enderror
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <input type="password" class="form-control" name="password"
+                                        placeholder="ລະຫັດຜ່ານ">
+                                    @error('failed')
+                                        <strong style="color: red; margin-top: 0.625rem">{{ $message }}</strong>
+                                    @enderror
+                                </div>
+                                <button class="btn btn-outline-info btn-lg px-5" type="submit">ເຂົ້າສູ່ລະບົບ</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Main JS -->
     <script src="{{ asset('assets/js/script.js') }}"></script>
@@ -44,20 +73,6 @@
     <script src="{{ asset('assets/vendors/glightbox/js/glightbox.js') }}"></script>
     <script src="{{ asset('assets/vendors/semantic/js/semantic.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/slick/slick.js') }}"></script>
-
-    <!-- JS Script -->
-    <script>
-        $(document).ready(function() {
-            $('#mytable').DataTable({
-                responsive: true,
-                ordering: false
-            });
-            $('.search').dropdown();
-
-            window.onafterprint = window.close;
-            window.print();
-        });
-    </script>
 
 </body>
 
