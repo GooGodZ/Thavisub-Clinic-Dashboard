@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Evaluation_Types;
+use App\Models\Evaluations;
 use App\Models\Medicates;
 use App\Models\Payments;
 use Carbon\Carbon;
@@ -17,7 +19,7 @@ class PaymentsController extends Controller
      */
     public function index()
     {
-        $payments = Payments::where('date', Carbon::today())->orderBy('status','ASC')->get();
+        $payments = Payments::where('date', Carbon::today())->orderBy('status', 'ASC')->get();
 
         return view('payments.index', compact('payments'));
     }
@@ -30,11 +32,6 @@ class PaymentsController extends Controller
     public function create()
     {
         return view('payments.create');
-    }
-
-    public function createLink()
-    {
-        return view('payments.createLink');
     }
 
     /**
@@ -56,7 +53,10 @@ class PaymentsController extends Controller
      */
     public function show($id)
     {
-        //
+        $payments = Payments::find($id);
+        $medicates = Medicates::where('c_id', $payments->c_id)->get();
+
+        return view('payments.show', compact('payments', 'medicates'));
     }
 
     /**
@@ -68,9 +68,13 @@ class PaymentsController extends Controller
     public function edit($id)
     {
         $payments = Payments::find($id);
+        $evaluations = Evaluations::selectRaw("evaluations.*, SUM(evaluation_types.price) as price")
+            ->join('evaluation_types', 'evaluations.et_id', '=', 'evaluation_types.id')
+            ->where('evaluations.c_id', $payments->c_id)
+            ->get();
         $medicates_sum = Medicates::where('c_id', $payments->c_id)->sum('price');
 
-        return view('payments.edit', compact('payments', 'medicates_sum'));
+        return view('payments.edit', compact('payments', 'medicates_sum', 'evaluations'));
     }
 
     /**

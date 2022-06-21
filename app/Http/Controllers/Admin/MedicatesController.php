@@ -42,8 +42,7 @@ class MedicatesController extends Controller
 
     public function createLink($id)
     {
-        $product_types = Product_Types::all()->where('name', 'ຢາ')->first();
-        $products = Products::all()->where('pt_id', $product_types->id);
+        $products = Products::all();
         $evaluations = Evaluations::find($id);
         $medicates = Medicates::all()->where('c_id', $evaluations->c_id);
 

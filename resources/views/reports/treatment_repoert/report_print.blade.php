@@ -10,7 +10,7 @@
             <div class="row mb-4">
                 <div class="col-8">
                     <h4 class="text-start">ຄລີນິກທະວີຊັບ</h4>
-                    <h4 class="text-start">ເບີໂທ:</h4>
+                    <h4 class="text-start">ເບີໂທ:  20 99 706 568</h4>
                 </div>
                 <div class="col-4">
                     <h4 class="text-start">ເລກທີ:</h4>
@@ -20,7 +20,6 @@
         </div>
         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <h4>ຊື່ຄົນເຈັບ: {{ $evaluation->cases->patients->name }}</h4>
-            <h4>ຊື່ທ່ານໝໍ: {{ $evaluation->cases->doctors->name }}</h4>
         </div>
         <div class="col-12 col-sm-12 col-md-12 col-lg-12">
             <div class="card m-3 p-3 border-1 border-dark">

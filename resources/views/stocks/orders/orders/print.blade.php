@@ -10,10 +10,10 @@
             <div class="row mb-4">
                 <div class="col-8">
                     <h4 class="text-start">ຄລີນິກທະວີຊັບ</h4>
-                    <h4 class="text-start">ເບີໂທ:</h4>
+                    <h4 class="text-start">ເບີໂທ:  20 99 706 568</h4>
                 </div>
                 <div class="col-4">
-                    <h4 class="text-start">ເລກທີ:</h4>
+                    <h4 class="text-start">ເລກທີ: {{ $orders->or_no }}</h4>
                     <h4 class="text-start">ວັນທີ: {{ date('d-M-Y', strtotime($orders->created_at)) }}</h4>
                 </div>
             </div>

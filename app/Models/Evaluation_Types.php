@@ -11,6 +11,7 @@ class Evaluation_Types extends Model
     protected $table = 'evaluation_types';
     protected $fillable = [
         'et_no',
-        'name'
+        'name',
+        'price'
     ];
 }

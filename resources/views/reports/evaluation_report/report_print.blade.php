@@ -10,10 +10,10 @@
             <div class="row mb-4">
                 <div class="col-8">
                     <h4 class="text-start">ຄລີນິກທະວີຊັບ</h4>
-                    <h4 class="text-start">ເບີໂທ:</h4>
+                    <h4 class="text-start">ເບີໂທ: 20 99 706 568</h4>
                 </div>
                 <div class="col-4">
-                    <h4 class="text-start">ເລກທີ:</h4>
+                    <h4 class="text-start">ເລກທີ: </h4>
                     <h4 class="text-start">ວັນທີ: {{ date('d M Y', strtotime($evaluation->date)) }}</h4>
                 </div>
             </div>
@@ -27,7 +27,7 @@
                 <h4>ຄວາມດັນ: {{ $evaluation->cases->pressure }} mmHg</h4>
                 <h4>ຊີບພະຈອນ: {{ $evaluation->cases->pulse }} bpm</h4>
                 <h4>ອຸນຫະພູມ: {{ $evaluation->cases->temper }} °C</h4>
-                <h4>ລະບົບທາງເດີນຫາຍໃຈ: {{ $evaluation->cases->respira }} bpm</h4>
+                <h4>ອັດຕາການຫາຍໃຈ: {{ $evaluation->cases->respira }} bpm</h4>
             </div>
         </div>
         <div class="col-12 col-sm-12 col-md-12 col-lg-12">

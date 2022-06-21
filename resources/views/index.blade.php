@@ -1,98 +1,135 @@
 @extends('home_master')
 
 @section('contents')
-    <div class="row">
-        <div class="col-12 col-sm-12 col-md-3 col-lg-3">
-            <div class="card">
-                <div class="container">
-                    <p class="card-head-top">ຄົນເຈັບໃນມື້ນີ້</p>
-                    <p class="card-body-content">{{ $casesDay }}&nbsp;<span>ຄົນ</span></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-12 col-md-3 col-lg-3">
-            <div class="card">
-                <div class="container">
-                    <p class="card-head-top">ຄົນເຈັບນັດກວດມື້ນີ້</p>
-                    <p class="card-body-content">{{ $appointments }}&nbsp;<span>ຄົນ</span></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-12 col-md-3 col-lg-3">
-            <div class="card">
-                <div class="container">
-                    <p class="card-head-top">ຄົນເຈັບພາຍໃນເດືອນ</p>
-                    <p class="card-body-content">{{ $casesMonth }}&nbsp;<span>ຄົນ</span></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-12 col-md-3 col-lg-3">
-            <div class="card">
-                <div class="container">
-                    <p class="card-head-top">ຂໍ້ມູນທ່ານໝໍ</p>
-                    <p class="card-body-content">{{ $doctors }}&nbsp;<span>ຄົນ</span></p>
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">ໜ້າຫຼັກ</h1>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-            <div class="card">
-                <div class="container">
-                    <p class="card-head-top">ຈຳນວນຄົນເຈັບ</p>
-                    <div class="card-body-content-bar">
-                        <canvas id="myBar"></canvas>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3>{{ $casesDay }}</h3>
+                            <p>ຄົນເຈັບໃນມື້ນີ້</p>
+                        </div>
+                        <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3>{{ $appointments }}</h3>
+                            <p>ຄົນເຈັບນັດກວດມື້ນີ້</p>
+                        </div>
+                        <a href="{{ route('appointments.index') }}" class="small-box-footer">More info <i
+                                class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <h3>{{ $casesMonth }}</h3>
+                            <p>ຄົນເຈັບພາຍໃນເດືອນ</p>
+                        </div>
+                        <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h3>{{ $doctors }}</h3>
+                            <p>ຂໍ້ມູນທ່ານໝໍ</p>
+                        </div>
+                        <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-            <div class="card">
-                <div class="container">
-                    <p class="card-head-top2 text-center">ລາຍຮັບ</p>
-                    <div class="card-body-content-total">
-                        <p>ລາຍຮັບລວມ</p>
-                        <span>{{ $payments_sum }} ກີບ</span>
+            <div class="row">
+                <section class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header bg-white">
+                            <h3 class="card-title"><i class="fas fa-chart-pie mr-1"></i></h3>
+                            <div class="card-tools">
+                                <ul class="nav nav-pills ml-auto">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="#revenue-chart" data-toggle="tab">ຈຳນວນຄົນເຈັບ</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#sales-chart" data-toggle="tab">ຈຳນວນຢາ</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content p-0">
+                                <div class="chart tab-pane active" id="revenue-chart"
+                                    style="position: relative; height: 300px;">
+                                    <canvas id="myBar1"></canvas>
+                                </div>
+                                <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
+                                    <canvas id="myBar2"></canvas>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body-content-table">
-                        <table class="table table-hover" width="100%">
-                            <thead>
-                                <td>ລຳດັບ</td>
-                                <td>ວັນທີ ເດືອນ ປີ</td>
-                                <td>ຈຳນວນ</td>
-                            </thead>
-                            <tbody>
-                                @php
-                                    $number = 1;
-                                @endphp
-                                @foreach ($payments as $payments)
+                </section>
+                <section class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header bg-white">
+                            <h3 class="card-title">ລາຍຮັບຕໍ່ອາທິດ</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="inner">
+                                <h3 class="card-title">{{ number_format($payments_sum) }} ກີບ</h3>
+                            </div>
+                            <table class="table table-hover" width="100%">
+                                <thead>
+                                    <td>ລຳດັບ</td>
+                                    <td>ວັນທີ ເດືອນ ປີ</td>
+                                    <td>ຈຳນວນ</td>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $number = 1;
+                                    @endphp
+                                    @foreach ($payments as $payments)
+                                        <tr>
+                                            <td>{{ $number++ }}</td>
+                                            <td>{{ date('d-M-Y', strtotime($payments->date)) }}</td>
+                                            <td>{{ number_format($payments->total) }} ກີບ</td>
+                                        </tr>
+                                    @endforeach
                                     <tr>
-                                        <td>{{ $number++ }}</td>
-                                        <td>{{ date('d-M-Y', strtotime($payments->date)) }}</td>
-                                        <td>{{ $payments->total }}</td>
+                                        <td>Q</td>
+                                        <td>Q</td>
+                                        <td>Q</td>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                    <tr>
+                                        <td>Q</td>
+                                        <td>Q</td>
+                                        <td>Q</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Q</td>
+                                        <td>Q</td>
+                                        <td>Q</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
+                </section>
             </div>
         </div>
-        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-            <div class="card">
-                <div class="container">
-                    <p class="card-head-top">ລາຍງານຢາທີ່ເຫຼືອ</p>
-                    <div class="card-body-content-donut">
-                        <canvas id="myDonut"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    </section>
 @endsection
 
 @section('script')
@@ -100,8 +137,8 @@
         var _ydata = JSON.parse('{!! json_encode($months) !!}');
         var _xdata = JSON.parse('{!! json_encode($monthCount) !!}');
 
-        const bar = document.getElementById('myBar');
-        const myBar = new Chart(bar, {
+        const bar1 = document.getElementById('myBar1');
+        const myBar1 = new Chart(bar1, {
             type: 'bar',
             data: {
                 labels: _ydata,
@@ -132,25 +169,32 @@
         var _ydata = JSON.parse('{!! json_encode($productName) !!}');
         var _xdata = JSON.parse('{!! json_encode($productCount) !!}');
 
-        const donut = document.getElementById('myDonut');
-        const myDonut = new Chart(donut, {
-            type: 'doughnut',
+        const bar2 = document.getElementById('myBar2');
+        const myBar2 = new Chart(bar2, {
+            type: 'bar',
             data: {
                 labels: _ydata,
                 datasets: [{
+                    label: 'ຈຳນວນຢາ',
                     data: _xdata,
                     backgroundColor: [
                         'rgba(0, 255, 1, 0.75)',
-                        'rgba(255, 255, 1, 0.75)',
-                        'rgba(255, 127, 0, 0.75)',
-                        'rgba(254, 0, 0, 0.75)',
-                        'rgba(255, 0, 254, 0.75)',
-                        'rgba(127, 0, 255, 0.75)',
-                        'rgba(0, 0, 254, 0.75)',
-                        'rgba(1, 255, 255, 0.75)',
-                    ],
-                    hoverOffset: 4
+                    ]
                 }]
+            },
+            options: {
+                legend: {
+                    display: false
+                },
+                title: {
+                    display: true,
+                    text: "World Wine Production 2018"
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
             }
         });
     </script>

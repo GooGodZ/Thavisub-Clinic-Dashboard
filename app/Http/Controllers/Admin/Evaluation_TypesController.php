@@ -40,13 +40,16 @@ class Evaluation_TypesController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'price' => 'required',
         ], [
             'name.required' => 'ປ້ອນຊື່ປະເພດຜົນກວດ',
+            'price.required' => 'ປ້ອນລາຄາຜົນກວດ',
         ]);
 
         $evaluation_types = new Evaluation_Types();
         $evaluation_types->et_no = 'ET-No.' . rand(0000, 9999);
         $evaluation_types->name = $request->name;
+        $evaluation_types->price = $request->price;
         $evaluation_types->save();
 
         return redirect()->route('evaluation_types.index')->with('success', 'ເພີ່ມຂໍ້ມູນປະເພດຜົນກວດສຳເລັດແລ້ວ');
@@ -87,12 +90,15 @@ class Evaluation_TypesController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'price' => 'required',
         ], [
             'name.required' => 'ປ້ອນຊື່ປະເພດຜົນກວດ',
+            'price.required' => 'ປ້ອນລາຄາຜົນກວດ',
         ]);
 
         $evaluation_types = Evaluation_Types::where('id', '=', $id)->first();
         $evaluation_types->name = $request->name;
+        $evaluation_types->price = $request->price;
         $evaluation_types->save();
 
         return redirect()->route('evaluation_types.index')->with('success', 'ແກ້ໄຂຂໍ້ມູນປະເພດຜົນກວດສຳເລັດແລ້ວ');

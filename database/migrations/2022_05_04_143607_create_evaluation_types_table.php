@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('et_no', 11);
             $table->string('name');
+            $table->integer('price');
             $table->timestamps();
         });
     }

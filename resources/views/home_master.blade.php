@@ -13,265 +13,350 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
     <!-- Vendors CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/vendors/aos/css/aos.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendors/adminLTE/css/adminlte.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendors/bootstrap-icons/bootstrap-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/boxsicons/css/boxicons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/datatable/css/dataTables.bootstrap5.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/fontawesome/css/all.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/vendors/glightbox/css/glightbox.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendors/fontawesome-free/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendors/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/semantic/css/semantic.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/vendors/slick/slick.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/vendors/slick/slick-theme.css') }}">
+
 </head>
 
-<body>
+<body class="hold-transition sidebar-mini layout-fixed">
 
     @php
         $permission = session()->get('status');
     @endphp
 
-    <section class="sidebar">
-        <a href="{{ route('index') }}" class="logo-details">
-            <img class="icons" src="{{ asset('assets/images/logo_icon.png') }}" alt="">
-            <img class="logo" src="{{ asset('assets/images/logo_dashboard.png') }}" alt="">
-        </a>
-        <ul class="nav-links">
-            <li>
-                <a href="{{ route('index') }}">
-                    <i class='bx bx-grid-alt'></i>
-                    <span class="link_name">ໜ້າຫຼັກ</span>
-                </a>
-                <ul class="sub-menu blank">
-                    <li><a class="link_name" href="#">ໜ້າຫຼັກ</a></li>
-                </ul>
-            </li>
-            @if ($permission === 1 || $permission === 2)
-                <li>
-                    <div class="category-menu">
-                        <i class='bx bx-collection'></i>
-                        <span class="link_name">ລົງທະບຽນ</span>
-                        <i class='bx bxs-chevron-down arrow'></i>
-                    </div>
-                    <ul class="sub-menu">
-                        <li><a class="link_name" href="#">ລົງທະບຽນ</a></li>
-                        <li><a href="{{ route('patients.index') }}">ຟອມຂໍ້ມູນຄົນເຈັບ</a></li>
-                        <li><a href="{{ route('cases.index') }}">ຟອມລົງທະບຽນກວດ</a></li>
-                    </ul>
+    <div class="wrapper">
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
+                            class="fas fa-bars"></i></a>
                 </li>
-                <li>
-                    <div class="category-menu">
-                        <i class="fa-solid fa-hand-holding-medical"></i>
-                        <span class="link_name">ບໍລິການ</span>
-                        <i class='bx bxs-chevron-down arrow'></i>
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-user"></i>&nbsp;{{ session()->get('name') }}
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#" data-toggle="modal"
+                            data-target="#ModalFormRegister">ລົງທະບຽນ</a>
+                        <a class="dropdown-item" href="#" data-toggle="modal"
+                            data-target="#ModalFormChangePassword">ປ່ຽນລະຫັດຜ່ານ</a>
+                        <a class="dropdown-item" href="{{ route('logout') }}">ອອກຈາກລະບົບ</a>
                     </div>
-                    <ul class="sub-menu">
-                        <li><a class="link_name" href="#">ບໍລິການ</a></li>
-                        <li><a href="{{ route('evaluations.index') }}">ຟອມຂໍ້ມູນຜົນກວດ</a></li>
-                        <li><a href="{{ route('medicates.index') }}">ຟອມການວາງຢາ</a></li>
-                        <li><a href="{{ route('appointments.index') }}">ຟອມນັດກວດ</a></li>
-                    </ul>
-                </li>
-            @endif
-            <li>
-                <div class="category-menu">
-                    <i class='bx bx-money'></i>
-                    <span class="link_name">ການເງິນ</span>
-                    <i class='bx bxs-chevron-down arrow'></i>
                 </div>
-                <ul class="sub-menu">
-                    <li><a class="link_name" href="#">ການເງິນ</a></li>
-                    <li><a href="{{ route('payments.index') }}">ການຊຳລະເງິນ</a></li>
-                </ul>
-            </li>
-            @if ($permission === 1 || $permission === 3)
-                <li>
-                    <div class="category-menu">
-                        <i class="fa-solid fa-user-doctor"></i>
-                        <span class="link_name">ທ່ານໝໍ</span>
-                        <i class='bx bxs-chevron-down arrow'></i>
-                    </div>
-                    <ul class="sub-menu">
-                        <li><a class="link_name" href="#">ທ່ານໝໍ</a></li>
-                        <li><a href="{{ route('doctors.index') }}">ຂໍ້ມູນທ່ານໝໍ</a></li>
-                    </ul>
-                </li>
-            @endif
-            <li>
-                <div class="category-menu">
-                    <i class='bx bx-package'></i>
-                    <span class="link_name">ສາງ</span>
-                    <i class='bx bxs-chevron-down arrow'></i>
-                </div>
-                <ul class="sub-menu">
-                    <li><a class="link_name" href="#">ສາງ</a></li>
-                    @if ($permission === 1 || $permission === 2 || $permission === 3)
-                        <li><a href="{{ route('products.index') }}">ຂໍ້ມູນສິນຄ້າ</a></li>
-                    @endif
-                    @if ($permission === 1 || $permission === 3)
-                        <li><a href="{{ route('orders.index') }}">ຂໍ້ມູນການສັ່ງຊື່</a></li>
-                    @endif
-                </ul>
-            </li>
-            @if ($permission === 1 || $permission === 3)
-                <li>
-                    <div class="category-menu">
-                        <i class='bx bx-user-plus'></i>
-                        <span class="link_name">ຜູ້ສະໝອງ</span>
-                        <i class='bx bxs-chevron-down arrow'></i>
-                    </div>
-                    <ul class="sub-menu">
-                        <li><a class="link_name" href="#">ຜູ້ສະໝອງ</a></li>
-                        <li><a href="{{ route('suppliers.index') }}">ຂໍ້ມູນຜູ້ສະໜອງ</a></li>
-                    </ul>
-                </li>
-            @endif
-            <li>
-                <div class="category-menu">
-                    <i class='bx bxs-report'></i>
-                    <span class="link_name">ລາຍງານ</span>
-                    <i class='bx bxs-chevron-down arrow'></i>
-                </div>
-                <ul class="sub-menu">
-                    <li><a class="link_name" href="#">ລາຍງານ</a></li>
-                    @if ($permission === 1 || $permission === 3)
-                        <li><a href="{{ route('reportPatient') }}">ລາຍງານຈຳນວນຄົນເຈັບ</a></li>
-                    @endif
-                    @if ($permission === 1 || $permission === 2)
-                        <li><a href="{{ route('reportCase') }}">ລາຍງານສະເໝີກວດ</a></li>
-                        <li><a href="{{ route('reportEvaluation') }}">ລາຍງານຜົນກວດ</a></li>
-                        <li><a href="{{ route('reportAppointment') }}">ລາຍງານການນັດກວດ</a></li>
-                        <li><a href="{{ route('reportTreatment') }}">ລາຍງານປະຫວັດການປິ່ນປົ່ວ</a></li>
-                    @endif
-                    @if ($permission === 1 || $permission === 3)
-                        <li><a href="{{ route('reportSupplier') }}">ລາຍງານຜູ້ສະໝອງ</a></li>
-                        <li><a href="{{ route('reportProduct') }}">ລາຍງານຈຳນວນສິນຄ້າ</a></li>
-                        <li><a href="{{ route('reportExpense') }}">ລາຍງານລາຍຈ່າຍ</a></li>
-                        <li><a href="{{ route('reportIncome') }}">ລາຍງານລາຍຮັບ</a></li>
-                    @endif
-                </ul>
-            </li>
-            @if ($permission === 1)
-                <li>
-                    <div class="category-menu">
-                        <i class="fa-solid fa-gear"></i>
-                        <span class="link_name">ຕັ້ງຄ່າ</span>
-                        <i class='bx bxs-chevron-down arrow'></i>
-                    </div>
-                    <ul class="sub-menu">
-                        <li><a class="link_name" href="#">ຕັ້ງຄ່າ</a></li>
-                        <li><a href="{{ route('evaluation_types.index') }}">ປະເພດຜົນກວດ</a></li>
-                        <li><a href="{{ route('product_types.index') }}">ປະເພດສິນຄ້າ</a></li>
-                    </ul>
-                </li>
-            @endif
-        </ul>
-    </section>
-    <section class="home-section">
-        <div class="home-content-top">
-            <i class='bx bx-menu'></i>
-            <div class="dropdown" style="margin-right:1rem">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-user"></i>&nbsp;{{ session()->get('name') }}
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    @if (session()->get('status') == 1)
-                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                data-bs-target="#ModalFormRegister">ລົງທະບຽນ</a></li>
-                    @endif
-                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
-                            data-bs-target="#ModalFormChangePassword">ປ່ຽນລະຫັດຜ່ານ</a></li>
-                    <li><a class="dropdown-item" href="{{ route('logout') }}">ອອກຈາກລະບົບ</a></li>
-                </ul>
-                <div class="modal fade" id="ModalFormRegister" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <form action="{{ route('register') }}" method="post">
-                                @csrf
-                                <div class="modal-header">
-                                    <h5 class="modal-title">ລົງທະບຽນຜູ້ໃຊ້ງານ</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="mb-3">
-                                        <label>ຊື່ຜຸ້ໃຊ້ງານ</label>
-                                        <input type="text" name="name" class="form-control"
-                                            placeholder="ປ້ອນຊື່ຜຸ້ໃຊ້ງານ">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="Password">ລະຫັດຜ່ານ</label>
-                                        <input type="password" name="password" class="form-control"
-                                            placeholder="ປ້ອນລະຫັດຜ່ານ">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="Password">ອີເມວ</label>
-                                        <input type="email" name="email" class="form-control" placeholder="ປ້ອນອີເມວ">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="Password">ສະຖານະ</label>
-                                        <select name="status" class="form-select search">
-                                            <option selected>ເລືອກສະຖານະ</option>
-                                            <option value="2">ທ່ານໝໍ</option>
-                                            <option value="3">ຜູ້ບໍລິຫານ</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="modal-footer pt-4">
-                                    <button type="submit" class="btn btn-success mx-auto w-25">ລົງທະບຽນ</button>
-                                </div>
-                            </form>
+            </ul>
+        </nav>
+
+        <div class="modal fade" id="ModalFormRegister" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <form action="{{ route('register') }}" method="post">
+                        @csrf
+                        <div class="modal-header">
+                            <h5 class="modal-title">ລົງທະບຽນຜູ້ໃຊ້ງານ</h5>
+                            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                         </div>
-                    </div>
-                </div>
-                <div class="modal fade" id="ModalFormChangePassword" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <form action="{{ route('changepassword') }}" method="post">
-                                @csrf
-                                @method('PUT')
-                                <div class="modal-header">
-                                    <h5 class="modal-title">ປ່ຽນລະຫັດຜ່ານ</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="mb-3">
-                                        <input type="hidden" name="user_id" class="form-control"
-                                            value="{{ session()->get('id') }}">
-                                        <label for="Password">ລະຫັດຜ່ານໃໝ່</label>
-                                        <input type="password" name="password" class="form-control"
-                                            placeholder="ປ້ອນລະຫັດຜ່ານ">
-                                    </div>
-                                </div>
-                                <div class="modal-footer pt-4">
-                                    <button type="submit" class="btn btn-success mx-auto w-25">ລົງທະບຽນ</button>
-                                </div>
-                            </form>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label>ຊື່ຜຸ້ໃຊ້ງານ</label>
+                                <input type="text" name="name" class="form-control"
+                                    placeholder="ປ້ອນຊື່ຜຸ້ໃຊ້ງານ">
+                            </div>
+                            <div class="mb-3">
+                                <label for="Password">ລະຫັດຜ່ານ</label>
+                                <input type="password" name="password" class="form-control" placeholder="ປ້ອນລະຫັດຜ່ານ">
+                            </div>
+                            <div class="mb-3">
+                                <label for="Password">ອີເມວ</label>
+                                <input type="email" name="email" class="form-control" placeholder="ປ້ອນອີເມວ">
+                            </div>
+                            <div class="mb-3">
+                                <label for="Password">ສະຖານະ</label>
+                                <select name="status" class="form-select search">
+                                    <option selected>ເລືອກສະຖານະ</option>
+                                    <option value="2">ທ່ານໝໍ</option>
+                                    <option value="3">ຜູ້ບໍລິຫານ</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
+                        <div class="modal-footer pt-4">
+                            <button type="submit" class="btn btn-success mx-auto w-25">ລົງທະບຽນ</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-        <div class="home-content-body">
+        <div class="modal fade" id="ModalFormChangePassword" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <form action="{{ route('changepassword') }}" method="post">
+                        @csrf
+                        @method('PUT')
+                        <div class="modal-header">
+                            <h5 class="modal-title">ປ່ຽນລະຫັດຜ່ານ</h5>
+                            <button type="button" class="btn-close" data-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <input type="hidden" name="user_id" class="form-control"
+                                    value="{{ session()->get('id') }}">
+                                <label for="Password">ລະຫັດຜ່ານໃໝ່</label>
+                                <input type="password" name="password" class="form-control"
+                                    placeholder="ປ້ອນລະຫັດຜ່ານ">
+                            </div>
+                        </div>
+                        <div class="modal-footer pt-4">
+                            <button type="submit" class="btn btn-success mx-auto w-25">ລົງທະບຽນ</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <aside class="main-sidebar sidebar-light-primary elevation-2">
+            <a href="{{ route('index') }}" class="brand-link">
+                <img src="{{ asset('assets/images/logo_dashboard.png') }}" alt="Thavisub Logo"
+                    style="opacity: .8;" height="60">
+            </a>
+
+            <div class="sidebar">
+                <nav class="">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
+                        <li class="nav-item">
+                            <a href="{{ route('index') }}"
+                                class="nav-link {{ request()->is('/') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>ໜ້າຫຼັກ</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#"
+                                class="nav-link {{ request()->is('patients*') || request()->is('cases*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-book-medical"></i>
+                                <p>ລົງທະບຽນ<i class="fas fa-angle-left right"></i></p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('patients.index') }}"
+                                        class="nav-link {{ request()->is('patients*') ? 'active' : '' }}">
+                                        <p style="margin-left: 32.5px;">ຟອມຂໍ້ມູນຄົນເຈັບ</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('cases.index') }}"
+                                        class="nav-link {{ request()->is('cases*') ? 'active' : '' }}">
+                                        <p style="margin-left: 32.5px;">ຟອມລົງທະບຽນກວດ</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#"
+                                class="nav-link {{ request()->is('evaluations*') || request()->is('medicates*') || request()->is('appointments*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-hand-holding-medical"></i>
+                                <p>ບໍລິການ<i class="right fas fa-angle-left"></i></p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('evaluations.index') }}"
+                                        class="nav-link {{ request()->is('evaluations*') ? 'active' : '' }}">
+                                        <p style="margin-left: 32.5px;">ຟອມຂໍ້ມູນຜົນກວດ</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('medicates.index') }}"
+                                        class="nav-link {{ request()->is('medicates*') ? 'active' : '' }}">
+                                        <p style="margin-left: 32.5px;">ຟອມການວາງຢາ</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('appointments.index') }}"
+                                        class="nav-link {{ request()->is('appointments*') ? 'active' : '' }}">
+                                        <p style="margin-left: 32.5px;">ຟອມນັດກວດ</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link {{ request()->is('payments*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-cash-register"></i>
+                                <p>ການເງິນ<i class="fas fa-angle-left right"></i></p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('payments.index') }}"
+                                        class="nav-link {{ request()->is('payments*') ? 'active' : '' }}">
+                                        <p style="margin-left: 32.5px;">ການຊຳລະເງິນ</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link {{ request()->is('doctors*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-user-md"></i>
+                                <p>ທ່ານໝໍ<i class="fas fa-angle-left right"></i></p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('doctors.index') }}"
+                                        class="nav-link {{ request()->is('doctors*') ? 'active' : '' }}">
+                                        <p style="margin-left: 32.5px;">ຂໍ້ມູນທ່ານໝໍ</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#"
+                                class="nav-link {{ request()->is('products*') || request()->is('orders*') || request()->is('buys*') || request()->is('order_details*') || request()->is('buy_details*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-boxes"></i>
+                                <p>ສາງ<i class="fas fa-angle-left right"></i></p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('products.index') }}"
+                                        class="nav-link {{ request()->is('products*') ? 'active' : '' }}">
+                                        <p style="margin-left: 32.5px;">ຂໍ້ມູນສິນຄ້າ</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('orders.index') }}"
+                                        class="nav-link {{ request()->is('orders*') || request()->is('buys*') || request()->is('order_details*') || request()->is('buy_details*') ? 'active' : '' }}">
+                                        <p style="margin-left: 32.5px;">ຂໍ້ມູນການສັ່ງຊື້</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link {{ request()->is('suppliers*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>ຜູ້ສະໝອງ<i class="fas fa-angle-left right"></i></p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('suppliers.index') }}"
+                                        class="nav-link {{ request()->is('suppliers*') ? 'active' : '' }}">
+                                        <p style="margin-left: 32.5px;">ຂໍ້ມູນຜູ້ສະໜອງ</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#"
+                                class="nav-link {{ request()->is('reportpatient*') || request()->is('reportcase*') || request()->is('reportevaluation*') || request()->is('reportappointment*') || request()->is('reporttreatment*') || request()->is('reportsupplier*') || request()->is('reportproduct*') || request()->is('reportexpense*') || request()->is('reportincome*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>ລາຍງານ<i class="fas fa-angle-left right"></i></p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('reportPatient') }}"
+                                        class="nav-link {{ request()->is('reportpatient*') ? 'active' : '' }}">
+                                        <p style="margin-left: 32.5px;">ລາຍງານຈຳນວນຄົນເຈັບ</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('reportCase') }}"
+                                        class="nav-link {{ request()->is('reportcase*') ? 'active' : '' }}">
+                                        <p style="margin-left: 32.5px;">ລາຍງານສະເໝີກວດ</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('reportEvaluation') }}"
+                                        class="nav-link {{ request()->is('reportevaluation*') ? 'active' : '' }}">
+                                        <p style="margin-left: 32.5px;">ລາຍງານຜົນກວດ</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('reportAppointment') }}"
+                                        class="nav-link {{ request()->is('reportappointment*') ? 'active' : '' }}">
+                                        <p style="margin-left: 32.5px;">ລາຍງານການນັດກວດ</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('reportTreatment') }}"
+                                        class="nav-link {{ request()->is('reporttreatment*') ? 'active' : '' }}">
+                                        <p style="margin-left: 32.5px;">ລາຍງານປະຫວັດການປິ່ນປົ່ວ</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('reportSupplier') }}"
+                                        class="nav-link {{ request()->is('reportsupplier*') ? 'active' : '' }}">
+                                        <p style="margin-left: 32.5px;">ລາຍງານຜູ້ສະໝອງ</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('reportProduct') }}"
+                                        class="nav-link {{ request()->is('reportproduct*') ? 'active' : '' }}">
+                                        <p style="margin-left: 32.5px;">ລາຍງານຈຳນວນສິນຄ້າ</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('reportExpense') }}"
+                                        class="nav-link {{ request()->is('reportexpense*') ? 'active' : '' }}">
+                                        <p style="margin-left: 32.5px;">ລາຍງານລາຍຈ່າຍ</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('reportIncome') }}"
+                                        class="nav-link {{ request()->is('reportincome*') ? 'active' : '' }}">
+                                        <p style="margin-left: 32.5px;">ລາຍງານລາຍຮັບ</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#"
+                                class="nav-link {{ request()->is('evaluation_types*') || request()->is('product_types*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-cog"></i>
+                                <p>ຕັ້ງຄ່າ<i class="fas fa-angle-left right"></i></p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('evaluation_types.index') }}"
+                                        class="nav-link {{ request()->is('evaluation_types*') ? 'active' : '' }}">
+                                        <p style="margin-left: 32.5px;">ປະເພດຜົນກວດ</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('product_types.index') }}"
+                                        class="nav-link {{ request()->is('product_types*') ? 'active' : '' }}">
+                                        <p style="margin-left: 32.5px;">ປະເພດສິນຄ້າ</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+
+        <div class="content-wrapper">
             @yield('contents')
         </div>
-    </section>
-
-    <!-- Main JS -->
-    <script src="{{ asset('assets/js/script.js') }}"></script>
+    </div>
 
     <!-- Vendors JS -->
     <script src="{{ asset('assets/vendors/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/vendors/jquery/jquery-slick.min.js') }}"></script>
-    <script src="{{ asset('assets/vendors/aos/js/aos.js') }}"></script>
+    <script src="{{ asset('assets/vendors/jquery/jquery.priceformat.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/adminLTE/js/adminlte.js') }}"></script>
     <script src="{{ asset('assets/vendors/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/bootstrap/js/bootstrap4.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/chart/chart.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/datatable/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/datatable/js/dataTables.bootstrap5.min.js') }}"></script>
-    <script src="{{ asset('assets/vendors/glightbox/js/glightbox.js') }}"></script>
+    <script src="{{ asset('assets/vendors/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/semantic/js/semantic.min.js') }}"></script>
-    <script src="{{ asset('assets/vendors/slick/slick.js') }}"></script>
 
     <!-- JS Script -->
     <script>
@@ -286,6 +371,17 @@
             });
             $('.search').dropdown();
         });
+
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+
+        window.setTimeout(function() {
+            $(".alert").fadeTo(500, 0).slideUp(500, function() {
+                $(this).remove();
+            });
+        }, 2000);
     </script>
 
     @yield('script')

@@ -241,10 +241,11 @@ class ReportController extends Controller
 
     public function reportProduct()
     {
-        $product = Products::selectRaw("products.*, product_types.name as pt_name, SUM(medicates.quantity) as usequantity")
+        $product = Products::selectRaw("products.*, product_types.name as pt_name, SUM(medicates.quantity) as usequantity, SUM(buy_details.quantity) as addquantity, medicates.date, buy_details.created_at")
             ->join('product_types', 'products.pt_id', '=', 'product_types.id')
-            ->join('medicates', 'products.id', '=', 'medicates.p_id')
-            ->groupBy('products.id', 'medicates.p_id')
+            ->leftjoin('medicates', 'products.id', '=', 'medicates.p_id')
+            ->leftjoin('buy_details', 'products.id', '=', 'buy_details.p_id')
+            ->groupBy('products.id')
             ->get();
 
         return view('reports.product_report.report_index', compact('product'));

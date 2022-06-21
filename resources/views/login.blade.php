@@ -40,14 +40,14 @@
                                 <div class="form-outline mb-4">
                                     <input type="email" class="form-control" name="email" placeholder="ອີເມວ">
                                     @error('failed')
-                                        <strong style="color: red; margin-top: 0.625rem">{{ $message }}</strong>
+                                        <strong class="text-danger">{{ $message }}</strong>
                                     @enderror
                                 </div>
                                 <div class="form-outline mb-4">
                                     <input type="password" class="form-control" name="password"
                                         placeholder="ລະຫັດຜ່ານ">
                                     @error('failed')
-                                        <strong style="color: red; margin-top: 0.625rem">{{ $message }}</strong>
+                                        <strong class="text-danger">{{ $message }}</strong>
                                     @enderror
                                 </div>
                                 <button class="btn btn-outline-info btn-lg px-5" type="submit">ເຂົ້າສູ່ລະບົບ</button>

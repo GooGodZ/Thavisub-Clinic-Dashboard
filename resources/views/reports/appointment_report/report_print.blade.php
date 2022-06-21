@@ -6,7 +6,7 @@
             <img src="{{ asset('assets/images/logo.png') }}" alt="" class="img-fluidr" style="width: 120px">
         </div>
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center">
-            <h2 class="mt-3 font-bold">ໃບຜົນກວດ</h2>
+            <h2 class="mt-3 font-bold">ໃບນັດກວດ</h2>
             <div class="row">
                 <div class="col-8">
                     <h4 class="text-start">ຄລີນິກທະວີຊັບ</h4>
@@ -17,7 +17,7 @@
             </div>
             <div class="row">
                 <div class="col-7">
-                    <h4 class="text-start">ເບີໂທ:</h4>
+                    <h4 class="text-start">ເບີໂທ: 20 99 706 568</h4>
                 </div>
                 <div class="col-5">
                     <h4 class="text-start">ເລກທີນັດກວດ: {{ $appointment->ap_no }}</h4>
