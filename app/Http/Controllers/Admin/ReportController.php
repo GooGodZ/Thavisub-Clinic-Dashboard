@@ -53,6 +53,7 @@ class ReportController extends Controller
         $cases = Cases::selectRaw("MAX(cases.date) as date, patients.name")
             ->join('patients', 'cases.pt_id', '=', 'patients.id')
             ->groupBy('cases.pt_id')
+            ->orderBy('cases.date', 'DESC')
             ->get();
 
         return view('reports.case_report.report_index', compact('cases'));
@@ -116,7 +117,18 @@ class ReportController extends Controller
             ->whereDate('appointments.created_at', Carbon::today())
             ->get();
 
-        return view('reports.appointment_report.report_index', compact('appointmenttoday'));
+        $appointmentall = Appointments::selectRaw("appointments.id, patients.pt_no, doctors.doc_no, cases.c_no, patients.name, appointments.date")
+            ->join('cases', 'appointments.c_id', '=', 'cases.id')
+            ->join('doctors', 'appointments.doc_id', '=', 'doctors.id')
+            ->join('patients', 'cases.pt_id', '=', 'patients.id')
+            ->whereIn('appointments.id', function ($query) {
+                $query->selectRaw('MAX(appointments.id)')->from('appointments')
+                    ->join('cases', 'appointments.c_id', '=', 'cases.id')
+                    ->groupBy('cases.pt_id');
+            })
+            ->get();
+
+        return view('reports.appointment_report.report_index', compact('appointmenttoday', 'appointmentall'));
     }
 
     public function reportAppointmentPrint($id)

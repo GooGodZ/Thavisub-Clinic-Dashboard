@@ -20,6 +20,9 @@
                             <li class="nav-item">
                                 <a class="nav-link active" href="#appointmenttoday" data-toggle="tab">ອອກໃບນັດກວດມື້ນີ້</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#appointmentall" data-toggle="tab">ໃບນັດກວດທັງໝົດ</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -27,39 +30,61 @@
                     <div class="tab-content p-0">
                         <div class="tab-pane active" id="appointmenttoday">
                             <div class="card-body">
-                                <div class="card-body">
-                                    <table id="mytable" class="table table-hover" width="100%">
-                                        <thead>
-                                            <td>ລະຫັດຄົນເຈັບ</td>
-                                            <td>ລະຫັດໝໍ</td>
-                                            <td>ລະຫັດລົງທະບຽນກວດ</td>
-                                            <td>ຊື່ຄົນເຈັບ</td>
-                                            <td>ວັນທີນັດກວດ</td>
-                                            <td>Action</td>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($appointmenttoday as $appointmenttoday)
-                                                <tr>
-                                                    <td>{{ $appointmenttoday->pt_no }}</td>
-                                                    <td>{{ $appointmenttoday->doc_no }}</td>
-                                                    <td>{{ $appointmenttoday->c_no }}</td>
-                                                    <td>{{ $appointmenttoday->name }}</td>
-                                                    <td>{{ date('d-M-Y', strtotime($appointmenttoday->date)) }}</td>
-                                                    <td>
-                                                        <form action="">
-                                                            <a href="{{ route('reportAppointmentPrint', $appointmenttoday->id) }}"
-                                                                class="text-primary text-decoration-none"
-                                                                data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                                                title="ພີມໃບນັດກວດ" target="_blank">
-                                                                <i class="bi bi-printer"></i>
-                                                            </a>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
+                                <table id="mytable" class="table table-hover" width="100%">
+                                    <thead>
+                                        <td>ລະຫັດຄົນເຈັບ</td>
+                                        <td>ລະຫັດໝໍ</td>
+                                        <td>ລະຫັດລົງທະບຽນກວດ</td>
+                                        <td>ຊື່ຄົນເຈັບ</td>
+                                        <td>ວັນທີນັດກວດ</td>
+                                        <td>Action</td>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($appointmenttoday as $appointmenttoday)
+                                            <tr>
+                                                <td>{{ $appointmenttoday->pt_no }}</td>
+                                                <td>{{ $appointmenttoday->doc_no }}</td>
+                                                <td>{{ $appointmenttoday->c_no }}</td>
+                                                <td>{{ $appointmenttoday->name }}</td>
+                                                <td>{{ date('d-M-Y', strtotime($appointmenttoday->date)) }}</td>
+                                                <td>
+                                                    <form action="">
+                                                        <a href="{{ route('reportAppointmentPrint', $appointmenttoday->id) }}"
+                                                            class="text-primary text-decoration-none"
+                                                            data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                                            title="ພີມໃບນັດກວດ" target="_blank">
+                                                            <i class="bi bi-printer"></i>
+                                                        </a>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="appointmentall">
+                            <div class="card-body">
+                                <table id="mytable" class="table table-hover" width="100%">
+                                    <thead>
+                                        <td>ລະຫັດຄົນເຈັບ</td>
+                                        <td>ລະຫັດໝໍ</td>
+                                        <td>ລະຫັດລົງທະບຽນກວດ</td>
+                                        <td>ຊື່ຄົນເຈັບ</td>
+                                        <td>ວັນທີນັດກວດ</td>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($appointmentall as $appointmentall)
+                                            <tr>
+                                                <td>{{ $appointmentall->pt_no }}</td>
+                                                <td>{{ $appointmentall->doc_no }}</td>
+                                                <td>{{ $appointmentall->c_no }}</td>
+                                                <td>{{ $appointmentall->name }}</td>
+                                                <td>{{ date('d-M-Y', strtotime($appointmentall->date)) }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

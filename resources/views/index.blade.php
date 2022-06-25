@@ -60,10 +60,10 @@
                             <div class="card-tools">
                                 <ul class="nav nav-pills ml-auto">
                                     <li class="nav-item">
-                                        <a class="nav-link active" href="#patients-chart" data-toggle="tab">ຈຳນວນຄົນເຈັບ</a>
+                                        <a class="nav-link active" href="#patients-chart" data-toggle="tab">ຄົນເຈັບ</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#medicates-chart" data-toggle="tab">ຈຳນວນຢາ</a>
+                                        <a class="nav-link" href="#medicates-chart" data-toggle="tab">ສິນຄ້າທີ່ໃຊ້ໄປ</a>
                                     </li>
                                 </ul>
                             </div>
@@ -136,13 +136,6 @@
                 }]
             },
             options: {
-                legend: {
-                    display: false
-                },
-                title: {
-                    display: true,
-                    text: "World Wine Production 2018"
-                },
                 scales: {
                     y: {
                         beginAtZero: true
@@ -160,21 +153,14 @@
             data: {
                 labels: _ydata,
                 datasets: [{
-                    label: 'ຈຳນວນຢາ',
+                    label: 'ຈຳນວນສິນຄ້າທີ່ໃຊ້ໄປຕໍ່ເດືອນ',
                     data: _xdata,
                     backgroundColor: [
-                        'rgba(0, 255, 1, 0.75)',
+                        'rgba(142, 186, 168, 0.75)',
                     ]
                 }]
             },
             options: {
-                legend: {
-                    display: false
-                },
-                title: {
-                    display: true,
-                    text: "World Wine Production 2018"
-                },
                 scales: {
                     y: {
                         beginAtZero: true

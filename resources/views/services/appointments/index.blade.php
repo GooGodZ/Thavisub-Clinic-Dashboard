@@ -25,10 +25,10 @@
                     <div class="card-tools">
                         <ul class="nav nav-pills ml-auto">
                             <li class="nav-item">
-                                <a class="nav-link active" href="#appointments" data-toggle="tab">ນັດກວດ</a>
+                                <a class="nav-link active" href="#appointments" data-toggle="tab">ນັດກວດມື້ນີ້</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#appointmentstoday" data-toggle="tab">ອອກໃບນັດກວດ</a>
+                                <a class="nav-link" href="#appointmentstoday" data-toggle="tab">ອອກໃບນັດກວດມື້ນີ້</a>
                             </li>
                         </ul>
                     </div>
@@ -69,7 +69,7 @@
                                                     <td>{{ $appointments->time }}</td>
                                                     <td>{{ $appointments->doctors->name }}</td>
                                                     <td>
-                                                        {{ $appointments->status == 0 ? 'ລໍຖ້າ' : 'ລົງທະບຽນແລ້ວ' }}
+                                                        {{ $appointments->status == 0 ? 'ລໍຖ້າລົງທະບຽນ' : 'ລົງທະບຽນແລ້ວ' }}
                                                     </td>
                                                     <td>
                                                         <a href="{{ route('casesCreateLinkAppointments', $appointments->id) }}"

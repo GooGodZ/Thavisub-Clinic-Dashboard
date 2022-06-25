@@ -76,12 +76,6 @@
                                                             title="ເພີ່ມໃບສິນຄ້າເຂົ້າ">
                                                             <i class="bi bi-box-arrow-up-right"></i>
                                                         </a>
-                                                        <a href="{{ route('order_DetailsCreateLink', $orders->id) }}"
-                                                            class="text-primary text-decoration-none"
-                                                            data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                                            title="ລາຍການສັ່ງສິນຄ້າ">
-                                                            <i class="fa-solid fa-pen-to-square"></i>
-                                                        </a>
                                                         <a href="{{ route('orders.show', $orders->id) }}"
                                                             class="text-primary text-decoration-none"
                                                             data-bs-toggle="tooltip" data-bs-placement="bottom"

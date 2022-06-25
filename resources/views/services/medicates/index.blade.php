@@ -41,7 +41,7 @@
                                         <td>ຊື່ຄົນເຈັບ</td>
                                         <td>ວັນທີຜົນກວດ</td>
                                         <td>ສະຖານະ</td>
-                                        <td>ສະແດງຂໍ້ມູນ</td>
+                                        <td>Action</td>
                                     </thead>
                                     <tbody>
                                         @php
@@ -61,11 +61,6 @@
                                                         class="text-primary text-decoration-none" data-bs-toggle="tooltip"
                                                         data-bs-placement="bottom" title="ສະແດງລາຍການ">
                                                         <i class="fa-regular fa-file-lines"></i>
-                                                    </a>
-                                                    <a href="{{ route('medicatesCreateLink', $cases->id) }}"
-                                                        class="text-primary text-decoration-none" data-bs-toggle="tooltip"
-                                                        data-bs-placement="bottom" title="ແກ້ໄຂຂໍ້ມູນ">
-                                                        <i class="fa-solid fa-pen-to-square"></i>
                                                     </a>
                                                 </td>
                                             </tr>

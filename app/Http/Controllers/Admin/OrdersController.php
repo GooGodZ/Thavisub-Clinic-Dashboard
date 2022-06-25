@@ -19,7 +19,7 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        $orders = Orders::all()->sortBy('status');
+        $orders = Orders::where('status', 0)->get();
         $buys = Buys::all()->sortByDesc('created_at');
 
         return view('stocks.orders.index', compact('orders', 'buys'));

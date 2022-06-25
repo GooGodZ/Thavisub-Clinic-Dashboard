@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Appointments;
 use App\Models\Cases;
 use App\Models\Doctors;
+use App\Models\Medicates;
 use App\Models\Payments;
-use App\Models\Products;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -20,14 +20,12 @@ class DashboardController extends Controller
         $casesMonth = Cases::whereMonth('date', Carbon::now()->format('m'))->count();
         $doctors = Doctors::all()->count();
 
-        $payments_sum = Payments::where('date', '>', Carbon::now()->startOfWeek())
-            ->where('date', '<', Carbon::now()->endOfWeek())
+        $payments_sum = Payments::whereBetween('date', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
             ->sum('total');
         $payments = Payments::selectRaw("payments.date, SUM(payments.total) as total")
             ->groupBy('payments.date')
             ->orderBy('payments.date', 'DESC')
-            ->where('payments.date', '>', Carbon::now()->startOfWeek())
-            ->where('payments.date', '<', Carbon::now()->endOfWeek())
+            ->whereBetween('payments.date', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
             ->get();
 
         $casesChart = Cases::select('id', 'date')->get()->groupBy(function ($casesChart) {
@@ -40,7 +38,11 @@ class DashboardController extends Controller
             $monthCount[] = count($values);
         }
 
-        $productChart = Products::all();
+        $productChart = Medicates::selectRaw("products.name, SUM(medicates.quantity) as quantity")
+            ->join('products', 'medicates.p_id', '=', 'products.id')
+            ->groupBy('medicates.p_id')
+            ->whereMonth('date', Carbon::now()->format('m'))
+            ->get();
         $productName = [];
         $productCount = [];
         foreach ($productChart as $values) {
