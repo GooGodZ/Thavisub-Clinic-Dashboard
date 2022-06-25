@@ -50,7 +50,7 @@
                                         <strong class="text-danger">{{ $message }}</strong>
                                     @enderror
                                 </div>
-                                <button class="btn btn-outline-info btn-lg px-5" type="submit">ເຂົ້າສູ່ລະບົບ</button>
+                                <button class="btn btn-lg px-5 text-white" type="submit" style="background-color: #8ebaa8">ເຂົ້າສູ່ລະບົບ</button>
                             </form>
                         </div>
                     </div>

@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Cases;
 use App\Models\Evaluation_Types;
 use App\Models\Evaluations;
-use App\Models\Payments;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -19,9 +18,10 @@ class EvaluationsController extends Controller
      */
     public function index()
     {
-        $evaluations = Evaluations::all()->where('status', 0);
+        $cases = cases::where('status', 1)->whereDate('date', Carbon::today())->get();
+        $casestoday = cases::where('status', '!=', 0)->where('status', '!=', 1)->whereDate('date', Carbon::today())->get();
 
-        return view('services.evaluations.index', compact('evaluations'));
+        return view('services.evaluations.index', compact('cases', 'casestoday'));
     }
 
     /**
@@ -31,18 +31,16 @@ class EvaluationsController extends Controller
      */
     public function create()
     {
-        $evaluation_types = Evaluation_Types::all();
-        $cases = Cases::all()->where('status', 0);
-
-        return view('services.evaluations.create', compact('evaluation_types', 'cases'));
+        //
     }
 
     public function createLink($id)
     {
         $evaluation_types = Evaluation_Types::all();
         $cases = Cases::find($id);
+        $evaluations = Evaluations::where('c_id', $cases->id)->get();
 
-        return view('services.evaluations.createLink', compact('evaluation_types', 'cases'));
+        return view('services.evaluations.createLink', compact('evaluation_types', 'cases', 'evaluations'));
     }
 
     /**
@@ -64,27 +62,16 @@ class EvaluationsController extends Controller
         ]);
 
         $evaluations = new Evaluations();
-        $evaluations->eva_no = 'Eva-No.' . rand(0000, 9999);
-        $evaluations->date = Carbon::now()->format('Y-m-d H:i:s');
+        $evaluations->date = Carbon::now()->format('Y-m-d');
         $evaluations->detail = $request->detail;
-        $evaluations->status = 0;
         $evaluations->c_id = $request->c_id;
         $evaluations->et_id = $request->et_id;
         $cases = Cases::where('id', $evaluations->c_id)->first();
         $cases->status = 1;
         $cases->save();
         $evaluations->save();
-        $payments = new Payments();
-        $payments->pay_no = 'Pay-No.' . rand(0000, 9999);
-        $payments->c_id = $evaluations->c_id;
-        $payments->price_p = 0;
-        $payments->price_p = 0;
-        $payments->total = 0;
-        $payments->date = Carbon::now()->format('Y-m-d');
-        $payments->status = 0;
-        $payments->save();
 
-        return redirect()->route('medicates.create')->with('success', 'ເພີ່ມຂໍ້ມູນຜົນກວດສຳເລັດແລ້ວ');
+        return redirect()->back()->with('success', 'ເພີ່ມຂໍ້ມູນຜົນກວດສຳເລັດ');
     }
 
     /**
@@ -106,11 +93,7 @@ class EvaluationsController extends Controller
      */
     public function edit($id)
     {
-        $evaluations = Evaluations::find($id);
-        $evaluation_types = Evaluation_Types::all();
-        $cases = Cases::all()->sortByDesc('created_at');
-
-        return view('services.evaluations.edit', compact('evaluations', 'evaluation_types', 'cases'));
+        //
     }
 
     /**
@@ -122,24 +105,7 @@ class EvaluationsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'detail' => 'required',
-            'c_id' => 'required',
-            'et_id' => 'required',
-        ], [
-            'detail.required' => 'ປ້ອນລາຍລະອຽດການປິ່ນປົວ',
-            'c_id.required' => 'ເລືອກລະຫັດການລົງທະບຽນກວດ',
-            'et_id.required' => 'ເລືອກປະເພດຜົນກວດ',
-        ]);
-
-        $evaluations = Evaluations::where('id', '=', $id)->first();
-        $evaluations->detail = $request->detail;
-        $evaluations->status = 0;
-        $evaluations->c_id = $request->c_id;
-        $evaluations->et_id = $request->et_id;
-        $evaluations->save();
-
-        return redirect()->route('evaluations.index')->with('success', 'ແກ້ໄຂຂໍ້ມູນຜົນກວດສຳເລັດແລ້ວ');
+        //
     }
 
     /**
@@ -150,9 +116,9 @@ class EvaluationsController extends Controller
      */
     public function destroy($id)
     {
-        $evaluations = Evaluations::findOrFail($id);
+        $evaluations = Evaluations::find($id);
         $evaluations->delete();
 
-        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນຜົນກວດສຳເລັດແລ້ວ');
+        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນຜົນກວດສຳເລັດ');
     }
 }

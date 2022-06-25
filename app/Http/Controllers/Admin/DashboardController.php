@@ -20,11 +20,14 @@ class DashboardController extends Controller
         $casesMonth = Cases::whereMonth('date', Carbon::now()->format('m'))->count();
         $doctors = Doctors::all()->count();
 
-        $payments_sum = Payments::where('status', 1)->sum('total');
+        $payments_sum = Payments::where('date', '>', Carbon::now()->startOfWeek())
+            ->where('date', '<', Carbon::now()->endOfWeek())
+            ->sum('total');
         $payments = Payments::selectRaw("payments.date, SUM(payments.total) as total")
             ->groupBy('payments.date')
             ->orderBy('payments.date', 'DESC')
-            ->limit(6)
+            ->where('payments.date', '>', Carbon::now()->startOfWeek())
+            ->where('payments.date', '<', Carbon::now()->endOfWeek())
             ->get();
 
         $casesChart = Cases::select('id', 'date')->get()->groupBy(function ($casesChart) {

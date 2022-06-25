@@ -64,7 +64,7 @@ class DoctorsController extends Controller
         $doctors->status = $request->status;
         $doctors->save();
 
-        return redirect()->route('doctors.index')->with('success', 'ເພີ່ມຂໍ້ມູນທ່ານໝໍສຳເລັດແລ້ວ');
+        return redirect()->route('doctors.index')->with('success', 'ເພີ່ມຂໍ້ມູນທ່ານໝໍສຳເລັດ');
     }
 
     /**
@@ -125,7 +125,7 @@ class DoctorsController extends Controller
         $doctors->status = $request->status;
         $doctors->save();
 
-        return redirect()->route('doctors.index')->with('success', 'ແກ້ໄຂຂໍ້ມູນທ່ານໝໍສຳເລັດແລ້ວ');
+        return redirect()->route('doctors.index')->with('success', 'ແກ້ໄຂຂໍ້ມູນທ່ານໝໍສຳເລັດ');
     }
 
     /**
@@ -136,9 +136,9 @@ class DoctorsController extends Controller
      */
     public function destroy($id)
     {
-        $doctors = Doctors::findOrFail($id);
+        $doctors = Doctors::find($id);
         $doctors->delete();
 
-        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນທ່ານໝໍສຳເລັດແລ້ວ');
+        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນທ່ານໝໍສຳເລັດ');
     }
 }

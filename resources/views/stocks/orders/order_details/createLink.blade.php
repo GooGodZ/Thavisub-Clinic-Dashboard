@@ -95,7 +95,7 @@
                         </div>
                         <div class="text-center">
                             <button type="submit" class="btn" style="background-color: #8ebaa8; color: white">
-                                <i class="fa-solid fa-upload"></i>&nbsp;ບັນທືກ</button>
+                                <i class="bi bi-save2"></i>&nbsp;ບັນທືກ</button>
                             <a href="{{ route('orders.index') }}" class="btn"
                                 style="background-color: #8ebaa8; color: white">ໜ້າສັ່ງຊື້ສິນຄ້າ</a>
                         </div>
@@ -125,9 +125,9 @@
                             @endphp
                             @foreach ($order_details as $order_details)
                                 <tr>
-                                    <td class="table-english">{{ $number++ }}</td>
-                                    <td class="table-english">{{ $order_details->products->name }}</td>
-                                    <td class="table-english">{{ $order_details->quantity }}</td>
+                                    <td>{{ $number++ }}</td>
+                                    <td>{{ $order_details->products->name }}</td>
+                                    <td>{{ $order_details->quantity }}</td>
                                     <td>
                                         <form action="{{ route('order_details.destroy', $order_details->id) }}"
                                             method="POST">

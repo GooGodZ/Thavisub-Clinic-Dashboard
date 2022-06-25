@@ -29,8 +29,8 @@
                                     <label class="col-3 col-form-label">ຊື່ຄົນເຈັບ</label>
                                     <div class="col-9">
                                         <select name="c_id" class="form-select search">
-                                            <option value="{{ $evaluations->c_id }}">
-                                                {{ $evaluations->eva_no . ' ' . $evaluations->cases->patients->name }}
+                                            <option value="{{ $cases->id }}">
+                                                {{ $cases->c_no . ' ' . $cases->patients->name }}
                                             </option>
                                         </select>
                                         @error('c_id')
@@ -94,7 +94,7 @@
                         </div>
                         <div class="text-center">
                             <button type="submit" class="btn" style="background-color: #8ebaa8; color: white">
-                                <i class="fa-solid fa-upload"></i>&nbsp;ບັນທືກ</button>
+                                <i class="bi bi-save2"></i>&nbsp;ບັນທືກ</button>
                         </div>
                     </div>
                 </form>

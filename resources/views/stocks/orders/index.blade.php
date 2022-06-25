@@ -60,8 +60,8 @@
                                         @endphp
                                         @foreach ($orders as $orders)
                                             <tr>
-                                                <td class="table-english">{{ $number++ }}</td>
-                                                <td class="table-english">{{ $orders->or_no }}</td>
+                                                <td>{{ $number++ }}</td>
+                                                <td>{{ $orders->or_no }}</td>
                                                 <td>{{ $orders->name }}</td>
                                                 <td>{{ $orders->suppliers->name }}</td>
                                                 <td>{{ $orders->status == 0 ? 'ລໍຖ້າສິນຄ້າ' : 'ສິນຄ້າມາແລ້ວ' }}</td>
@@ -74,13 +74,13 @@
                                                             class="text-primary text-decoration-none"
                                                             data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                             title="ເພີ່ມໃບສິນຄ້າເຂົ້າ">
-                                                            <i class="fa-solid fa-magnifying-glass-plus"></i>
+                                                            <i class="bi bi-box-arrow-up-right"></i>
                                                         </a>
                                                         <a href="{{ route('order_DetailsCreateLink', $orders->id) }}"
                                                             class="text-primary text-decoration-none"
                                                             data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                             title="ລາຍການສັ່ງສິນຄ້າ">
-                                                            <i class="fa-regular fa-file-lines"></i>
+                                                            <i class="fa-solid fa-pen-to-square"></i>
                                                         </a>
                                                         <a href="{{ route('orders.show', $orders->id) }}"
                                                             class="text-primary text-decoration-none"
@@ -122,8 +122,8 @@
                                         @endphp
                                         @foreach ($buys as $buys)
                                             <tr>
-                                                <td class="table-english">{{ $number++ }}</td>
-                                                <td class="table-english">{{ $buys->buy_no }}</td>
+                                                <td>{{ $number++ }}</td>
+                                                <td>{{ $buys->buy_no }}</td>
                                                 <td>{{ $buys->orders->name }}</td>
                                                 <td>{{ $buys->orders->suppliers->name }}</td>
                                                 <td>

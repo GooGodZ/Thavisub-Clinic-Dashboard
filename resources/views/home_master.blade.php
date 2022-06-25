@@ -141,54 +141,56 @@
                                 <p>ໜ້າຫຼັກ</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="#"
-                                class="nav-link {{ request()->is('patients*') || request()->is('cases*') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-book-medical"></i>
-                                <p>ລົງທະບຽນ<i class="fas fa-angle-left right"></i></p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('patients.index') }}"
-                                        class="nav-link {{ request()->is('patients*') ? 'active' : '' }}">
-                                        <p style="margin-left: 32.5px;">ຟອມຂໍ້ມູນຄົນເຈັບ</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('cases.index') }}"
-                                        class="nav-link {{ request()->is('cases*') ? 'active' : '' }}">
-                                        <p style="margin-left: 32.5px;">ຟອມລົງທະບຽນກວດ</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#"
-                                class="nav-link {{ request()->is('evaluations*') || request()->is('medicates*') || request()->is('appointments*') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-hand-holding-medical"></i>
-                                <p>ບໍລິການ<i class="right fas fa-angle-left"></i></p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('evaluations.index') }}"
-                                        class="nav-link {{ request()->is('evaluations*') ? 'active' : '' }}">
-                                        <p style="margin-left: 32.5px;">ຟອມຂໍ້ມູນຜົນກວດ</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('medicates.index') }}"
-                                        class="nav-link {{ request()->is('medicates*') ? 'active' : '' }}">
-                                        <p style="margin-left: 32.5px;">ຟອມການວາງຢາ</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('appointments.index') }}"
-                                        class="nav-link {{ request()->is('appointments*') ? 'active' : '' }}">
-                                        <p style="margin-left: 32.5px;">ຟອມນັດກວດ</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                        @if ($permission === 1 || $permission === 2)
+                            <li class="nav-item">
+                                <a href="#"
+                                    class="nav-link {{ request()->is('patients*') || request()->is('cases*') ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-book-medical"></i>
+                                    <p>ລົງທະບຽນ<i class="fas fa-angle-left right"></i></p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{ route('patients.index') }}"
+                                            class="nav-link {{ request()->is('patients*') ? 'active' : '' }}">
+                                            <p style="margin-left: 32.5px;">ຟອມຂໍ້ມູນຄົນເຈັບ</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('cases.index') }}"
+                                            class="nav-link {{ request()->is('cases*') ? 'active' : '' }}">
+                                            <p style="margin-left: 32.5px;">ຟອມລົງທະບຽນກວດ</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#"
+                                    class="nav-link {{ request()->is('evaluations*') || request()->is('medicates*') || request()->is('appointments*') ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-hand-holding-medical"></i>
+                                    <p>ບໍລິການ<i class="right fas fa-angle-left"></i></p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{ route('evaluations.index') }}"
+                                            class="nav-link {{ request()->is('evaluations*') ? 'active' : '' }}">
+                                            <p style="margin-left: 32.5px;">ຟອມຂໍ້ມູນຜົນກວດ</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('medicates.index') }}"
+                                            class="nav-link {{ request()->is('medicates*') ? 'active' : '' }}">
+                                            <p style="margin-left: 32.5px;">ຟອມການວາງຢາ</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('appointments.index') }}"
+                                            class="nav-link {{ request()->is('appointments*') ? 'active' : '' }}">
+                                            <p style="margin-left: 32.5px;">ຟອມນັດກວດ</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
                         <li class="nav-item">
                             <a href="#" class="nav-link {{ request()->is('payments*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-cash-register"></i>
@@ -203,20 +205,22 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link {{ request()->is('doctors*') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-user-md"></i>
-                                <p>ທ່ານໝໍ<i class="fas fa-angle-left right"></i></p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('doctors.index') }}"
-                                        class="nav-link {{ request()->is('doctors*') ? 'active' : '' }}">
-                                        <p style="margin-left: 32.5px;">ຂໍ້ມູນທ່ານໝໍ</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                        @if ($permission === 1 || $permission === 3)
+                            <li class="nav-item">
+                                <a href="#" class="nav-link {{ request()->is('doctors*') ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-user-md"></i>
+                                    <p>ທ່ານໝໍ<i class="fas fa-angle-left right"></i></p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{ route('doctors.index') }}"
+                                            class="nav-link {{ request()->is('doctors*') ? 'active' : '' }}">
+                                            <p style="margin-left: 32.5px;">ຂໍ້ມູນທ່ານໝໍ</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
                         <li class="nav-item">
                             <a href="#"
                                 class="nav-link {{ request()->is('products*') || request()->is('orders*') || request()->is('buys*') || request()->is('order_details*') || request()->is('buy_details*') ? 'active' : '' }}">
@@ -230,28 +234,33 @@
                                         <p style="margin-left: 32.5px;">ຂໍ້ມູນສິນຄ້າ</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('orders.index') }}"
-                                        class="nav-link {{ request()->is('orders*') || request()->is('buys*') || request()->is('order_details*') || request()->is('buy_details*') ? 'active' : '' }}">
-                                        <p style="margin-left: 32.5px;">ຂໍ້ມູນການສັ່ງຊື້</p>
-                                    </a>
-                                </li>
+                                @if ($permission === 1 || $permission === 3)
+                                    <li class="nav-item">
+                                        <a href="{{ route('orders.index') }}"
+                                            class="nav-link {{ request()->is('orders*') || request()->is('buys*') || request()->is('order_details*') || request()->is('buy_details*') ? 'active' : '' }}">
+                                            <p style="margin-left: 32.5px;">ຂໍ້ມູນການສັ່ງຊື້</p>
+                                        </a>
+                                    </li>
+                                @endif
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link {{ request()->is('suppliers*') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-users"></i>
-                                <p>ຜູ້ສະໝອງ<i class="fas fa-angle-left right"></i></p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('suppliers.index') }}"
-                                        class="nav-link {{ request()->is('suppliers*') ? 'active' : '' }}">
-                                        <p style="margin-left: 32.5px;">ຂໍ້ມູນຜູ້ສະໜອງ</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                        @if ($permission === 1 || $permission === 3)
+                            <li class="nav-item">
+                                <a href="#"
+                                    class="nav-link {{ request()->is('suppliers*') ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-users"></i>
+                                    <p>ຜູ້ສະໝອງ<i class="fas fa-angle-left right"></i></p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{ route('suppliers.index') }}"
+                                            class="nav-link {{ request()->is('suppliers*') ? 'active' : '' }}">
+                                            <p style="margin-left: 32.5px;">ຂໍ້ມູນຜູ້ສະໜອງ</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
                         <li class="nav-item">
                             <a href="#"
                                 class="nav-link {{ request()->is('reportpatient*') || request()->is('reportcase*') || request()->is('reportevaluation*') || request()->is('reportappointment*') || request()->is('reporttreatment*') || request()->is('reportsupplier*') || request()->is('reportproduct*') || request()->is('reportexpense*') || request()->is('reportincome*') ? 'active' : '' }}">
@@ -259,83 +268,91 @@
                                 <p>ລາຍງານ<i class="fas fa-angle-left right"></i></p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('reportPatient') }}"
-                                        class="nav-link {{ request()->is('reportpatient*') ? 'active' : '' }}">
-                                        <p style="margin-left: 32.5px;">ລາຍງານຈຳນວນຄົນເຈັບ</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('reportCase') }}"
-                                        class="nav-link {{ request()->is('reportcase*') ? 'active' : '' }}">
-                                        <p style="margin-left: 32.5px;">ລາຍງານສະເໝີກວດ</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('reportEvaluation') }}"
-                                        class="nav-link {{ request()->is('reportevaluation*') ? 'active' : '' }}">
-                                        <p style="margin-left: 32.5px;">ລາຍງານຜົນກວດ</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('reportAppointment') }}"
-                                        class="nav-link {{ request()->is('reportappointment*') ? 'active' : '' }}">
-                                        <p style="margin-left: 32.5px;">ລາຍງານການນັດກວດ</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('reportTreatment') }}"
-                                        class="nav-link {{ request()->is('reporttreatment*') ? 'active' : '' }}">
-                                        <p style="margin-left: 32.5px;">ລາຍງານປະຫວັດການປິ່ນປົ່ວ</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('reportSupplier') }}"
-                                        class="nav-link {{ request()->is('reportsupplier*') ? 'active' : '' }}">
-                                        <p style="margin-left: 32.5px;">ລາຍງານຜູ້ສະໝອງ</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('reportProduct') }}"
-                                        class="nav-link {{ request()->is('reportproduct*') ? 'active' : '' }}">
-                                        <p style="margin-left: 32.5px;">ລາຍງານຈຳນວນສິນຄ້າ</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('reportExpense') }}"
-                                        class="nav-link {{ request()->is('reportexpense*') ? 'active' : '' }}">
-                                        <p style="margin-left: 32.5px;">ລາຍງານລາຍຈ່າຍ</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('reportIncome') }}"
-                                        class="nav-link {{ request()->is('reportincome*') ? 'active' : '' }}">
-                                        <p style="margin-left: 32.5px;">ລາຍງານລາຍຮັບ</p>
-                                    </a>
-                                </li>
+                                @if ($permission === 1 || $permission === 3)
+                                    <li class="nav-item">
+                                        <a href="{{ route('reportPatient') }}"
+                                            class="nav-link {{ request()->is('reportpatient*') ? 'active' : '' }}">
+                                            <p style="margin-left: 32.5px;">ລາຍງານຈຳນວນຄົນເຈັບ</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('reportCase') }}"
+                                            class="nav-link {{ request()->is('reportcase*') ? 'active' : '' }}">
+                                            <p style="margin-left: 32.5px;">ລາຍງານສະເໝີກວດ</p>
+                                        </a>
+                                    </li>
+                                @endif
+                                @if ($permission === 1 || $permission === 2)
+                                    <li class="nav-item">
+                                        <a href="{{ route('reportEvaluation') }}"
+                                            class="nav-link {{ request()->is('reportevaluation*') ? 'active' : '' }}">
+                                            <p style="margin-left: 32.5px;">ລາຍງານຜົນກວດ</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('reportAppointment') }}"
+                                            class="nav-link {{ request()->is('reportappointment*') ? 'active' : '' }}">
+                                            <p style="margin-left: 32.5px;">ລາຍງານການນັດກວດ</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('reportTreatment') }}"
+                                            class="nav-link {{ request()->is('reporttreatment*') ? 'active' : '' }}">
+                                            <p style="margin-left: 32.5px;">ລາຍງານປະຫວັດການປິ່ນປົ່ວ</p>
+                                        </a>
+                                    </li>
+                                @endif
+                                @if ($permission === 1 || $permission === 3)
+                                    <li class="nav-item">
+                                        <a href="{{ route('reportSupplier') }}"
+                                            class="nav-link {{ request()->is('reportsupplier*') ? 'active' : '' }}">
+                                            <p style="margin-left: 32.5px;">ລາຍງານຜູ້ສະໝອງ</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('reportProduct') }}"
+                                            class="nav-link {{ request()->is('reportproduct*') ? 'active' : '' }}">
+                                            <p style="margin-left: 32.5px;">ລາຍງານຈຳນວນສິນຄ້າ</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('reportExpense') }}"
+                                            class="nav-link {{ request()->is('reportexpense*') ? 'active' : '' }}">
+                                            <p style="margin-left: 32.5px;">ລາຍງານລາຍຈ່າຍ</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('reportIncome') }}"
+                                            class="nav-link {{ request()->is('reportincome*') ? 'active' : '' }}">
+                                            <p style="margin-left: 32.5px;">ລາຍງານລາຍຮັບ</p>
+                                        </a>
+                                    </li>
+                                @endif
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="#"
-                                class="nav-link {{ request()->is('evaluation_types*') || request()->is('product_types*') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-cog"></i>
-                                <p>ຕັ້ງຄ່າ<i class="fas fa-angle-left right"></i></p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('evaluation_types.index') }}"
-                                        class="nav-link {{ request()->is('evaluation_types*') ? 'active' : '' }}">
-                                        <p style="margin-left: 32.5px;">ປະເພດຜົນກວດ</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('product_types.index') }}"
-                                        class="nav-link {{ request()->is('product_types*') ? 'active' : '' }}">
-                                        <p style="margin-left: 32.5px;">ປະເພດສິນຄ້າ</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                        @if ($permission === 1 || $permission === 3)
+                            <li class="nav-item">
+                                <a href="#"
+                                    class="nav-link {{ request()->is('evaluation_types*') || request()->is('product_types*') ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-cog"></i>
+                                    <p>ຕັ້ງຄ່າ<i class="fas fa-angle-left right"></i></p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{ route('evaluation_types.index') }}"
+                                            class="nav-link {{ request()->is('evaluation_types*') ? 'active' : '' }}">
+                                            <p style="margin-left: 32.5px;">ປະເພດຜົນກວດ</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('product_types.index') }}"
+                                            class="nav-link {{ request()->is('product_types*') ? 'active' : '' }}">
+                                            <p style="margin-left: 32.5px;">ປະເພດສິນຄ້າ</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
                     </ul>
                 </nav>
             </div>

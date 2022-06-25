@@ -14,34 +14,6 @@
     <section class="content">
         <div class="container-fluid">
             <div class="card">
-                <div class="card-header" style="background-color: white">
-                    <form action="{{ route('reportTreatmentSearch') }}" method="post">
-                        @csrf
-                        <div class="row">
-                            <div class="col-12 col-sm-12 col-md-4 col-lg-4">
-                                <div class="form-group row">
-                                    <label class="col-4 col-form-label">ຕັ້ງແຕ່ວັນທີ</label>
-                                    <div class="col-8">
-                                        <input type="date" class="form-control" name="startdate">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-12 col-md-4 col-lg-4">
-                                <div class="form-group row">
-                                    <label class="col-4 col-form-label">ເຖີງວັນທີ</label>
-                                    <div class="col-8">
-                                        <input type="date" class="form-control" name="enddate">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-12 col-md-4 col-lg-4">
-                                <button type="submit" class="btn float-start"
-                                    style="background-color: #8ebaa8; color: white">
-                                    <i class="bi bi-search"></i>&nbsp;ຄົ້ນຫາ</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
                 <div class="card-body">
                     <table id="mytable" class="table table-hover" width="100%">
                         <thead>
@@ -54,10 +26,10 @@
                         <tbody>
                             @foreach ($treatment as $treatment)
                                 <tr>
-                                    <td class="table-english">{{ $treatment->pt_no }}</td>
-                                    <td class="table-english">{{ $treatment->doc_no }}</td>
+                                    <td>{{ $treatment->pt_no }}</td>
+                                    <td>{{ $treatment->doc_no }}</td>
                                     <td>{{ $treatment->name }}</td>
-                                    <td class="table-english">{{ $treatment->pt_id }}</td>
+                                    <td>{{ $treatment->pt_id }}</td>
                                     <td>
                                         <form action="">
                                             <a href="{{ route('reportTreatmentShow', $treatment->id) }}">

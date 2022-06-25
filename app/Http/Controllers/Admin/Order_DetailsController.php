@@ -70,7 +70,7 @@ class Order_DetailsController extends Controller
         $order_details->p_id = $request->p_id;
         $order_details->save();
 
-        return redirect()->back()->with('success', 'ເພີ່ມຂໍ້ມູນສັ່ງຊື້ສິນຄ້າສຳເລັດແລ້ວ');
+        return redirect()->back()->with('success', 'ເພີ່ມຂໍ້ມູນສັ່ງຊື້ສິນຄ້າສຳເລັດ');
     }
 
     /**
@@ -118,6 +118,6 @@ class Order_DetailsController extends Controller
         $order_details = Order_Details::find($id);
         $order_details->delete();
 
-        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນສິນຄ້າສຳເລັດແລ້ວ');
+        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນສິນຄ້າສຳເລັດ');
     }
 }

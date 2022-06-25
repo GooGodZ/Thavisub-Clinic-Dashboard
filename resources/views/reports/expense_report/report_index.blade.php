@@ -14,34 +14,6 @@
     <section class="content">
         <div class="container-fluid">
             <div class="card">
-                <div class="card-header" style="background-color: white">
-                    <form action="{{ route('reportExpenseSearch') }}" method="post">
-                        @csrf
-                        <div class="row">
-                            <div class="col-12 col-sm-12 col-md-4 col-lg-4">
-                                <div class="form-group row">
-                                    <label class="col-4 col-form-label">ຕັ້ງແຕ່ວັນທີ</label>
-                                    <div class="col-8">
-                                        <input type="date" class="form-control" name="startdate">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-12 col-md-4 col-lg-4">
-                                <div class="form-group row">
-                                    <label class="col-4 col-form-label">ເຖີງວັນທີ</label>
-                                    <div class="col-8">
-                                        <input type="date" class="form-control" name="enddate">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-12 col-md-4 col-lg-4">
-                                <button type="submit" class="btn float-start"
-                                    style="background-color: #8ebaa8; color: white">
-                                    <i class="bi bi-search"></i>&nbsp;ຄົ້ນຫາ</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
                 <div class="card-body">
                     <table id="mytable" class="table table-hover" width="100%">
                         <thead>
@@ -52,11 +24,16 @@
                         <tbody>
                             @foreach ($expense as $expense)
                                 <tr>
-                                    <td class="table-english">{{ $expense->buy_no }}</td>
-                                    <td class="table-english">{{ date('d-M-Y', strtotime($expense->date)) }}</td>
-                                    <td class="table-english">{{ $expense->price }} ກີບ</td>
+                                    <td>{{ $expense->buy_no }}</td>
+                                    <td>{{ date('d-M-Y', strtotime($expense->date)) }}</td>
+                                    <td>{{ number_format($expense->price) }} ກີບ</td>
                                 </tr>
                             @endforeach
+                            <tr>
+                                <td></td>
+                                <td class="text-end">ລວມທັງໝົດ:</td>
+                                <td>{{ number_format($expense_sum) }} ກີບ</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

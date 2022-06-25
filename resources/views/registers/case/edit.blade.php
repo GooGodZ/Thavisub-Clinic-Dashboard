@@ -30,7 +30,6 @@
                                     <label class="col-3 col-form-label">ຊື່ຄົນເຈັບ</label>
                                     <div class="col-9">
                                         <select name="pt_id" class="form-select search">
-                                            <option selected>ເລືອກຄົນເຈັບ</option>
                                             @foreach ($patients as $patients)
                                                 <option value="{{ $patients->id }}"
                                                     @if (old('patients') == $patients->id || $patients->id == $cases->pt_id) selected @endif>
@@ -141,7 +140,7 @@
                         </div>
                         <div class="text-center">
                             <button type="submit" class="btn" style="background-color: #8ebaa8; color: white">
-                                <i class="fa-solid fa-upload"></i>&nbsp;ບັນທືກ</button>
+                                <i class="bi bi-save2"></i>&nbsp;ບັນທືກ</button>
                         </div>
                     </div>
                 </form>

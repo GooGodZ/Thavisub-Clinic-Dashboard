@@ -8,9 +8,16 @@
                     <h1 class="m-0">ຟອມຂໍ້ມູນຜົນກວດ</h1>
                 </div>
             </div>
+            @if (Session::has('success'))
+                <div class="alert alert-success" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <strong>{{ session('success') }}</strong>
+                </div>
+            @endif
         </div>
     </div>
-    
+
     <section class="content">
         <div class="container-fluid">
             <div class="card">
@@ -71,10 +78,60 @@
                         </div>
                         <div class="text-center">
                             <button type="submit" class="btn" style="background-color: #8ebaa8; color: white">
-                                <i class="fa-solid fa-upload"></i>&nbsp;ບັນທືກ</button>
+                                <i class="bi bi-save2"></i>&nbsp;ບັນທືກ</button>
+                                <a href="{{ route('medicatesCreateLink', $cases->id) }}" class="btn"
+                                    style="background-color: #8ebaa8; color: white">ວາງຢາ</a>
                         </div>
                     </div>
                 </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <table id="mytable" class="table table-hover" width="100%">
+                        <thead>
+                            <td>ລຳດັບ</td>
+                            <td>ຊື່ປະເພດຜົນກວດ</td>
+                            <td>ອາການ</td>
+                            <td>ລາຍລະອຽດ</td>
+                            <td>ລາຄາ</td>
+                            <td>ວັນທີຜົນກວດ</td>
+                            <td>Action</td>
+                        </thead>
+                        <tbody>
+                            @php
+                                $number = 1;
+                            @endphp
+                            @foreach ($evaluations as $evaluations)
+                                <tr>
+                                    <td>{{ $number++ }}</td>
+                                    <td>{{ $evaluations->evaluation_types->name }}</td>
+                                    <td>{{ $evaluations->cases->disea }}</td>
+                                    <td>{{ $evaluations->detail }}</td>
+                                    <td>{{ number_format($evaluations->evaluation_types->price) }}
+                                        ກີບ</td>
+                                    <td>{{ date('d-M-Y ', strtotime($evaluations->date)) }}</td>
+                                    <td>
+                                        <form action="{{ route('evaluations.destroy', $evaluations->id) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="bg-transparent border-0 text-danger"
+                                                data-bs-toggle="tooltip" data-bs-placement="bottom" title="ລົບຂໍ້ມູນ"
+                                                onclick="return confirm('ທ່ານຕ້ອງການລົບຂໍ້ມູນນີ້ ຫຼື ບໍ?')">
+                                                <i class="fa-solid fa-trash-can"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </section>

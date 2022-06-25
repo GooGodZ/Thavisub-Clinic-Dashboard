@@ -10,10 +10,8 @@ class Evaluations extends Model
     use HasFactory;
     protected $table = 'evaluations';
     protected $fillable = [
-        'eva_no',
         'date',
         'detail',
-        'status',
         'c_id',
         'et_id'
     ];

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cases;
 use App\Models\Evaluation_Types;
 use App\Models\Evaluations;
 use App\Models\Medicates;
@@ -19,9 +20,16 @@ class PaymentsController extends Controller
      */
     public function index()
     {
-        $payments = Payments::where('date', Carbon::today())->orderBy('status', 'ASC')->get();
+        $cases = Cases::where('status', '!=', 0)
+            ->where('status', '!=', 1)
+            ->where('status', '!=', 2)
+            ->where('status', '!=', 4)
+            ->whereDate('date', Carbon::today())
+            ->orderBy('status', 'ASC')
+            ->get();
+        $payments = Payments::where('date', Carbon::today())->get();
 
-        return view('payments.index', compact('payments'));
+        return view('payments.index', compact('payments', 'cases'));
     }
 
     /**
@@ -31,7 +39,19 @@ class PaymentsController extends Controller
      */
     public function create()
     {
-        return view('payments.create');
+        //
+    }
+
+    public function createLink($id)
+    {
+        $cases = Cases::find($id);
+        $evaluations = Evaluations::selectRaw("evaluations.*, SUM(evaluation_types.price) as price")
+            ->join('evaluation_types', 'evaluations.et_id', '=', 'evaluation_types.id')
+            ->where('evaluations.c_id', $cases->id)
+            ->get();
+        $medicates_sum = Medicates::where('c_id', $cases->id)->sum('price');
+
+        return view('payments.createLink', compact('cases', 'evaluations', 'medicates_sum'));
     }
 
     /**
@@ -42,7 +62,27 @@ class PaymentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'price_p' => 'required',
+            'price_e' => 'required'
+        ], [
+            'price_p.required' => 'ປ້ອນລາຄາຢາ',
+            'price_e.required' => 'ປ້ອນລາຄາຜົນກວດ'
+        ]);
+
+        $payments = new Payments();
+        $payments->pay_no = 'Pay-No.' . rand(0000, 9999);
+        $payments->c_id = $request->c_id;
+        $payments->price_p = $request->price_p;
+        $payments->price_e = $request->price_e;
+        $payments->total = $payments->price_p + $payments->price_e;
+        $payments->date = Carbon::now()->format('Y-m-d');
+        $cases = Cases::where('id', '=', $payments->c_id)->first();
+        $cases->status = 4;
+        $payments->save();
+        $cases->save();
+
+        return redirect()->route('payments.index')->with('success', 'ແກ້ໄຂຂໍ້ມູນການຊຳລະສຳເລັດ');
     }
 
     /**
@@ -67,14 +107,7 @@ class PaymentsController extends Controller
      */
     public function edit($id)
     {
-        $payments = Payments::find($id);
-        $evaluations = Evaluations::selectRaw("evaluations.*, SUM(evaluation_types.price) as price")
-            ->join('evaluation_types', 'evaluations.et_id', '=', 'evaluation_types.id')
-            ->where('evaluations.c_id', $payments->c_id)
-            ->get();
-        $medicates_sum = Medicates::where('c_id', $payments->c_id)->sum('price');
-
-        return view('payments.edit', compact('payments', 'medicates_sum', 'evaluations'));
+        //
     }
 
     /**
@@ -86,22 +119,7 @@ class PaymentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'price_p' => 'required',
-            'price_e' => 'required'
-        ], [
-            'price_p.required' => 'ປ້ອນລາຄາຢາ',
-            'price_e.required' => 'ປ້ອນລາຄາຜົນກວດ'
-        ]);
-
-        $payments = Payments::where('id', '=', $id)->first();
-        $payments->price_p = $request->price_p;
-        $payments->price_e = $request->price_e;
-        $payments->total = $payments->price_p + $payments->price_e;
-        $payments->status = 1;
-        $payments->save();
-
-        return redirect()->route('payments.index')->with('success', 'ແກ້ໄຂຂໍ້ມູນການຊຳລະສຳເລັດແລ້ວ');
+        //
     }
 
     /**
@@ -115,6 +133,6 @@ class PaymentsController extends Controller
         $payments = Payments::find($id);
         $payments->delete();
 
-        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນການຊຳລະສຳເລັດແລ້ວ');
+        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນການຊຳລະສຳເລັດ');
     }
 }

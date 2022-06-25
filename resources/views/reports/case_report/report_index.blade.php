@@ -46,8 +46,8 @@
                     <table id="mytable" class="table table-hover" width="100%">
                         <thead>
                             <td>ລຳດັບ</td>
-                            <td>ວັນທີ ເດືອນ ປີນັດກວດ</td>
-                            <td>ຊື່ ແລະ ນາມສະກຸນ</td>
+                            <td>ວັນທີ ເດືອນ ປີລົງທະບຽນກວດ</td>
+                            <td>ຊື່ຄົນເຈັບ</td>
                         </thead>
                         <tbody>
                             @php
@@ -55,9 +55,9 @@
                             @endphp
                             @foreach ($cases as $cases)
                                 <tr>
-                                    <td class="table-english">{{ $number++ }}</td>
+                                    <td>{{ $number++ }}</td>
                                     <td>{{ date('d-M-Y', strtotime($cases->date)) }}</td>
-                                    <td class="table-english">{{ $cases->name }}</td>
+                                    <td>{{ $cases->name }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

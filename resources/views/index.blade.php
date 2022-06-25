@@ -20,7 +20,7 @@
                             <h3>{{ $casesDay }}</h3>
                             <p>ຄົນເຈັບໃນມື້ນີ້</p>
                         </div>
-                        <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="" class="small-box-footer">ເພີ່ມເຕີມ &nbsp;<i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-6">
@@ -29,7 +29,7 @@
                             <h3>{{ $appointments }}</h3>
                             <p>ຄົນເຈັບນັດກວດມື້ນີ້</p>
                         </div>
-                        <a href="{{ route('appointments.index') }}" class="small-box-footer">More info <i
+                        <a href="{{ route('appointments.index') }}" class="small-box-footer">ເພີ່ມເຕີມ &nbsp;<i
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                             <h3>{{ $casesMonth }}</h3>
                             <p>ຄົນເຈັບພາຍໃນເດືອນ</p>
                         </div>
-                        <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="" class="small-box-footer">ເພີ່ມເຕີມ &nbsp;<i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-6">
@@ -48,7 +48,7 @@
                             <h3>{{ $doctors }}</h3>
                             <p>ຂໍ້ມູນທ່ານໝໍ</p>
                         </div>
-                        <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="" class="small-box-footer">ເພີ່ມເຕີມ &nbsp;<i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -60,21 +60,21 @@
                             <div class="card-tools">
                                 <ul class="nav nav-pills ml-auto">
                                     <li class="nav-item">
-                                        <a class="nav-link active" href="#revenue-chart" data-toggle="tab">ຈຳນວນຄົນເຈັບ</a>
+                                        <a class="nav-link active" href="#patients-chart" data-toggle="tab">ຈຳນວນຄົນເຈັບ</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#sales-chart" data-toggle="tab">ຈຳນວນຢາ</a>
+                                        <a class="nav-link" href="#medicates-chart" data-toggle="tab">ຈຳນວນຢາ</a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                         <div class="card-body">
                             <div class="tab-content p-0">
-                                <div class="chart tab-pane active" id="revenue-chart"
+                                <div class="chart tab-pane active" id="patients-chart"
                                     style="position: relative; height: 300px;">
                                     <canvas id="myBar1"></canvas>
                                 </div>
-                                <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
+                                <div class="chart tab-pane" id="medicates-chart" style="position: relative; height: 300px;">
                                     <canvas id="myBar2"></canvas>
                                 </div>
                             </div>
@@ -107,21 +107,6 @@
                                             <td>{{ number_format($payments->total) }} ກີບ</td>
                                         </tr>
                                     @endforeach
-                                    <tr>
-                                        <td>Q</td>
-                                        <td>Q</td>
-                                        <td>Q</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Q</td>
-                                        <td>Q</td>
-                                        <td>Q</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Q</td>
-                                        <td>Q</td>
-                                        <td>Q</td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -146,7 +131,7 @@
                     label: 'ຈຳນວນຄົນເຈັບແຕ່ລະເດືອນ',
                     data: _xdata,
                     backgroundColor: [
-                        'rgba(0, 255, 1, 0.75)',
+                        'rgba(142, 186, 168, 0.75)',
                     ]
                 }]
             },

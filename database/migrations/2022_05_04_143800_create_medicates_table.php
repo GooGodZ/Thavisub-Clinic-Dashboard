@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('quantity');
             $table->integer('price');
+            $table->string('take');
             $table->date('date');
             $table->unsignedBigInteger('p_id');
             $table->unsignedBigInteger('c_id');

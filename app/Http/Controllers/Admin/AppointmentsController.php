@@ -23,7 +23,13 @@ class AppointmentsController extends Controller
             ->orderBy('status', 'ASC')
             ->orderBy('time', 'ASC')
             ->get();
-        return view('services.appointments.index', compact('appointments'));
+        $cases = Cases::where('status', '!=', 0)
+            ->where('status', '!=', 1)
+            ->whereDate('date', Carbon::today())
+            ->orderBy('status', 'ASC')
+            ->get();
+
+        return view('services.appointments.index', compact('appointments', 'cases'));
     }
 
     /**
@@ -41,11 +47,11 @@ class AppointmentsController extends Controller
 
     public function createLink($id)
     {
-        $evaluations = Evaluations::find($id);
-        $appointments = Appointments::all()->where('c_id', $evaluations->c_id);
+        $cases = Cases::find($id);
+        $appointments = Appointments::all()->where('c_id', $cases->id);
         $doctors = Doctors::all();
 
-        return view('services.appointments.createLink', compact('appointments', 'evaluations', 'doctors'));
+        return view('services.appointments.createLink', compact('appointments', 'cases', 'doctors'));
     }
 
     /**
@@ -74,9 +80,12 @@ class AppointmentsController extends Controller
         $appointments->time = $request->time;
         $appointments->doc_id = $request->doc_id;
         $appointments->c_id = $request->c_id;
+        $cases = Cases::where('id', $appointments->c_id)->first();
+        $cases->status = 3;
         $appointments->save();
+        $cases->save();
 
-        return redirect()->route('appointments.index')->with('success', 'ເພີ່ມຂໍ້ມູນນັດກວດສຳເລັດແລ້ວ');
+        return redirect()->route('appointments.index')->with('success', 'ເພີ່ມຂໍ້ມູນນັດກວດສຳເລັດ');
     }
 
     /**
@@ -98,11 +107,7 @@ class AppointmentsController extends Controller
      */
     public function edit($id)
     {
-        $appointments = Appointments::find($id);
-        $cases = Cases::all()->sortByDesc('created_at');
-        $doctors = Doctors::all();
-
-        return view('services.appointments.edit', compact('appointments', 'cases', 'doctors'));
+        //
     }
 
     /**
@@ -114,26 +119,7 @@ class AppointmentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'date' => 'required',
-            'time' => 'required',
-            'doc_id' => 'required',
-            'c_id' => 'required',
-        ], [
-            'date.required' => 'ເລືອກວັນທີ ເດືອນ ປີນັດ',
-            'time.required' => 'ເລືອກເວລານັດ',
-            'doc_id.required' => 'ເລືອກທ່ານໝໍນັດ',
-            'c_id.required' => 'ເລືອກລົງທະບຽນກວດ',
-        ]);
-
-        $appointments = Appointments::where('id', '=', $id)->first();
-        $appointments->date = $request->date;
-        $appointments->time = $request->time;
-        $appointments->doc_id = $request->doc_id;
-        $appointments->c_id = $request->c_id;
-        $appointments->save();
-
-        return redirect()->route('appointments.index')->with('success', 'ແກ້ໄຂຂໍ້ມູນນັດກວດສຳເລັດແລ້ວ');
+        //
     }
 
     /**
@@ -144,9 +130,6 @@ class AppointmentsController extends Controller
      */
     public function destroy($id)
     {
-        $appointments = Appointments::findOrFail($id);
-        $appointments->delete();
-
-        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນນັດກວດສຳເລັດແລ້ວ');
+        //
     }
 }

@@ -27,7 +27,7 @@
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group row">
-                                    <label class="col-3 col-form-label label-start">ຊື່ສິນຄ້າ</label>
+                                    <label class="col-3 col-form-label">ຊື່ສິນຄ້າ</label>
                                     <div class="col-9">
                                         <input type="text" name="name" class="form-control"
                                             value="{{ old('products', $products->name ?? null) }}"
@@ -40,7 +40,7 @@
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group row">
-                                    <label class="col-3 col-form-label label-start">ປະເພດສິນຄ້າ</label>
+                                    <label class="col-3 col-form-label">ປະເພດສິນຄ້າ</label>
                                     <div class="col-9">
                                         <select name="pt_id" class="form-select search">
                                             <option selected>ເລືອກປະເພດສິນຄ້າ</option>
@@ -61,7 +61,7 @@
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group row">
-                                    <label class="col-3 col-form-label label-start">ຈຳນວນສິນຄ້າ</label>
+                                    <label class="col-3 col-form-label">ຈຳນວນສິນຄ້າ</label>
                                     <div class="col-9">
                                         <input type="number" name="quantity" class="form-control"
                                             value="{{ old('products', $products->quantity ?? null) }}"
@@ -74,7 +74,7 @@
                             </div>
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group row">
-                                    <label class="col-3 col-form-label label-start">ລາຄາສິນຄ້າ</label>
+                                    <label class="col-3 col-form-label">ລາຄາສິນຄ້າ</label>
                                     <div class="col-9">
                                         <input type="number" name="price" class="form-control"
                                             value="{{ old('products', $products->price ?? null) }}"
@@ -88,7 +88,7 @@
                         </div>
                         <div class="text-center">
                             <button type="submit" class="btn" style="background-color: #8ebaa8; color: white">
-                                <i class="fa-solid fa-upload"></i>&nbsp;ບັນທືກ</button>
+                                <i class="bi bi-save2"></i>&nbsp;ບັນທືກ</button>
                         </div>
                     </div>
                 </form>

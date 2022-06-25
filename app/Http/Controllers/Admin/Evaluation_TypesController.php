@@ -52,7 +52,7 @@ class Evaluation_TypesController extends Controller
         $evaluation_types->price = $request->price;
         $evaluation_types->save();
 
-        return redirect()->route('evaluation_types.index')->with('success', 'ເພີ່ມຂໍ້ມູນປະເພດຜົນກວດສຳເລັດແລ້ວ');
+        return redirect()->route('evaluation_types.index')->with('success', 'ເພີ່ມຂໍ້ມູນປະເພດຜົນກວດສຳເລັດ');
     }
 
     /**
@@ -101,7 +101,7 @@ class Evaluation_TypesController extends Controller
         $evaluation_types->price = $request->price;
         $evaluation_types->save();
 
-        return redirect()->route('evaluation_types.index')->with('success', 'ແກ້ໄຂຂໍ້ມູນປະເພດຜົນກວດສຳເລັດແລ້ວ');
+        return redirect()->route('evaluation_types.index')->with('success', 'ແກ້ໄຂຂໍ້ມູນປະເພດຜົນກວດສຳເລັດ');
     }
 
     /**
@@ -115,6 +115,6 @@ class Evaluation_TypesController extends Controller
         $evaluation_types = Evaluation_Types::findOrFail($id);
         $evaluation_types->delete();
 
-        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນປະເພດຜົນກວດສຳເລັດແລ້ວ');
+        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນປະເພດຜົນກວດສຳເລັດ');
     }
 }

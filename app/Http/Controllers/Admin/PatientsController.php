@@ -58,7 +58,7 @@ class PatientsController extends Controller
         $patients->tel = $request->tel;
         $patients->save();
 
-        return redirect()->route('casesCreateLink')->with('success', 'ເພີ່ມຂໍ້ມູນຄົນເຈັບສຳເລັດແລ້ວ');
+        return redirect()->route('casesCreateLink')->with('success', 'ເພີ່ມຂໍ້ມູນຄົນເຈັບສຳເລັດ');
     }
 
     /**
@@ -113,7 +113,7 @@ class PatientsController extends Controller
         $patients->tel = $request->tel;
         $patients->save();
 
-        return redirect()->route('patients.index')->with('success', 'ແກ້ໄຂຂໍ້ມູນຄົນເຈັບສຳເລັດແລ້ວ');
+        return redirect()->route('patients.index')->with('success', 'ແກ້ໄຂຂໍ້ມູນຄົນເຈັບສຳເລັດ');
     }
 
     /**
@@ -124,9 +124,9 @@ class PatientsController extends Controller
      */
     public function destroy($id)
     {
-        $patients = Patients::findOrFail($id);
+        $patients = Patients::find($id);
         $patients->delete();
 
-        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນຄົນເຈັບສຳເລັດແລ້ວ');
+        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນຄົນເຈັບສຳເລັດ');
     }
 }

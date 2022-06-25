@@ -43,10 +43,10 @@
                             @endphp
                             @foreach ($doctors as $doctors)
                                 <tr>
-                                    <td class="table-english">{{ $number++ }}</td>
-                                    <td class="table-english">{{ $doctors->doc_no }}</td>
+                                    <td>{{ $number++ }}</td>
+                                    <td>{{ $doctors->doc_no }}</td>
                                     <td>{{ $doctors->name }}</td>
-                                    <td class="table-english">{{ $doctors->tel }}</td>
+                                    <td>{{ $doctors->tel }}</td>
                                     <td>{{ $doctors->address }}</td>
                                     <td>{{ $doctors->status == 1 ? 'ປະຈຳການ' : 'ບໍ່ປະຈຳການ' }}</td>
                                     <td>

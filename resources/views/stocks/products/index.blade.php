@@ -44,12 +44,12 @@
                             @endphp
                             @foreach ($products as $products)
                                 <tr>
-                                    <td class="table-english">{{ $number++ }}</td>
-                                    <td class="table-english">{{ $products->p_no }}</td>
+                                    <td>{{ $number++ }}</td>
+                                    <td>{{ $products->p_no }}</td>
                                     <td>{{ $products->name }}</td>
                                     <td>{{ $products->product_types->name }}</td>
-                                    <td class="table-english">{{ $products->quantity }}</td>
-                                    <td class="table-english">{{ $products->price }}</td>
+                                    <td>{{ $products->quantity }}</td>
+                                    <td>{{ $products->price }}</td>
                                     <td>
                                         <form action="{{ route('products.destroy', $products->id) }}" method="POST">
                                             @csrf

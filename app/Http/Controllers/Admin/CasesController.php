@@ -19,9 +19,10 @@ class CasesController extends Controller
      */
     public function index()
     {
-        $cases = Cases::all()->where('status', 0);
+        $cases = Cases::where('status', 0)->get();
+        $casestoday = Cases::where('status', '!=', 0)->whereDate('date', Carbon::today())->get();
 
-        return view('registers.case.index', compact('cases'));
+        return view('registers.case.index', compact('cases', 'casestoday'));
     }
 
     /**
@@ -95,7 +96,7 @@ class CasesController extends Controller
         $cases->doc_id = $request->doc_id;
         $cases->save();
 
-        return redirect()->route('cases.index')->with('success', 'ເພີ່ມຂໍ້ມູນລົງທະບຽນກວດສຳເລັດແລ້ວ');
+        return redirect()->route('cases.index')->with('success', 'ເພີ່ມຂໍ້ມູນລົງທະບຽນກວດສຳເລັດ');
     }
 
     public function storeLink(Request $request)
@@ -138,7 +139,7 @@ class CasesController extends Controller
         $cases->save();
         $appointments->save();
 
-        return redirect()->route('cases.index')->with('success', 'ເພີ່ມຂໍ້ມູນລົງທະບຽນກວດສຳເລັດແລ້ວ');
+        return redirect()->route('cases.index')->with('success', 'ເພີ່ມຂໍ້ມູນລົງທະບຽນກວດສຳເລັດ');
     }
 
     /**
@@ -161,7 +162,7 @@ class CasesController extends Controller
     public function edit($id)
     {
         $cases = Cases::find($id);
-        $patients = Patients::all()->sortByDesc('created_at');
+        $patients = Patients::where('id', $cases->pt_id)->get();
         $doctors = Doctors::all();
 
         return view('registers.case.edit', compact('cases', 'patients', 'doctors'));
@@ -207,7 +208,7 @@ class CasesController extends Controller
         $cases->doc_id = $request->doc_id;
         $cases->save();
 
-        return redirect()->route('cases.index')->with('success', 'ແກ້ໄຂຂໍ້ມູນລົງທະບຽນກວດສຳເລັດແລ້ວ');
+        return redirect()->route('cases.index')->with('success', 'ແກ້ໄຂຂໍ້ມູນລົງທະບຽນກວດສຳເລັດ');
     }
 
     /**
@@ -218,9 +219,9 @@ class CasesController extends Controller
      */
     public function destroy($id)
     {
-        $cases = Cases::findOrFail($id);
+        $cases = Cases::find($id);
         $cases->delete();
 
-        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນລົງທະບຽນກວດສຳເລັດແລ້ວ');
+        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນລົງທະບຽນກວດສຳເລັດ');
     }
 }

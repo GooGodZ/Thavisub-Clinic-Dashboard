@@ -21,53 +21,101 @@
     <section class="content">
         <div class="container-fluid">
             <div class="card">
-                <div class="card-header" style="background-color: white">
-                    <a href="{{ route('appointments.create') }}"class="btn float-end"
-                        style="background-color: #8ebaa8; color: white">
-                        <i class="fa-solid fa-plus"></i>&nbsp;ເພີ່ມ</button>
-                    </a>
+                <div class="card-header bg-white">
+                    <div class="card-tools">
+                        <ul class="nav nav-pills ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#appointments" data-toggle="tab">ນັດກວດ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#appointmentstoday" data-toggle="tab">ອອກໃບນັດກວດ</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="card-body">
-                    <table id="mytable" class="table table-hover" width="100%">
-                        <thead>
-                            <td>ລຳດັບ</td>
-                            <td>ລະຫັດນັດກວດ</td>
-                            <td>ຊື່ຄົນເຈັບ</td>
-                            <td>ວັນ ເດືອນ ປີນັດກວດ</td>
-                            <td>ເວລານັດກວດ</td>
-                            <td>ທ່ານໝໍ</td>
-                            <td>ສະຖານະ</td>
-                            <td>Action</td>
-                        </thead>
-                        <tbody>
-                            @php
-                                $number = 1;
-                            @endphp
-                            @foreach ($appointments as $appointments)
-                                <tr>
-                                    <td class="table-english">{{ $number++ }}</td>
-                                    <td class="table-english">{{ $appointments->ap_no }}</td>
-                                    <td class="table-english">{{ $appointments->cases->patients->name }}</td>
-                                    <td class="table-english">{{ date('d-M-Y', strtotime($appointments->date)) }}
-                                    </td>
-                                    <td class="table-english">{{ $appointments->time }}</td>
-                                    <td class="table-english">{{ $appointments->doctors->name }}</td>
-                                    <td class="table-english">
-                                        {{ $appointments->status == 0 ? 'ລໍຖ້າ' : 'ລົງທະບຽນແລ້ວ' }}</td>
-                                    <td>
-                                        <form action="{{ route('appointments.destroy', $appointments->id) }}"
-                                            method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <a href="{{ route('casesCreateLinkAppointments', $appointments->id) }}">
-                                                <i class="fa-solid fa-magnifying-glass-plus"></i>
-                                            </a>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                    <div class="tab-content p-0">
+                        <div class="tab-pane active" id="appointments">
+                            <div class="card-body">
+                                <div class="card-header" style="background-color: white">
+                                    <a href="{{ route('appointments.create') }}"class="btn float-end"
+                                        style="background-color: #8ebaa8; color: white">
+                                        <i class="fa-solid fa-plus"></i>&nbsp;ເພີ່ມ</button>
+                                    </a>
+                                </div>
+                                <div class="card-body">
+                                    <table id="mytable" class="table table-hover" width="100%">
+                                        <thead>
+                                            <td>ລຳດັບ</td>
+                                            <td>ລະຫັດນັດກວດ</td>
+                                            <td>ຊື່ຄົນເຈັບ</td>
+                                            <td>ວັນ ເດືອນ ປີນັດກວດ</td>
+                                            <td>ເວລານັດກວດ</td>
+                                            <td>ທ່ານໝໍ</td>
+                                            <td>ສະຖານະ</td>
+                                            <td>Action</td>
+                                        </thead>
+                                        <tbody>
+                                            @php
+                                                $number = 1;
+                                            @endphp
+                                            @foreach ($appointments as $appointments)
+                                                <tr>
+                                                    <td>{{ $number++ }}</td>
+                                                    <td>{{ $appointments->ap_no }}</td>
+                                                    <td>{{ $appointments->cases->patients->name }}</td>
+                                                    <td>{{ date('d-M-Y', strtotime($appointments->date)) }}
+                                                    </td>
+                                                    <td>{{ $appointments->time }}</td>
+                                                    <td>{{ $appointments->doctors->name }}</td>
+                                                    <td>
+                                                        {{ $appointments->status == 0 ? 'ລໍຖ້າ' : 'ລົງທະບຽນແລ້ວ' }}
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{ route('casesCreateLinkAppointments', $appointments->id) }}"
+                                                            class="text-primary text-decoration-none"
+                                                            data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                                            title="ລົງທະບຽນກວດ">
+                                                            <i class="bi bi-box-arrow-up-right"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="appointmentstoday">
+                            <div class="card-body">
+                                <table id="mytable2" class="table table-hover" width="100%">
+                                    <thead>
+                                        <td>ລຳດັບ</td>
+                                        <td>ລະຫັດຜົນກວດ</td>
+                                        <td>ຊື່ຄົນເຈັບ</td>
+                                        <td>ວັນທີຜົນກວດ</td>
+                                        <td>ສະຖານະ</td>
+                                    </thead>
+                                    <tbody>
+                                        @php
+                                            $number = 1;
+                                        @endphp
+                                        @foreach ($cases as $cases)
+                                            <tr>
+                                                <td>{{ $number++ }}</td>
+                                                <td>{{ $cases->c_no }}</td>
+                                                <td>{{ $cases->patients->name }}</td>
+                                                <td>{{ date('d-M-Y', strtotime($cases->date)) }}</td>
+                                                <td>
+                                                    {{ $cases->status !== 0 && $cases->status !== 1 && $cases->status !== 2 ? 'ອອກໃບນັດກວດແລ້ວ' : 'ລໍຖ້າໃບນັດກວດ' }}
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

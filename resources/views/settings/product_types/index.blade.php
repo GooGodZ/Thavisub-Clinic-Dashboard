@@ -41,8 +41,8 @@
                             @endphp
                             @foreach ($product_types as $product_types)
                                 <tr>
-                                    <td class="table-english">{{ $number++ }}</td>
-                                    <td class="table-english">{{ $product_types->pt_no }}</td>
+                                    <td>{{ $number++ }}</td>
+                                    <td>{{ $product_types->pt_no }}</td>
                                     <td>{{ $product_types->name }}</td>
                                     <td>
                                         <form action="{{ route('product_types.destroy', $product_types->id) }}"

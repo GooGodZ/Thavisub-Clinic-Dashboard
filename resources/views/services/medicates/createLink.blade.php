@@ -35,8 +35,8 @@
                                     <label class="col-3 col-form-label">ຊື່ຄົນເຈັບ</label>
                                     <div class="col-9">
                                         <select name="c_id" class="form-select search">
-                                            <option value="{{ $evaluations->c_id }}">
-                                                {{ $evaluations->eva_no . ' ' . $evaluations->cases->patients->name }}
+                                            <option value="{{ $cases->id }}">
+                                                {{ $cases->c_no . ' ' . $cases->patients->name }}
                                             </option>
                                         </select>
                                         @error('c_id')
@@ -51,37 +51,45 @@
                                     <div class="col-9">
                                         <div class="form-group">
                                             <div class="form-check d-inline">
-                                                <input name="one" class="form-check-input" type="checkbox">
+                                                <input name="take[]" class="form-check-input" value="1ເມັດ"
+                                                    type="checkbox">
                                                 <label class="form-check-label">1ເມັດ</label>
                                             </div>
                                             <div class="form-check d-inline">
-                                                <input name="two" class="form-check-input" type="checkbox">
+                                                <input name="take[]" class="form-check-input" value="2ເມັດ"
+                                                    type="checkbox">
                                                 <label class="form-check-label">2ເມັດ</label>
                                             </div>
                                             <div class="form-check d-inline">
-                                                <input name="before" class="form-check-input" type="checkbox">
+                                                <input name="take[]" class="form-check-input" value="ກ່ອນອາຫານ"
+                                                    type="checkbox">
                                                 <label class="form-check-label">ກ່ອນອາຫານ</label>
                                             </div>
                                             <div class="form-check d-inline">
-                                                <input name="after" class="form-check-input" type="checkbox">
+                                                <input name="take[]" class="form-check-input" value="ຫຼັງອາຫານ"
+                                                    type="checkbox">
                                                 <label class="form-check-label">ຫຼັງອາຫານ</label>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="form-check d-inline">
-                                                <input name="morning" class="form-check-input" type="checkbox">
+                                                <input name="take[]" class="form-check-input" value="ເຊົ້າ"
+                                                    type="checkbox">
                                                 <label class="form-check-label">ເຊົ້າ</label>
                                             </div>
                                             <div class="form-check d-inline">
-                                                <input name="afternoon" class="form-check-input" type="checkbox">
+                                                <input name="take[]" class="form-check-input" value="ສວຍ"
+                                                    type="checkbox">
                                                 <label class="form-check-label">ສວຍ</label>
                                             </div>
                                             <div class="form-check d-inline">
-                                                <input name="evening" class="form-check-input" type="checkbox">
+                                                <input name="take[]" class="form-check-input" value="ແລງ"
+                                                    type="checkbox">
                                                 <label class="form-check-label">ແລງ</label>
                                             </div>
                                             <div class="form-check d-inline">
-                                                <input name="night" class="form-check-input" type="checkbox">
+                                                <input name="take[]" class="form-check-input" value="ກ່ອນນອນ"
+                                                    type="checkbox">
                                                 <label class="form-check-label">ກ່ອນນອນ</label>
                                             </div>
                                         </div>
@@ -122,8 +130,8 @@
                         </div>
                         <div class="text-center">
                             <button type="submit" class="btn" style="background-color: #8ebaa8; color: white">
-                                <i class="fa-solid fa-upload"></i>&nbsp;ບັນທືກ</button>
-                            <a href="{{ route('appointmentsCreateLink', $evaluations->id) }}" class="btn"
+                                <i class="bi bi-save2"></i>&nbsp;ບັນທືກ</button>
+                            <a href="{{ route('appointmentsCreateLink', $cases->id) }}" class="btn"
                                 style="background-color: #8ebaa8; color: white">ອອກໃບນັດກວດ</a>
                         </div>
                     </div>
@@ -151,12 +159,16 @@
                             @endphp
                             @foreach ($medicates as $medicates)
                                 <tr>
-                                    <td class="table-english">{{ $number++ }}</td>
-                                    <td class="table-english">{{ $medicates->products->name }}</td>
-                                    <td class="table-english">{{ $medicates->quantity }}</td>
-                                    <td class="table-english">{{ number_format($medicates->price) }} ກີບ</td>
-                                    <td class="table-english"></td>
-                                    <td class="table-english">{{ date('d-M-Y ', strtotime($medicates->date)) }}</td>
+                                    <td>{{ $number++ }}</td>
+                                    <td>{{ $medicates->products->name }}</td>
+                                    <td>{{ number_format($medicates->quantity) }}</td>
+                                    <td>{{ number_format($medicates->price) }} ກີບ</td>
+                                    <td>
+                                        @foreach ($medicates->take as $value)
+                                            {{ $value }}
+                                        @endforeach
+                                    </td>
+                                    <td>{{ date('d-M-Y ', strtotime($medicates->date)) }}</td>
                                     <td>
                                         <form action="{{ route('medicates.destroy', $medicates->id) }}" method="POST">
                                             @csrf

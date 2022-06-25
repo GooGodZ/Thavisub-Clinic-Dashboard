@@ -20,16 +20,16 @@
                         <i class="fa-solid fa-backward"></i>&nbsp;ຍ້ອນກັບ
                     </a>
                 </div>
-                <form action="{{ route('payments.update', $payments->id) }}" method="post">
+                <form action="{{ route('payments.store') }}" method="post">
                     @csrf
-                    @method('PUT')
                     <div class="card-body">
                         <div class="form-group row">
                             <label class="col-3 col-form-label">ຊື່ ແລະ ນາມສະກຸນ</label>
                             <div class="col-9">
-                                <input type="" class="form-control"
-                                    value="{{ old('payments', $payments->pay_no . ' ' . $payments->cases->patients->name) }}"
-                                    placeholder="ປ້ອນຊື່ ແລະ ນາມສະກຸນ">
+                                <select name="c_id" class="form-select search">
+                                    <option value="{{ $cases->id }}">{{ $cases->c_no }}
+                                        {{ $cases->patients->name }}</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -56,7 +56,7 @@
                         </div>
                         <div class="text-center">
                             <button type="submit" class="btn" style="background-color: #8ebaa8; color: white">
-                                <i class="fa-solid fa-upload"></i>&nbsp;ບັນທືກ</button>
+                                <i class="bi bi-save2"></i>&nbsp;ບັນທືກ</button>
                         </div>
                     </div>
                 </form>

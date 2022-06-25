@@ -56,10 +56,10 @@
                             @endphp
                             @foreach ($patient as $patient)
                                 <tr>
-                                    <td class="table-english">{{ $number++ }}</td>
+                                    <td>{{ $number++ }}</td>
                                     <td>{{ $patient->name }}</td>
-                                    <td class="table-english">{{ $patient->tel }}</td>
-                                    <td class="table-english">{{ $patient->pt_id }}</td>
+                                    <td>{{ $patient->tel }}</td>
+                                    <td>{{ $patient->pt_id }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

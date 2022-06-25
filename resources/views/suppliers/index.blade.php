@@ -43,11 +43,11 @@
                             @endphp
                             @foreach ($suppliers as $suppliers)
                                 <tr>
-                                    <td class="table-english">{{ $number++ }}</td>
-                                    <td class="table-english">{{ $suppliers->sup_no }}</td>
+                                    <td>{{ $number++ }}</td>
+                                    <td>{{ $suppliers->sup_no }}</td>
                                     <td>{{ $suppliers->name }}</td>
-                                    <td class="table-english">{{ $suppliers->tel }}</td>
-                                    <td class="table-english">{{ $suppliers->email }}</td>
+                                    <td>{{ $suppliers->tel }}</td>
+                                    <td>{{ $suppliers->email }}</td>
                                     <td>{{ $suppliers->address }}</td>
                                     <td>
                                         <form action="{{ route('suppliers.destroy', $suppliers->id) }}" method="POST">

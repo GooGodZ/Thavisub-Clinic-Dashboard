@@ -16,7 +16,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Products::all()->sortByDesc('created_at');
+        $products = Products::all()->sortBy('quantity');
 
         return view('stocks.products.index', compact('products'));
     }
@@ -61,7 +61,7 @@ class ProductsController extends Controller
         $products->pt_id = $request->pt_id;
         $products->save();
 
-        return redirect()->route('products.index')->with('success', 'ເພີ່ມຂໍ້ມູນສິນຄ້າສຳເລັດແລ້ວ');
+        return redirect()->route('products.index')->with('success', 'ເພີ່ມຂໍ້ມູນສິນຄ້າສຳເລັດ');
     }
 
     /**
@@ -117,7 +117,7 @@ class ProductsController extends Controller
         $products->pt_id = $request->pt_id;
         $products->save();
 
-        return redirect()->route('products.index')->with('success', 'ແກ້ໄຂຂໍ້ມູນສິນຄ້າສຳເລັດແລ້ວ');
+        return redirect()->route('products.index')->with('success', 'ແກ້ໄຂຂໍ້ມູນສິນຄ້າສຳເລັດ');
     }
 
     /**
@@ -128,9 +128,9 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        $products = Products::findOrFail($id);
+        $products = Products::find($id);
         $products->delete();
 
-        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນສິນຄ້າສຳເລັດແລ້ວ');
+        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນສິນຄ້າສຳເລັດ');
     }
 }

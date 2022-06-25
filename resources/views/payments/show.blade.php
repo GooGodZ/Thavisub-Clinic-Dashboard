@@ -38,23 +38,21 @@
                     @endphp
                     @foreach ($medicates as $medicates)
                         <tr>
-                            <td class="table-english">{{ $number++ }}</td>
+                            <td>{{ $number++ }}</td>
                             <td>{{ $medicates->products->name }}</td>
-                            <td class="table-english">{{ $medicates->quantity }}</td>
-                            <td class="table-english">{{ number_format($medicates->products->price) }} ກີບ</td>
-                            <td class="table-english">{{ number_format($medicates->price) }} ກີບ</td>
+                            <td>{{ $medicates->quantity }}</td>
+                            <td>{{ number_format($medicates->products->price) }} ກີບ</td>
+                            <td>{{ number_format($medicates->price) }} ກີບ</td>
                         </tr>
                     @endforeach
                     <tr>
-                        <td class="table-english">{{ $number++ }}</td>
-                        <td>ຄ່າປິ່ນປົວ</td>
-                        <td class="table-english"></td>
-                        <td class="table-english"></td>
-                        <td class="table-english">{{ number_format($payments->price_e) }} ກີບ</td>
+                        <td>{{ $number++ }}</td>
+                        <td colspan="3">ຄ່າປິ່ນປົວ</td>
+                        <td>{{ number_format($payments->price_e) }} ກີບ</td>
                     </tr>
                     <tr>
                         <td class="text-end" colspan="4">ລວມເງິນທັງໝົດ:</td>
-                        <td class="table-english">{{ number_format($payments->total) }} ກີບ</td>
+                        <td>{{ number_format($payments->total) }} ກີບ</td>
                     </tr>
                 </tbody>
             </table>

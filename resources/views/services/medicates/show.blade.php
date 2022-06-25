@@ -34,6 +34,7 @@
                             <td>ລຳດັບ</td>
                             <td>ຊື່ຢາ</td>
                             <td>ຈຳນວນ</td>
+                            <td>ວິທີກິນຢາ</td>
                             <td>ລາຄາ</td>
                         </thead>
                         <tbody>
@@ -44,13 +45,21 @@
                                 <tr>
                                     <td>{{ $number++ }}</td>
                                     <td>{{ $medicates->products->name }}</td>
-                                    <td>{{ $medicates->quantity }}</td>
-                                    <td>{{ number_format($medicates->price) }}</td>
+                                    <td>{{ number_format($medicates->quantity) }}</td>
+                                    <td>
+                                        @foreach ($medicates->take as $value)
+                                            {{ $value }}
+                                        @endforeach
+                                    </td>
+                                    <td>{{ number_format($medicates->price) }} ກີບ</td>
                                 </tr>
                             @endforeach
+                            <tr>
+                                <td class="text-end" colspan="4">ລວມລາຄາທັງໝົດ:</td>
+                                <td> {{ number_format($medicatessum) }} ກີບ</td>
+                            </tr>
                         </tbody>
                     </table>
-                    <h4 class="text-end">ລວມລາຄາທັງໝົດ: {{ number_format($medicatessum) }} ກີບ</h4>
                 </div>
             </div>
         </div>

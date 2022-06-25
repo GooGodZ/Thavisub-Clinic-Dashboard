@@ -20,9 +20,9 @@ class MedicatesController extends Controller
      */
     public function index()
     {
-        $evaluations = Evaluations::where('status', 1)->where('date', Carbon::today())->get();
+        $cases = Cases::where('status', '!=', 0)->where('status', '!=', 1)->where('date', Carbon::today())->get();
 
-        return view('services.medicates.index', compact('evaluations'));
+        return view('services.medicates.index', compact('cases'));
     }
 
     /**
@@ -32,21 +32,16 @@ class MedicatesController extends Controller
      */
     public function create()
     {
-        $product_types = Product_Types::all()->where('name', 'ຢາ')->first();
-        $products = Products::all()->where('pt_id', $product_types->id);
-        $evaluations = Evaluations::all()->last();
-        $medicates = Medicates::all()->where('c_id', $evaluations->c_id);
-
-        return view('services.medicates.createLink', compact('products', 'evaluations', 'medicates'));
+        //
     }
 
     public function createLink($id)
     {
         $products = Products::all();
-        $evaluations = Evaluations::find($id);
-        $medicates = Medicates::all()->where('c_id', $evaluations->c_id);
+        $cases = Cases::find($id);
+        $medicates = Medicates::where('c_id', $cases->id)->get();
 
-        return view('services.medicates.createLink', compact('products', 'evaluations', 'medicates'));
+        return view('services.medicates.createLink', compact('products', 'cases', 'medicates'));
     }
 
     /**
@@ -58,9 +53,11 @@ class MedicatesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'quantity' => 'required'
+            'quantity' => 'required',
+            'take' => 'required',
         ], [
             'quantity.required' => 'ປ້ອນຈຳນວນຢາ',
+            'take.required' => 'ເລືອກເວລາກິນຢາ',
         ]);
 
         $medicates = new Medicates();
@@ -68,9 +65,9 @@ class MedicatesController extends Controller
         $medicates->quantity = $request->quantity;
         $products = Products::all()->where('id', $medicates->p_id)->first();
         $medicates->price = $products->price * $medicates->quantity;
+        $medicates->take = $request->take;
         $medicates->date = Carbon::now()->format('Y-m-d H:i:s');
         $medicates->c_id = $request->c_id;
-
 
         if ($products->quantity == 0) {
             return redirect()->back()->with('success', 'ຢາໝົດແລ້ວ');
@@ -79,12 +76,12 @@ class MedicatesController extends Controller
         } else {
             $products = Products::where('id', '=', $medicates->p_id)->first();
             $products->quantity = $products->quantity - $medicates->quantity;
-            $evaluations = Evaluations::where('c_id', '=', $medicates->c_id)->first();
-            $evaluations->status = 1;
+            $cases = Cases::where('id', '=', $medicates->c_id)->first();
+            $cases->status = 2;
             $medicates->save();
             $products->save();
-            $evaluations->save();
-            return redirect()->back()->with('success', 'ວາງຢາສຳເລັດແລ້ວ');
+            $cases->save();
+            return redirect()->back()->with('success', 'ວາງຢາສຳເລັດ');
         }
     }
 
@@ -96,10 +93,10 @@ class MedicatesController extends Controller
      */
     public function show($id)
     {
-        $evaluations = Evaluations::find($id);
-        $medicates = Medicates::all()->where('c_id', $evaluations->c_id);
-        $medicatessum = Medicates::all()->where('c_id', $evaluations->c_id)->sum('price');
-        $medicatestitle = Medicates::all()->where('c_id', $evaluations->c_id)->first();
+        $cases = Cases::find($id);
+        $medicates = Medicates::all()->where('c_id', $cases->id);
+        $medicatessum = Medicates::all()->where('c_id', $cases->id)->sum('price');
+        $medicatestitle = Medicates::all()->where('c_id', $cases->id)->first();
 
         return view('services.medicates.show', compact('medicates', 'medicatestitle', 'medicatessum'));
     }
@@ -112,12 +109,7 @@ class MedicatesController extends Controller
      */
     public function edit($id)
     {
-        $medicates = Medicates::find($id);
-        $product_types = Product_Types::all()->where('name', 'ຢາ')->first();
-        $cases = Cases::all()->sortByDesc('created_at');
-        $products = Products::all()->where('pt_id', $product_types->id);
-
-        return view('services.medicates.edit', compact('medicates', 'cases', 'products'));
+        //
     }
 
     /**
@@ -129,50 +121,7 @@ class MedicatesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'quantity' => 'required'
-        ], [
-            'quantity.required' => 'ປ້ອນຈຳນວນຢາ',
-        ]);
-
-        $medicates = Medicates::where('id', '=', $id)->first();
-        $oldquantity = $medicates->quantity;
-        $medicates->p_id = $request->p_id;
-        $medicates->quantity = $request->quantity;
-        $products = Products::all()->where('id', $medicates->p_id)->first();
-        $medicates->price = $products->price * $medicates->quantity;
-        $medicates->date = Carbon::now()->format('Y-m-d H:i:s');
-        $medicates->c_id = $request->c_id;
-
-        if ($oldquantity > $medicates->quantity) {
-            if ($products->quantity == 0) {
-                return redirect()->back()->with('success', 'ຢາໝົດແລ້ວ');
-            } elseif ($products->quantity < $medicates->quantity) {
-                return redirect()->back()->with('success', 'ຢາບໍ່ພຽງພໍ');
-            } else {
-                $products = Products::where('id', '=', $medicates->p_id)->first();
-                $products->quantity = $products->quantity + ($oldquantity - $medicates->quantity);
-                $medicates->save();
-                $products->save();
-                return redirect()->route('medicates.index')->with('success', 'ວາງຢາສຳເລັດແລ້ວ');
-            }
-        } elseif ($oldquantity < $medicates->quantity) {
-            if ($products->quantity == 0) {
-                return redirect()->back()->with('success', 'ຢາໝົດແລ້ວ');
-            } elseif ($products->quantity < $medicates->quantity) {
-                return redirect()->back()->with('success', 'ຢາບໍ່ພຽງພໍ');
-            } else {
-                $products = Products::where('id', '=', $medicates->p_id)->first();
-                $products->quantity = $products->quantity - ($medicates->quantity - $oldquantity);
-                $medicates->save();
-                $products->save();
-                return redirect()->route('medicates.index')->with('success', 'ວາງຢາສຳເລັດແລ້ວ');
-            }
-        } else {
-            $medicates->save();
-            $products->save();
-            return redirect()->route('medicates.index')->with('success', 'ວາງຢາສຳເລັດແລ້ວ');
-        }
+        //
     }
 
     /**
@@ -189,6 +138,6 @@ class MedicatesController extends Controller
         $products->save();
         $medicates->delete();
 
-        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນວາງຢາສຳເລັດແລ້ວ');
+        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນວາງຢາສຳເລັດ');
     }
 }

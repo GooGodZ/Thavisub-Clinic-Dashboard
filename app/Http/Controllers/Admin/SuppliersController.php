@@ -58,7 +58,7 @@ class SuppliersController extends Controller
         $suppliers->address = $request->address;
         $suppliers->save();
 
-        return redirect()->route('suppliers.index')->with('success', 'ເພີ່ມຂໍ້ມູນຜູ້ສະໝອງສຳເລັດແລ້ວ');
+        return redirect()->route('suppliers.index')->with('success', 'ເພີ່ມຂໍ້ມູນຜູ້ສະໝອງສຳເລັດ');
     }
 
     /**
@@ -113,7 +113,7 @@ class SuppliersController extends Controller
         $suppliers->address = $request->address;
         $suppliers->save();
 
-        return redirect()->route('suppliers.index')->with('success', 'ແກ້ໄຂຂໍ້ມູນຜູ້ສະໝອງສຳເລັດແລ້ວ');
+        return redirect()->route('suppliers.index')->with('success', 'ແກ້ໄຂຂໍ້ມູນຜູ້ສະໝອງສຳເລັດ');
     }
 
     /**
@@ -124,9 +124,9 @@ class SuppliersController extends Controller
      */
     public function destroy($id)
     {
-        $suppliers = Suppliers::findOrFail($id);
+        $suppliers = Suppliers::find($id);
         $suppliers->delete();
 
-        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນຜູ້ສະໝອງສຳເລັດແລ້ວ');
+        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນຜູ້ສະໝອງສຳເລັດ');
     }
 }

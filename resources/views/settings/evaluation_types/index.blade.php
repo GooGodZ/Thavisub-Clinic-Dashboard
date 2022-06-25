@@ -42,8 +42,8 @@
                             @endphp
                             @foreach ($evaluation_types as $evaluation_types)
                                 <tr>
-                                    <td class="table-english">{{ $number++ }}</td>
-                                    <td class="table-english">{{ $evaluation_types->et_no }}</td>
+                                    <td>{{ $number++ }}</td>
+                                    <td>{{ $evaluation_types->et_no }}</td>
                                     <td>{{ $evaluation_types->name }}</td>
                                     <td>{{ number_format($evaluation_types->price) }} ກີບ</td>
                                     <td>

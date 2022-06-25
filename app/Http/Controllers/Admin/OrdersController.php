@@ -19,8 +19,8 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        $orders = Orders::all();
-        $buys = Buys::all();
+        $orders = Orders::all()->sortBy('status');
+        $buys = Buys::all()->sortByDesc('created_at');
 
         return view('stocks.orders.index', compact('orders', 'buys'));
     }
@@ -60,7 +60,7 @@ class OrdersController extends Controller
         $orders->sup_id = $request->sup_id;
         $orders->save();
 
-        return redirect()->route('order_details.create')->with('success', 'ເພີ່ມຂໍ້ມູນສັ່ງຊື້ສິນຄ້າສຳເລັດແລ້ວ');
+        return redirect()->route('order_details.create')->with('success', 'ເພີ່ມຂໍ້ມູນສັ່ງຊື້ສິນຄ້າສຳເລັດ');
     }
 
     /**
@@ -85,10 +85,7 @@ class OrdersController extends Controller
      */
     public function edit($id)
     {
-        $orders = Orders::find($id);
-        $suppliers = Suppliers::all();
-
-        return view('stocks.orders.orders.edit', compact('orders', 'suppliers'));
+        //
     }
 
     /**
@@ -100,21 +97,7 @@ class OrdersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required',
-            'sup_id' => 'required'
-        ], [
-            'name.required' => 'ປ້ອນຊື່ໃບບິນ',
-            'sup_id.required' => 'ເລຶອກຜູ້ສະໜອງ'
-        ]);
-
-        $orders = Orders::where('id', '=', $id)->first();
-        $orders->name = $request->name;
-        $orders->status = 0;
-        $orders->sup_id = $request->sup_id;
-        $orders->save();
-
-        return redirect()->route('orders.index')->with('success', 'ແກ້ໄຂຂໍ້ມູນຄົນເຈັບສຳເລັດແລ້ວ');
+        //
     }
 
     /**
@@ -128,6 +111,6 @@ class OrdersController extends Controller
         $orders = Orders::find($id);
         $orders->delete();
 
-        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນໃບສັ່ງຊື້ສິນຄ້າສຳເລັດແລ້ວ');
+        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນໃບສັ່ງຊື້ສິນຄ້າສຳເລັດ');
     }
 }

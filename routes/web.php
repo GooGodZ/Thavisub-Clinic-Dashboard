@@ -81,35 +81,30 @@ Route::group([
     Route::get('/buy_detailscreatelink/{id}', [Buy_DetailsController::class, 'createLink'])->name('buy_DetailsCreateLink');
 
     Route::resource('payments', PaymentsController::class);
+    Route::get('/paymentscreatelink/{id}', [PaymentsController::class, 'createLink'])->name('paymentsCreateLink');
 
     Route::get('/reportpatient', [ReportController::class, 'reportPatient'])->name('reportPatient');
-    Route::post('/reportpatient', [ReportController::class, 'reportPatientSearch'])->name('reportPatientSearch');
+    Route::post('/reportpatientsearch', [ReportController::class, 'reportPatientSearch'])->name('reportPatientSearch');
 
     Route::get('/reportcase', [ReportController::class, 'reportCase'])->name('reportCase');
-    Route::post('/reportcase', [ReportController::class, 'reportCaseSearch'])->name('reportCaseSearch');
+    Route::post('/reportcasesearch', [ReportController::class, 'reportCaseSearch'])->name('reportCaseSearch');
 
     Route::get('/reportevaluation', [ReportController::class, 'reportEvaluation'])->name('reportEvaluation');
-    Route::post('/reportevaluation', [ReportController::class, 'reportEvaluationSearch'])->name('reportEvaluationSearch');
+    Route::post('/reportevaluationsearch', [ReportController::class, 'reportEvaluationSearch'])->name('reportEvaluationSearch');
     Route::get('/reportevaluationprint/{id}', [ReportController::class, 'reportEvaluationPrint'])->name('reportEvaluationPrint');
 
     Route::get('/reportappointment', [ReportController::class, 'reportAppointment'])->name('reportAppointment');
-    Route::post('/reportappointmentsearch', [ReportController::class, 'reportAppointmentSearch'])->name('reportAppointmentSearch');
     Route::get('/reportappointmentprint/{id}', [ReportController::class, 'reportAppointmentPrint'])->name('reportAppointmentPrint');
 
     Route::get('/reporttreatment', [ReportController::class, 'reportTreatment'])->name('reportTreatment');
     Route::get('/reporttreatmentshow/{id}', [ReportController::class, 'reportTreatmentShow'])->name('reportTreatmentShow');
-    Route::post('/reporttreatmentsearch', [ReportController::class, 'reportTreatmentSearch'])->name('reportTreatmentSearch');
     Route::get('/reporttreatmentprint/{id}', [ReportController::class, 'reportTreatmentPrint'])->name('reportTreatmentPrint');
 
     Route::get('/reportsupplier', [ReportController::class, 'reportSupplier'])->name('reportSupplier');
-    Route::post('/reportsuppliersearch', [ReportController::class, 'reportSupplierSearch'])->name('reportSupplierSearch');
 
     Route::get('/reportproduct', [ReportController::class, 'reportProduct'])->name('reportProduct');
 
     Route::get('/reportexpense', [ReportController::class, 'reportExpense'])->name('reportExpense');
-    Route::get('/reportexpenseprint', [ReportController::class, 'reportExpensePrint'])->name('reportExpensePrint');
-    Route::post('/reportexpensesearch', [ReportController::class, 'reportExpenseSearch'])->name('reportExpenseSearch');
 
     Route::get('/reportincome', [ReportController::class, 'reportIncome'])->name('reportIncome');
-    Route::post('/reportincomesearch', [ReportController::class, 'reportIncomeSearch'])->name('reportIncomeSearch');
 });

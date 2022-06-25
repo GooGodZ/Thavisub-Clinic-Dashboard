@@ -94,9 +94,8 @@
                                     <label class="col-3 col-form-label">ສະຖານະ</label>
                                     <div class="col-9">
                                         <select name="status" class="form-select search">
-                                            <option selected>ເລືອກສະຖານະ</option>
                                             <option value="0">ບໍ່ປະຈຳການ</option>
-                                            <option value="1">ປະຈຳການ</option>
+                                            <option value="1" selected>ປະຈຳການ</option>
                                         </select>
                                         @error('status')
                                             <strong class="text-danger">{{ $message }}</strong>

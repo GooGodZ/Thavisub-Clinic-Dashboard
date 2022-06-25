@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Buy_Details;
 use App\Models\Buys;
 use App\Models\Order_Details;
-use App\Models\Orders;
 use App\Models\Products;
 use Illuminate\Http\Request;
 
@@ -75,7 +74,7 @@ class Buy_DetailsController extends Controller
         $buy_details->save();
         $products->save();
 
-        return redirect()->back()->with('success', 'ເພີ່ມຂໍ້ມູນສັ່ງຊື້ສິນຄ້າສຳເລັດແລ້ວ');
+        return redirect()->back()->with('success', 'ເພີ່ມຂໍ້ມູນຊື້ສິນຄ້າເຂົ້າສຳເລັດ');
     }
 
     /**
@@ -120,6 +119,9 @@ class Buy_DetailsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $buy_details = Buy_Details::find($id);
+        $buy_details->delete();
+
+        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນລາຍການຊື້ສິນຄ້າເຂົ້າສຳເລັດ');
     }
 }

@@ -49,7 +49,7 @@ class Product_TypesController extends Controller
         $product_types->name = $request->name;
         $product_types->save();
 
-        return redirect()->route('product_types.index')->with('success', 'ເພີ່ມຂໍ້ມູນປະເພດສິນຄ້າສຳເລັດແລ້ວ');
+        return redirect()->route('product_types.index')->with('success', 'ເພີ່ມຂໍ້ມູນປະເພດສິນຄ້າສຳເລັດ');
     }
 
     /**
@@ -95,7 +95,7 @@ class Product_TypesController extends Controller
         $product_types->name = $request->name;
         $product_types->save();
 
-        return redirect()->route('product_types.index')->with('success', 'ແກ້ໄຂຂໍ້ມູນປະເພດສິນຄ້າສຳເລັດແລ້ວ');
+        return redirect()->route('product_types.index')->with('success', 'ແກ້ໄຂຂໍ້ມູນປະເພດສິນຄ້າສຳເລັດ');
     }
 
     /**
@@ -109,6 +109,6 @@ class Product_TypesController extends Controller
         $product_types = Product_Types::findOrFail($id);
         $product_types->delete();
 
-        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນປະເພດສິນຄ້າສຳເລັດແລ້ວ');
+        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນປະເພດສິນຄ້າສຳເລັດ');
     }
 }

@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Buy_Details;
 use App\Models\Buys;
 use App\Models\Orders;
-use App\Models\Products;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -62,7 +61,7 @@ class BuysController extends Controller
         $buys->save();
         $orders->save();
 
-        return redirect()->route('buy_details.create')->with('success', 'ເພີ່ມຂໍ້ມູນຊື້ສິນຄ້າສຳເລັດແລ້ວ');
+        return redirect()->route('buy_details.create')->with('success', 'ເພີ່ມຂໍ້ມູນໃບຊື້ສິນຄ້າເຂົ້າສຳເລັດ');
     }
 
     /**
@@ -114,6 +113,6 @@ class BuysController extends Controller
         $buys = Buys::find($id);
         $buys->delete();
 
-        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນໃບສັ່ງຊື້ສິນຄ້າສຳເລັດແລ້ວ');
+        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນໃບຊື້ສິນຄ້າເຂົ້າສຳເລັດ');
     }
 }
