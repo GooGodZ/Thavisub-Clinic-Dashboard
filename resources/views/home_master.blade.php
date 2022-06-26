@@ -89,7 +89,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="modal-footer pt-4">
+                        <div class="modal-footer">
                             <button type="submit" class="btn btn-success mx-auto w-25">ລົງທະບຽນ</button>
                         </div>
                     </form>
@@ -116,7 +116,7 @@
                                     placeholder="ປ້ອນລະຫັດຜ່ານ">
                             </div>
                         </div>
-                        <div class="modal-footer pt-4">
+                        <div class="modal-footer">
                             <button type="submit" class="btn btn-success mx-auto w-25">ລົງທະບຽນ</button>
                         </div>
                     </form>

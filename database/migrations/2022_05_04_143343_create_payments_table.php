@@ -20,7 +20,6 @@ return new class extends Migration
             $table->integer('price_e');
             $table->integer('total');
             $table->date('date');
-            $table->integer('status');
             $table->unsignedBigInteger('c_id');
             $table->timestamps();
         });

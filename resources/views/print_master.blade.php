@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="{{ asset('assets/vendors/semantic/css/semantic.min.css') }}">
 </head>
 
-<body>
+<body style="font-size: 12px">
 
     <div class="container">
         @yield('print')
