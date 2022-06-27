@@ -21,9 +21,9 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-header" style="background-color: white">
-                    <a href="{{ redirect()->back()->getTargetUrl() }}" class="btn float-end"
+                    <a href="{{ route('medicates.index') }}" class="btn float-end"
                         style="background-color: #8ebaa8; color: white">
-                        <i class="fa-solid fa-backward"></i>&nbsp;ຍ້ອນກັບ
+                        <i class="fa-solid fa-backward"></i>&nbsp;ກັບໄປໜ້າວາງຢາ
                     </a>
                 </div>
                 <form action="{{ route('medicates.store') }}" method="post">

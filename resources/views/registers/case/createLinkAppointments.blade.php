@@ -121,7 +121,7 @@
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">ອາການ</label>
                                     <div class="col-9">
-                                        <textarea type="text" name="disea" class="form-control" placeholder="ປ້ອນອາການ" rows="3"></textarea>
+                                        <textarea type="text" name="disea" class="form-control" placeholder="ປ້ອນອາການ" rows="3">{{ $evaluations->detail }}</textarea>
                                         @error('disea')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror

@@ -153,7 +153,7 @@
             data: {
                 labels: _ydata,
                 datasets: [{
-                    label: 'ຈຳນວນສິນຄ້າທີ່ໃຊ້ໄປຕໍ່ເດືອນ',
+                    label: 'ຈຳນວນສິນຄ້າທີ່ໃຊ້ໄປໃນເດືອນ',
                     data: _xdata,
                     backgroundColor: [
                         'rgba(142, 186, 168, 0.75)',

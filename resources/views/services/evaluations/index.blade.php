@@ -27,9 +27,6 @@
                             <li class="nav-item">
                                 <a class="nav-link active" href="#evaluations" data-toggle="tab">ລໍຖ້າວາງຢາ</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#evaluationstoday" data-toggle="tab">ວາງຢາແລ້ວ</a>
-                            </li>
                         </ul>
                     </div>
                 </div>
@@ -65,34 +62,6 @@
                                                         <i class="bi bi-box-arrow-up-right"></i>
                                                     </a>
                                                 </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="evaluationstoday">
-                            <div class="card-body">
-                                <table id="mytable2" class="table table-hover" width="100%">
-                                    <thead>
-                                        <td>ລຳດັບ</td>
-                                        <td>ລະຫັດຟອມກວດ</td>
-                                        <td>ຊື່ຄົນເຈັບ</td>
-                                        <td>ອາການ</td>
-                                        <td>ສະຖານະ</td>
-                                    </thead>
-                                    <tbody>
-                                        @php
-                                            $number = 1;
-                                        @endphp
-                                        @foreach ($casestoday as $casestoday)
-                                            <tr>
-                                                <td>{{ $number++ }}</td>
-                                                <td>{{ $casestoday->c_no }}</td>
-                                                <td>{{ $casestoday->patients->name }}</td>
-                                                <td>{{ $casestoday->disea }}</td>
-                                                <td>
-                                                    {{ $casestoday->status == 0 ? 'ລໍຖ້າວາງຢາ' : 'ວາງຢາແລ້ວ' }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>

@@ -21,8 +21,6 @@ class PaymentsController extends Controller
     public function index()
     {
         $cases = Cases::where('status', '!=', 0)
-            ->where('status', '!=', 1)
-            ->where('status', '!=', 2)
             ->where('status', '!=', 4)
             ->whereDate('date', Carbon::today())
             ->orderBy('status', 'ASC')

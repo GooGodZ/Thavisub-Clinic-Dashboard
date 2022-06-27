@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Appointments;
 use App\Models\Cases;
 use App\Models\Doctors;
+use App\Models\Evaluations;
 use App\Models\Patients;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -50,9 +51,10 @@ class CasesController extends Controller
     {
         $appointments = Appointments::find($id);
         $cases = Cases::where('id', $appointments->c_id)->first();
+        $evaluations = Evaluations::where('c_id', $cases->id)->latest()->first();
         $doctors = Doctors::all();
 
-        return view('registers.case.createLinkAppointments', compact('doctors', 'cases', 'appointments'));
+        return view('registers.case.createLinkAppointments', compact('doctors', 'cases', 'evaluations', 'appointments'));
     }
 
     /**

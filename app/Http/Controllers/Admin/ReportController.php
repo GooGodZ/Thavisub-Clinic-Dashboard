@@ -182,7 +182,7 @@ class ReportController extends Controller
     {
         $supplier = Suppliers::selectRaw("suppliers.*, COUNT(orders.sup_id) as sup_id, orders.created_at")
             ->leftjoin('orders', 'suppliers.id', '=', 'orders.sup_id')
-            ->groupBy('orders.sup_id')
+            ->groupBy('suppliers.id')
             ->get();
         return view('reports.supplier_report.report_index', compact('supplier'));
     }

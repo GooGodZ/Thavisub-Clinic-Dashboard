@@ -13,7 +13,6 @@ class Appointments extends Model
         'ap_no',
         'date',
         'time',
-        // 'status',
         'doc_id',
         'c_id'
     ];
