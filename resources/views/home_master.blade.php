@@ -205,22 +205,6 @@
                                 </li>
                             </ul>
                         </li>
-                        @if ($permission === 1 || $permission === 3)
-                            <li class="nav-item">
-                                <a href="#" class="nav-link {{ request()->is('doctors*') ? 'active' : '' }}">
-                                    <i class="nav-icon fas fa-user-md"></i>
-                                    <p>ທ່ານໝໍ<i class="fas fa-angle-left right"></i></p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="{{ route('doctors.index') }}"
-                                            class="nav-link {{ request()->is('doctors*') ? 'active' : '' }}">
-                                            <p style="margin-left: 32.5px;">ຂໍ້ມູນທ່ານໝໍ</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
                         <li class="nav-item">
                             <a href="#"
                                 class="nav-link {{ request()->is('products*') || request()->is('orders*') || request()->is('buys*') || request()->is('order_details*') || request()->is('buy_details*') ? 'active' : '' }}">
@@ -333,11 +317,17 @@
                         @if ($permission === 1 || $permission === 3)
                             <li class="nav-item">
                                 <a href="#"
-                                    class="nav-link {{ request()->is('evaluation_types*') || request()->is('product_types*') ? 'active' : '' }}">
-                                    <i class="nav-icon fas fa-cog"></i>
-                                    <p>ຕັ້ງຄ່າ<i class="fas fa-angle-left right"></i></p>
+                                    class="nav-link {{ request()->is('doctors*') || request()->is('evaluation_types*') || request()->is('product_types*') ? 'active' : '' }}">
+                                    <i class="nav-icon bi bi-file-bar-graph"></i>
+                                    <p>ຈັດການຂໍ້ມູນ<i class="fas fa-angle-left right"></i></p>
                                 </a>
                                 <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{ route('doctors.index') }}"
+                                            class="nav-link {{ request()->is('doctors*') ? 'active' : '' }}">
+                                            <p style="margin-left: 32.5px;">ຂໍ້ມູນທ່ານໝໍ</p>
+                                        </a>
+                                    </li>
                                     <li class="nav-item">
                                         <a href="{{ route('evaluation_types.index') }}"
                                             class="nav-link {{ request()->is('evaluation_types*') ? 'active' : '' }}">

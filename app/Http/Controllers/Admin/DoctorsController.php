@@ -17,7 +17,7 @@ class DoctorsController extends Controller
     {
         $doctors = Doctors::all()->sortByDesc('status');
 
-        return view('doctors.index', compact('doctors'));
+        return view('manage.doctors.index', compact('doctors'));
     }
 
     /**
@@ -27,7 +27,7 @@ class DoctorsController extends Controller
      */
     public function create()
     {
-        return view('doctors.create');
+        return view('manage.doctors.create');
     }
 
     /**
@@ -44,14 +44,12 @@ class DoctorsController extends Controller
             'gender' => 'required',
             'address' => 'required',
             'tel' => 'required',
-            'status' => 'required',
         ], [
             'name.required' => 'ປ້ອນຊື່ ແລະ ນາມສະກຸນ',
             'dob.required' => 'ປ້ອນວັນທີ ເດືອນ ປີເກີດ',
             'gender.required' => 'ເລືອກເພດ',
             'address.required' => 'ປ້ອນທີ່ຢູ່',
             'tel.required' => 'ປ້ອນເບີໂທຕິດຕໍ່',
-            'status.required' => 'ເລືອກສະຖານະ',
         ]);
 
         $doctors = new Doctors();
@@ -61,7 +59,6 @@ class DoctorsController extends Controller
         $doctors->gender = $request->gender;
         $doctors->address = $request->address;
         $doctors->tel = $request->tel;
-        $doctors->status = $request->status;
         $doctors->save();
 
         return redirect()->route('doctors.index')->with('success', 'ເພີ່ມຂໍ້ມູນທ່ານໝໍສຳເລັດ');
@@ -88,7 +85,7 @@ class DoctorsController extends Controller
     {
         $doctors = Doctors::find($id);
 
-        return view('doctors.edit', compact('doctors'));
+        return view('manage.doctors.edit', compact('doctors'));
     }
 
     /**
@@ -106,14 +103,12 @@ class DoctorsController extends Controller
             'gender' => 'required',
             'address' => 'required',
             'tel' => 'required',
-            'status' => 'required',
         ], [
             'name.required' => 'ປ້ອນຊື່ ແລະ ນາມສະກຸນ',
             'dob.required' => 'ປ້ອນວັນທີ ເດືອນ ປີເກີດ',
             'gender.required' => 'ເລືອກເພດ',
             'address.required' => 'ປ້ອນທີ່ຢູ່',
             'tel.required' => 'ປ້ອນເບີໂທຕິດຕໍ່',
-            'status.required' => 'ເລືອກສະຖານະ',
         ]);
 
         $doctors = Doctors::where('id', '=', $id)->first();
@@ -122,7 +117,6 @@ class DoctorsController extends Controller
         $doctors->gender = $request->gender;
         $doctors->address = $request->address;
         $doctors->tel = $request->tel;
-        $doctors->status = $request->status;
         $doctors->save();
 
         return redirect()->route('doctors.index')->with('success', 'ແກ້ໄຂຂໍ້ມູນທ່ານໝໍສຳເລັດ');

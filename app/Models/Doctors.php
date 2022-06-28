@@ -16,7 +16,6 @@ class Doctors extends Model
         'gender',
         'address',
         'tel',
-        'status',
     ];
 
     // 1 to N

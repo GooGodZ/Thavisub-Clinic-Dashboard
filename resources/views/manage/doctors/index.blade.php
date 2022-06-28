@@ -34,7 +34,6 @@
                             <td>ຊື່ ແລະ ນາມສະກຸນ</td>
                             <td>ເບີໂທຕິດຕໍ່</td>
                             <td>ທີ່ຢູ່</td>
-                            <td>ສະຖານະ</td>
                             <td>Action</td>
                         </thead>
                         <tbody>
@@ -48,7 +47,6 @@
                                     <td>{{ $doctors->name }}</td>
                                     <td>{{ $doctors->tel }}</td>
                                     <td>{{ $doctors->address }}</td>
-                                    <td>{{ $doctors->status == 1 ? 'ປະຈຳການ' : 'ບໍ່ປະຈຳການ' }}</td>
                                     <td>
                                         <form action="{{ route('doctors.destroy', $doctors->id) }}" method="POST">
                                             @csrf

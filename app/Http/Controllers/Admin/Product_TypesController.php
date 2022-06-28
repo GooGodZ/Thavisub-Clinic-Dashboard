@@ -17,7 +17,7 @@ class Product_TypesController extends Controller
     {
         $product_types = Product_Types::all()->sortByDesc('created_at');
 
-        return view('settings.product_types.index', compact('product_types'));
+        return view('manage.product_types.index', compact('product_types'));
     }
 
     /**
@@ -27,7 +27,7 @@ class Product_TypesController extends Controller
      */
     public function create()
     {
-        return view('settings.product_types.create');
+        return view('manage.product_types.create');
     }
 
     /**
@@ -73,7 +73,7 @@ class Product_TypesController extends Controller
     {
         $product_types = Product_Types::find($id);
 
-        return view('settings.product_types.edit', compact('product_types'));
+        return view('manage.product_types.edit', compact('product_types'));
     }
 
     /**

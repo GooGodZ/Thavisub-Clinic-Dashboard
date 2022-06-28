@@ -17,7 +17,7 @@ class Evaluation_TypesController extends Controller
     {
         $evaluation_types = Evaluation_Types::all()->sortByDesc('created_at');
 
-        return view('settings.evaluation_types.index', compact('evaluation_types'));
+        return view('manage.evaluation_types.index', compact('evaluation_types'));
     }
 
     /**
@@ -27,7 +27,7 @@ class Evaluation_TypesController extends Controller
      */
     public function create()
     {
-        return view('settings.evaluation_types.create');
+        return view('manage.evaluation_types.create');
     }
 
     /**
@@ -76,7 +76,7 @@ class Evaluation_TypesController extends Controller
     {
         $evaluation_types = Evaluation_Types::find($id);
 
-        return view('settings.evaluation_types.edit', compact('evaluation_types'));
+        return view('manage.evaluation_types.edit', compact('evaluation_types'));
     }
 
     /**
