@@ -38,11 +38,6 @@ class ReportController extends Controller
                 ->groupBy('cases.pt_id')
                 ->whereBetween('date', [$startdate, $enddate])
                 ->get();
-        } else {
-            $patient = Patients::selectRaw("patients.*, COUNT(cases.pt_id) as pt_id",)
-                ->leftjoin('cases', 'cases.pt_id', '=', 'patients.id')
-                ->groupBy('cases.pt_id')
-                ->get();
         }
 
         return view('reports.patient_report.report_index', compact('patient'));
@@ -68,11 +63,6 @@ class ReportController extends Controller
                 ->join('patients', 'cases.pt_id', '=', 'patients.id')
                 ->groupBy('cases.pt_id')
                 ->whereBetween('date', [$startdate, $enddate])
-                ->get();
-        } else {
-            $cases = Cases::selectRaw("MAX(cases.date) as date, patients.name")
-                ->join('patients', 'cases.pt_id', '=', 'patients.id')
-                ->groupBy('cases.pt_id')
                 ->get();
         }
 

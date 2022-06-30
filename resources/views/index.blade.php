@@ -20,7 +20,6 @@
                             <h3>{{ $casesDay }}</h3>
                             <p>ຄົນເຈັບໃນມື້ນີ້</p>
                         </div>
-                        <a href="" class="small-box-footer">ເພີ່ມເຕີມ &nbsp;<i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-6">
@@ -29,8 +28,6 @@
                             <h3>{{ $appointments }}</h3>
                             <p>ຄົນເຈັບນັດກວດມື້ນີ້</p>
                         </div>
-                        <a href="{{ route('appointments.index') }}" class="small-box-footer">ເພີ່ມເຕີມ &nbsp;<i
-                                class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-6">
@@ -39,7 +36,6 @@
                             <h3>{{ $casesMonth }}</h3>
                             <p>ຄົນເຈັບພາຍໃນເດືອນ</p>
                         </div>
-                        <a href="" class="small-box-footer">ເພີ່ມເຕີມ &nbsp;<i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-6">
@@ -48,33 +44,29 @@
                             <h3>{{ $doctors }}</h3>
                             <p>ຂໍ້ມູນທ່ານໝໍ</p>
                         </div>
-                        <a href="" class="small-box-footer">ເພີ່ມເຕີມ &nbsp;<i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <section class="col-lg-6">
                     <div class="card">
-                        <div class="card-header bg-white">
-                            <h3 class="card-title"><i class="fas fa-chart-pie mr-1"></i></h3>
-                            <div class="card-tools">
-                                <ul class="nav nav-pills ml-auto">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" href="#patients-chart" data-toggle="tab">ຄົນເຈັບ</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#medicates-chart" data-toggle="tab">ສິນຄ້າທີ່ໃຊ້ໄປ</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
                         <div class="card-body">
-                            <div class="tab-content p-0">
-                                <div class="chart tab-pane active" id="patients-chart"
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item">
+                                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#patients-chart"
+                                        type="button">ຄົນເຈັບ</button>
+                                </li>
+                                <li class="nav-item">
+                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#medicates-chart"
+                                        type="button">ສິນຄ້າທີ່ໃຊ້ໄປ</button>
+                                </li>
+                            </ul>
+                            <div class="tab-content mt-3">
+                                <div class="tab-pane fade show active" id="patients-chart"
                                     style="position: relative; height: 300px;">
                                     <canvas id="myBar1"></canvas>
                                 </div>
-                                <div class="chart tab-pane" id="medicates-chart" style="position: relative; height: 300px;">
+                                <div class="tab-pane fade" id="medicates-chart" style="position: relative; height: 300px;">
                                     <canvas id="myBar2"></canvas>
                                 </div>
                             </div>
@@ -86,7 +78,7 @@
                         <div class="card-header bg-white">
                             <h3 class="card-title">ລາຍຮັບຕໍ່ອາທິດ</h3>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" style="position: relative; height: 342.5px;">
                             <div class="inner">
                                 <h3 class="card-title">{{ number_format($payments_sum) }} ກີບ</h3>
                             </div>

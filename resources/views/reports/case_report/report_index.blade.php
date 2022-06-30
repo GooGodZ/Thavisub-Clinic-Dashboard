@@ -22,7 +22,7 @@
                                 <div class="form-group row">
                                     <label class="col-4 col-form-label">ຕັ້ງແຕ່ວັນທີ</label>
                                     <div class="col-8">
-                                        <input type="date" class="form-control" name="startdate">
+                                        <input type="date" class="form-control" name="startdate" id="startdate">
                                     </div>
                                 </div>
                             </div>
@@ -30,13 +30,13 @@
                                 <div class="form-group row">
                                     <label class="col-4 col-form-label">ເຖີງວັນທີ</label>
                                     <div class="col-8">
-                                        <input type="date" class="form-control" name="enddate">
+                                        <input type="date" class="form-control" name="enddate" id="enddate">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-12 col-md-4 col-lg-4">
-                                <button type="submit" class="btn float-start"
-                                    style="background-color: #8ebaa8; color: white">
+                                <button type="submit" class="btn float-start" id="btn-submit"
+                                    style="background-color: #8ebaa8; color: white" disabled>
                                     <i class="bi bi-search"></i>&nbsp;ຄົ້ນຫາ</button>
                             </div>
                         </div>

@@ -49,7 +49,7 @@
                                     <td>{{ $products->name }}</td>
                                     <td>{{ $products->product_types->name }}</td>
                                     <td>{{ $products->quantity }}</td>
-                                    <td>{{ $products->price }}</td>
+                                    <td>{{ number_format($products->price) }} ກີບ</td>
                                     <td>
                                         <form action="{{ route('products.destroy', $products->id) }}" method="POST">
                                             @csrf

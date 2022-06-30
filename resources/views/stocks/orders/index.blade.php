@@ -21,22 +21,19 @@
     <section class="content">
         <div class="container-fluid">
             <div class="card">
-                <div class="card-header bg-white">
-                    <h3 class="card-title"><i class="fas fa-cash-register"></i></h3>
-                    <div class="card-tools">
-                        <ul class="nav nav-pills ml-auto">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#orders" data-toggle="tab">ສັ່ງຊື້ສິນຄ້າ</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#buys" data-toggle="tab">ຊື້ສິນຄ້າເຂົ້າ</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
                 <div class="card-body">
-                    <div class="tab-content p-0">
-                        <div class="tab-pane active" id="orders">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#orders"
+                                type="button">ສັ່ງຊື້ສິນຄ້າ</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#buys"
+                                type="button">ຊື້ສິນຄ້າເຂົ້າ</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="orders">
                             <div class="card-header" style="background-color: white">
                                 <h3 class="card-title">ຂໍ້ມູນການສັ່ງຊື້ສິນຄ້າ</h3>
                                 <a href="{{ route('orders.create') }}"class="btn float-end"
@@ -97,7 +94,7 @@
                                 </table>
                             </div>
                         </div>
-                        <div class="tab-pane" id="buys">
+                        <div class="tab-pane fade" id="buys">
                             <div class="card-header" style="background-color: white">
                                 <h3 class="card-title">ຂໍ້ມູນການຊື້ສິນຄ້າເຂົ້າ</h3>
                             </div>

@@ -31,11 +31,9 @@
                                     <td>{{ $treatment->name }}</td>
                                     <td>{{ $treatment->pt_id }}</td>
                                     <td>
-                                        <form action="">
-                                            <a href="{{ route('reportTreatmentShow', $treatment->id) }}">
-                                                <i class="fa-regular fa-file-lines"></i>
-                                            </a>
-                                        </form>
+                                        <a href="{{ route('reportTreatmentShow', $treatment->id) }}">
+                                            <i class="fa-regular fa-file-lines"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

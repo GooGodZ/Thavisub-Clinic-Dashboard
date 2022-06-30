@@ -96,6 +96,7 @@
                 </div>
             </div>
         </div>
+
         <div class="modal fade" id="ModalFormChangePassword" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -133,7 +134,7 @@
             <div class="sidebar">
                 <nav class="">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
+                        data-accordion="true">
                         <li class="nav-item">
                             <a href="{{ route('index') }}"
                                 class="nav-link {{ request()->is('/') ? 'active' : '' }}">
@@ -372,11 +373,27 @@
                 responsive: true,
                 ordering: false
             });
+
             $('#mytable2').DataTable({
                 responsive: true,
                 ordering: false
             });
+
             $('.search').dropdown();
+
+            $("#startdate").on("change", function() {
+                if ($(this).val() != "")
+                    $("#btn-submit").removeAttr("disabled");
+                else
+                    $("#btn-submit").attr("disabled", "disabled");
+            });
+
+            $("#enddate").on("change", function() {
+                if ($(this).val() != "")
+                    $("#btn-submit").removeAttr("disabled");
+                else
+                    $("#btn-submit").attr("disabled", "disabled");
+            });
         });
     </script>
 
