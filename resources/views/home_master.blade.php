@@ -138,7 +138,7 @@
                         <li class="nav-item">
                             <a href="{{ route('index') }}"
                                 class="nav-link {{ request()->is('/') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <i class="nav-icon fas fa-home"></i>
                                 <p>ໜ້າຫຼັກ</p>
                             </a>
                         </li>
@@ -378,8 +378,6 @@
                 responsive: true,
                 ordering: false
             });
-
-            $(".search").select2();
 
             $("#startdate").on("change", function() {
                 if ($(this).val() != "")
