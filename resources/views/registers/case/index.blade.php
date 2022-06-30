@@ -32,8 +32,14 @@
                                 type="button">ກວດແລ້ວ</button>
                         </li>
                     </ul>
-                    <div class="tab-content mt-3">
+                    <div class="tab-content">
                         <div class="tab-pane fade show active" id="cases">
+                            <div class="card-header" style="background-color: white">
+                                <a href="{{ route('cases.create') }}"class="btn float-end"
+                                    style="background-color: #8ebaa8; color: white">
+                                    <i class="fa-solid fa-plus"></i>&nbsp;ເພີ່ມ</button>
+                                </a>
+                            </div>
                             <table id="mytable" class="table table-hover" width="100%">
                                 <thead>
                                     <td>ລຳດັບ</td>
@@ -89,7 +95,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="tab-pane fade" id="casestoday">
+                        <div class="tab-pane fade mt-3" id="casestoday">
                             <table id="mytable2" class="table table-hover" width="100%">
                                 <thead>
                                     <td>ລຳດັບ</td>

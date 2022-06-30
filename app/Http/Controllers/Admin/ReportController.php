@@ -183,6 +183,7 @@ class ReportController extends Controller
             ->join('product_types', 'products.pt_id', '=', 'product_types.id')
             ->leftjoin('medicates', 'products.id', '=', 'medicates.p_id')
             ->groupBy('products.id')
+            ->orderBy('usequantity', 'DESC')
             ->get();
 
         return view('reports.product_report.report_index', compact('product'));
