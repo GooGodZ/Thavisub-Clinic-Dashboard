@@ -120,7 +120,7 @@
             data: {
                 labels: _ydata,
                 datasets: [{
-                    label: 'ຈຳນວນຄົນເຈັບແຕ່ລະເດືອນ',
+                    label: 'ຄົນເຈັບພາຍໃນເດືອນ',
                     data: _xdata,
                     backgroundColor: [
                         'rgba(142, 186, 168, 0.75)',
@@ -145,7 +145,7 @@
             data: {
                 labels: _ydata,
                 datasets: [{
-                    label: 'ຈຳນວນສິນຄ້າທີ່ໃຊ້ໄປໃນເດືອນ',
+                    label: 'ຈຳນວນສິນຄ້າທີ່ໃຊ້ໄປພາຍໃນເດືອນ',
                     data: _xdata,
                     backgroundColor: [
                         'rgba(142, 186, 168, 0.75)',

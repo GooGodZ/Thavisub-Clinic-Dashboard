@@ -34,7 +34,7 @@ class CasesController extends Controller
     public function create()
     {
         $patients = Patients::all()->sortByDesc('created_at');
-        $doctors = Doctors::all()->where('status', 1);
+        $doctors = Doctors::all();
 
         return view('registers.case.create', compact('patients', 'doctors'));
     }

@@ -42,7 +42,7 @@
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">ປະເພດສິນຄ້າ</label>
                                     <div class="col-9">
-                                        <select name="pt_id" class="form-select search">
+                                        <select name="pt_id" class="form-control selectpicker" data-live-search="true">
                                             <option selected>ເລືອກປະເພດສິນຄ້າ</option>
                                             @foreach ($product_types as $product_types)
                                                 <option value="{{ $product_types->id }}"

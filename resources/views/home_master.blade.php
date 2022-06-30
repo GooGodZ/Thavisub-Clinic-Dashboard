@@ -16,12 +16,12 @@
     <link rel="stylesheet" href="{{ asset('assets/vendors/adminLTE/css/adminlte.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/bootstrap-icons/bootstrap-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendors/bootstrap-select/css/bootstrap-select.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/boxsicons/css/boxicons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/datatable/css/dataTables.bootstrap5.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/fontawesome/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/vendors/semantic/css/semantic.min.css') }}">
 
 </head>
 
@@ -82,7 +82,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="Password">ສະຖານະ</label>
-                                <select name="status" class="form-select search">
+                                <select name="status" class="form-control selectpicker" data-live-search="true">
                                     <option selected>ເລືອກສະຖານະ</option>
                                     <option value="2">ທ່ານໝໍ</option>
                                     <option value="3">ຜູ້ບໍລິຫານ</option>
@@ -360,11 +360,11 @@
     <script src="{{ asset('assets/vendors/adminLTE/js/adminlte.js') }}"></script>
     <script src="{{ asset('assets/vendors/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/bootstrap/js/bootstrap4.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/bootstrap-select/js/bootstrap-select.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/chart/chart.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/datatable/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/datatable/js/dataTables.bootstrap5.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
-    <script src="{{ asset('assets/vendors/semantic/js/semantic.min.js') }}"></script>
 
     <!-- JS Script -->
     <script>
@@ -379,7 +379,7 @@
                 ordering: false
             });
 
-            $('.search').dropdown();
+            $(".search").select2();
 
             $("#startdate").on("change", function() {
                 if ($(this).val() != "")

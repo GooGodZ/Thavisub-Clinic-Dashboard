@@ -40,7 +40,7 @@
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">ຜູ້ສະໜອງ</label>
                                     <div class="col-9">
-                                        <select name="sup_id" class="form-select search">
+                                        <select name="sup_id" class="form-control selectpicker" data-live-search="true">
                                             <option selected>ເລືອກຜູ້ສະໜອງ</option>
                                             @foreach ($suppliers as $suppliers)
                                                 <option value="{{ $suppliers->id }}">{{ $suppliers->name }}</option>

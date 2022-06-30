@@ -28,7 +28,7 @@
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">ຊື່ຄົນເຈັບ</label>
                                     <div class="col-9">
-                                        <select name="pt_id" class="form-select search">
+                                        <select name="pt_id" class="form-control selectpicker" data-live-search="true">
                                             <option value="{{ $patients->id }}">{{ $patients->pt_no }}
                                                 {{ $patients->name }}</option>
                                         </select>
@@ -42,7 +42,7 @@
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">ຊື່ທ່ານໝໍ</label>
                                     <div class="col-9">
-                                        <select name="doc_id" class="form-select search">
+                                        <select name="doc_id" class="form-control selectpicker" data-live-search="true">
                                             <option selected>ເລືອກທ່ານໝໍ</option>
                                             @foreach ($doctors as $doctors)
                                                 <option value="{{ $doctors->id }}">{{ $doctors->name }}</option>

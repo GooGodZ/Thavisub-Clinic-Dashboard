@@ -34,7 +34,7 @@
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">ຊື່ຄົນເຈັບ</label>
                                     <div class="col-9">
-                                        <select name="c_id" class="form-select search">
+                                        <select name="c_id" class="form-control selectpicker" data-live-search="true">
                                             <option value="{{ $cases->id }}">
                                                 {{ $cases->c_no . ' ' . $cases->patients->name }}
                                             </option>
@@ -102,7 +102,7 @@
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">ຊື່ຢາ</label>
                                     <div class="col-9">
-                                        <select name="p_id" class="form-select search">
+                                        <select name="p_id" class="form-control selectpicker" data-live-search="true">
                                             <option selected>ເລືອກຢາ</option>
                                             @foreach ($products as $products)
                                                 <option value="{{ $products->id }}">

@@ -35,7 +35,7 @@
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">ຊື່ໃບສັ່ງຊື້</label>
                                     <div class="col-9">
-                                        <select name="buy_id" class="form-select search">
+                                        <select name="buy_id" class="form-control selectpicker" data-live-search="true">
                                             <option value="{{ $buys->id }}">
                                                 {{ $buys->buy_no . ' ' . $buys->orders->name }}
                                             </option>
@@ -50,7 +50,7 @@
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">ຊື່ຢາ</label>
                                     <div class="col-9">
-                                        <select name="p_id" class="form-select search">
+                                        <select name="p_id" class="form-control selectpicker" data-live-search="true">
                                             <option selected>ເລືອກຢາ</option>
                                             @foreach ($order_details as $order_details)
                                                 <option value="{{ $order_details->p_id }}">

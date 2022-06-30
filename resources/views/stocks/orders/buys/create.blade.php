@@ -28,7 +28,7 @@
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">ຊື່ໃບສັ່ງຊື້</label>
                                     <div class="col-9">
-                                        <select name="or_id" class="form-select search">
+                                        <select name="or_id" class="form-control selectpicker" data-live-search="true">
                                             <option value="{{ $orders->id }}">
                                                 {{ $orders->or_no . ' ' . $orders->name }}
                                             </option>
@@ -43,7 +43,7 @@
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">ຜູ້ສະໜອງ</label>
                                     <div class="col-9">
-                                        <select class="form-select search">
+                                        <select class="form-control selectpicker" data-live-search="true">
                                             <option value="{{ $orders->id }}">
                                                 {{ $orders->suppliers->name }}
                                             </option>
