@@ -17,7 +17,7 @@
                 <div class="card-header" style="background-color: white">
                     <a href="{{ route('product_types.index') }}"class="btn float-end"
                         style="background-color: #8ebaa8; color: white">
-                        <i class="fa-solid fa-backward"></i>&nbsp;ຍ້ອນກັບ
+                        <i class="bi bi-arrow-return-left"></i>&nbsp;ຍ້ອນກັບ
                     </a>
                 </div>
                 <form action="{{ route('product_types.update', $product_types->id) }}" method="post">

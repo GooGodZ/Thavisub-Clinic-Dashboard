@@ -77,7 +77,7 @@
                                                             class="text-primary text-decoration-none"
                                                             data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                             title="ພີມໃບບິນສິນຄ້າ" target="_blank">
-                                                            <i class="bi bi-printer"></i></i>
+                                                            <i class="bi bi-printer"></i>
                                                         </a>
                                                         </a>
                                                         <button type="submit" class="bg-transparent border-0 text-danger"

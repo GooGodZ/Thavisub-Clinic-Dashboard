@@ -93,7 +93,7 @@
                                                     <a href="{{ route('payments.show', $payments->id) }}"
                                                         class="text-primary text-decoration-none" data-bs-toggle="tooltip"
                                                         data-bs-placement="bottom" title="ພີມໃບບິນ" target="_blank">
-                                                        <i class="bi bi-printer"></i></i>
+                                                        <i class="bi bi-printer"></i>
                                                     </a>
                                                     <button type="submit" class="bg-transparent border-0 text-danger"
                                                         data-bs-toggle="tooltip" data-bs-placement="bottom"

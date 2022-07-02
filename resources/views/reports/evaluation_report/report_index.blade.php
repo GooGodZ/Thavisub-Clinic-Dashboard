@@ -37,7 +37,7 @@
                                         <a href="{{ route('reportEvaluationPrint', $casetoday->id) }}"
                                             class="text-primary text-decoration-none" data-bs-toggle="tooltip"
                                             data-bs-placement="bottom" title="ພີມໃບຜົນກວດ" target="_blank">
-                                            <i class="bi bi-printer"></i></i>
+                                            <i class="bi bi-printer"></i>
                                         </a>
                                     </td>
                                 </tr>

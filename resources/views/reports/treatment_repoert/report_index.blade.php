@@ -21,7 +21,7 @@
                             <td>ລະຫັດໝໍ</td>
                             <td>ຊື່ຄົນເຈັບ</td>
                             <td>ຈຳນວນຄັ້ງ</td>
-                            <td></td>
+                            <td>Action</td>
                         </thead>
                         <tbody>
                             @foreach ($treatment as $treatment)
@@ -31,7 +31,9 @@
                                     <td>{{ $treatment->name }}</td>
                                     <td>{{ $treatment->pt_id }}</td>
                                     <td>
-                                        <a href="{{ route('reportTreatmentShow', $treatment->id) }}">
+                                        <a href="{{ route('reportTreatmentShow', $treatment->id) }}"
+                                            class="text-primary text-decoration-none" data-bs-toggle="tooltip"
+                                            data-bs-placement="bottom" title="ສະແດງປະຫວັດປິ່ນປົວ">
                                             <i class="fa-regular fa-file-lines"></i>
                                         </a>
                                     </td>
