@@ -29,7 +29,7 @@
                                     <label class="col-3 col-form-label label-start">ຊື່ປະເພດຜົນກວດ</label>
                                     <div class="col-9">
                                         <input type="text" name="name" class="form-control"
-                                            placeholder="ປ້ອນຊື່ປະເພດຜົນກວດ">
+                                            value="{{ old('name') }}" placeholder="ປ້ອນຊື່ປະເພດຜົນກວດ">
                                         @error('name')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror
@@ -41,7 +41,7 @@
                                     <label class="col-3 col-form-label label-start">ລາຄາຜົນກວດ</label>
                                     <div class="col-9">
                                         <input type="number" name="price" class="form-control"
-                                            placeholder="ປ້ອນລາຄາຜົນກວດ">
+                                            value="{{ old('price') }}" placeholder="ປ້ອນລາຄາຜົນກວດ">
                                         @error('price')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror

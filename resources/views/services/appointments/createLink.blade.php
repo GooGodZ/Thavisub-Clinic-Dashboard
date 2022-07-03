@@ -28,7 +28,7 @@
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">ຊື່ຄົນເຈັບ</label>
                                     <div class="col-9">
-                                        <select name="c_id" class="form-control selectpicker" data-live-search="true">
+                                        <select name="c_id" class="form-select">
                                             <option value="{{ $cases->id }}">
                                                 {{ $cases->c_no . ' ' . $cases->patients->name }}
                                             </option>
@@ -44,9 +44,11 @@
                                     <label class="col-3 col-form-label">ທ່ານໝໍທີ່ນັດ</label>
                                     <div class="col-9">
                                         <select name="doc_id" class="form-control selectpicker" data-live-search="true">
-                                            <option selected>ເລືອກທ່ານໝໍທີ່ນັດ</option>
+                                            <option value="" {{ old('doc_id') == '' ? 'selected' : '' }}>
+                                                ເລືອກທ່ານໝໍທີ່ນັດ</option>
                                             @foreach ($doctors as $doctors)
-                                                <option value="{{ $doctors->id }}">
+                                                <option value="{{ $doctors->id }}"
+                                                    {{ old('doc_id') == $doctors->id ? 'selected' : '' }}>
                                                     {{ $doctors->doc_no . ' ' . $doctors->name }}</option>
                                             @endforeach
                                         </select>
@@ -63,7 +65,7 @@
                                     <label class="col-3 col-form-label">ວັນທີ ເດືອນ ປີນັດ</label>
                                     <div class="col-9">
                                         <input type="date" name="date" class="form-control"
-                                            placeholder="ປ້ອນວັນທີ ເດືອນ ປີນັດ">
+                                            value="{{ old('date') }}" placeholder="ປ້ອນວັນທີ ເດືອນ ປີນັດ">
                                         @error('date')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror
@@ -74,16 +76,25 @@
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">ເວລານັດ</label>
                                     <div class="col-9">
-                                        <select name="time" class="form-control selectpicker" data-live-search="true">
-                                            <option selected>ເວລານັດ</option>
-                                            <option value="16:30">16:30</option>
-                                            <option value="17:00">17:00</option>
-                                            <option value="17:30">17:30</option>
-                                            <option value="18:00">18:00</option>
-                                            <option value="18:30">18:30</option>
-                                            <option value="19:00">19:00</option>
-                                            <option value="19:30">19:30</option>
-                                            <option value="20:00">20:00</option>
+                                        <select name="time" class="form-select">
+                                            <option value="" {{ old('time') == '' ? 'selected' : '' }}>ເວລານັດ
+                                            </option>
+                                            <option value="16:30" {{ old('time') == '16:30' ? 'selected' : '' }}>16:30
+                                            </option>
+                                            <option value="17:00" {{ old('time') == '17:00' ? 'selected' : '' }}>17:00
+                                            </option>
+                                            <option value="17:30" {{ old('time') == '17:30' ? 'selected' : '' }}>17:30
+                                            </option>
+                                            <option value="18:00" {{ old('time') == '18:00' ? 'selected' : '' }}>18:00
+                                            </option>
+                                            <option value="18:30" {{ old('time') == '18:30' ? 'selected' : '' }}>18:30
+                                            </option>
+                                            <option value="19:00" {{ old('time') == '19:00' ? 'selected' : '' }}>19:00
+                                            </option>
+                                            <option value="19:30" {{ old('time') == '19:30' ? 'selected' : '' }}>19:30
+                                            </option>
+                                            <option value="20:00" {{ old('time') == '20:00' ? 'selected' : '' }}>20:00
+                                            </option>
                                         </select>
                                         @error('time')
                                             <strong class="text-danger">{{ $message }}</strong>

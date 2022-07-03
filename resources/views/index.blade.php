@@ -54,11 +54,11 @@
                             <ul class="nav nav-tabs">
                                 <li class="nav-item">
                                     <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#patients-chart"
-                                        type="button">ຄົນເຈັບ</button>
+                                        type="button" style="font-weight: 600">ຄົນເຈັບ</button>
                                 </li>
                                 <li class="nav-item">
                                     <button class="nav-link" data-bs-toggle="tab" data-bs-target="#medicates-chart"
-                                        type="button">ສິນຄ້າທີ່ໃຊ້ໄປ</button>
+                                        type="button"style="font-weight: 600">ສິນຄ້າທີ່ໃຊ້ໄປ</button>
                                 </li>
                             </ul>
                             <div class="tab-content mt-3">

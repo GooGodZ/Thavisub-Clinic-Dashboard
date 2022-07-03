@@ -35,7 +35,7 @@
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">ຊື່ຄົນເຈັບ</label>
                                     <div class="col-9">
-                                        <select name="c_id" class="form-control selectpicker" data-live-search="true">
+                                        <select name="c_id" class="form-select">
                                             <option value="{{ $cases->id }}">
                                                 {{ $cases->c_no . ' ' . $cases->patients->name }}</option>
                                         </select>
@@ -50,9 +50,11 @@
                                     <label class="col-3 col-form-label">ປະເພດຜົນກວດ</label>
                                     <div class="col-9">
                                         <select name="et_id" class="form-control selectpicker" data-live-search="true">
-                                            <option selected>ເລືອກປະເພດຜົນກວດ</option>
+                                            <option value="" {{ old('et_id') == '' ? 'selected' : '' }}>
+                                                ເລືອກປະເພດຜົນກວດ</option>
                                             @foreach ($evaluation_types as $evaluation_types)
-                                                <option value="{{ $evaluation_types->id }}">
+                                                <option value="{{ $evaluation_types->id }}"
+                                                    {{ old('et_id') == $evaluation_types->id ? 'selected' : '' }}>
                                                     {{ $evaluation_types->name }}</option>
                                             @endforeach
                                         </select>
@@ -68,7 +70,7 @@
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">ລາຍລະອຽດຜົນກວດ</label>
                                     <div class="col-9">
-                                        <textarea type="text" name="detail" class="form-control" placeholder="ປ້ອນລາຍລະອຽດຜົນກວດ" rows="5"></textarea>
+                                        <textarea type="text" name="detail" class="form-control" placeholder="ປ້ອນລາຍລະອຽດຜົນກວດ" rows="5">{{ old('detail') }}</textarea>
                                         @error('detail')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror
@@ -79,8 +81,8 @@
                         <div class="text-center">
                             <button type="submit" class="btn" style="background-color: #8ebaa8; color: white">
                                 <i class="bi bi-save2"></i>&nbsp;ບັນທືກ</button>
-                                <a href="{{ route('medicatesCreateLink', $cases->id) }}" class="btn"
-                                    style="background-color: #8ebaa8; color: white">ວາງຢາ</a>
+                            <a href="{{ route('medicatesCreateLink', $cases->id) }}" class="btn"
+                                style="background-color: #8ebaa8; color: white">ວາງຢາ</a>
                         </div>
                     </div>
                 </form>

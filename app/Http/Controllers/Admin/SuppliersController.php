@@ -17,7 +17,7 @@ class SuppliersController extends Controller
     {
         $suppliers = Suppliers::all()->sortByDesc('created_at');
 
-        return view('suppliers.index', compact('suppliers'));
+        return view('manage.suppliers.index', compact('suppliers'));
     }
 
     /**
@@ -27,7 +27,7 @@ class SuppliersController extends Controller
      */
     public function create()
     {
-        return view('suppliers.create');
+        return view('manage.suppliers.create');
     }
 
     /**
@@ -82,7 +82,7 @@ class SuppliersController extends Controller
     {
         $suppliers = Suppliers::find($id);
 
-        return view('suppliers.edit', compact('suppliers'));
+        return view('manage.suppliers.edit', compact('suppliers'));
     }
 
     /**

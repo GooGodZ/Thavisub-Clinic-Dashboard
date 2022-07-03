@@ -13,44 +13,39 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
     <!-- Vendors CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/vendors/aos/css/aos.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/boxsicons/css/boxicons.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/vendors/datatable/css/dataTables.bootstrap5.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/fontawesome/css/all.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/vendors/glightbox/css/glightbox.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/vendors/semantic/css/semantic.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/vendors/slick/slick.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/vendors/slick/slick-theme.css') }}">
 </head>
 
 <body>
-
     <section class="vh-100 bg-secondary">
         <div class="container py-5 h-100">
             <div class="row justify-content-center align-items-center h-100">
                 <div class="col-12 col-md-8 col-lg-5">
-                    <div class="card bg-white border-0 p-4" style="border-radius: 1rem;">
+                    <div class="card bg-white border-0 p-3" style="border-radius: 1rem;">
                         <div class="card-body text-center">
-                            <img src="{{ asset('assets/images/logo.png') }}" alt="" class="img-fluid mb-4"
-                                width="150px">
-                            <h3 class="text-secondary mb-4">ເຂົ້າສູ່ລະບົບຄລິນິກທະວິຊັບ</h3>
+                            <img src="{{ asset('assets/images/logo.png') }}" alt="" class="img-fluid mb-3"
+                                width="125px">
+                            <h4 class="text-secondary mb-3">ເຂົ້າສູ່ລະບົບຄລິນິກທະວິຊັບ</h4>
                             <form action="{{ route('authenticate') }}" method="post">
                                 @csrf
-                                <div class="form-outline mb-4">
-                                    <input type="email" class="form-control" name="email" placeholder="ອີເມວ">
-                                    @error('failed')
+                                <div class="form-outline mb-3  text-start">
+                                    <input type="email" class="form-control" name="email" value="{{ old('email') }}"
+                                        placeholder="ອີເມວ">
+                                    @error('email')
                                         <strong class="text-danger">{{ $message }}</strong>
                                     @enderror
                                 </div>
-                                <div class="form-outline mb-4">
-                                    <input type="password" class="form-control" name="password"
+                                <div class="form-outline mb-3  text-start">
+                                    <input type="password" class="form-control" name="password" value="{{ old('password') }}"
                                         placeholder="ລະຫັດຜ່ານ">
-                                    @error('failed')
+                                    @error('password')
                                         <strong class="text-danger">{{ $message }}</strong>
                                     @enderror
                                 </div>
-                                <button class="btn btn-lg px-5 text-white" type="submit" style="background-color: #8ebaa8">ເຂົ້າສູ່ລະບົບ</button>
+                                <button class="btn btn-lg px-5 text-white" type="submit"
+                                    style="background-color: #8ebaa8">ເຂົ້າສູ່ລະບົບ</button>
                             </form>
                         </div>
                     </div>
@@ -59,21 +54,33 @@
         </div>
     </section>
 
-    <!-- Main JS -->
-    <script src="{{ asset('assets/js/script.js') }}"></script>
-
     <!-- Vendors JS -->
     <script src="{{ asset('assets/vendors/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/vendors/jquery/jquery-slick.min.js') }}"></script>
-    <script src="{{ asset('assets/vendors/aos/js/aos.js') }}"></script>
     <script src="{{ asset('assets/vendors/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/vendors/chart/chart.min.js') }}"></script>
-    <script src="{{ asset('assets/vendors/datatable/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('assets/vendors/datatable/js/dataTables.bootstrap5.min.js') }}"></script>
-    <script src="{{ asset('assets/vendors/glightbox/js/glightbox.js') }}"></script>
-    <script src="{{ asset('assets/vendors/semantic/js/semantic.min.js') }}"></script>
-    <script src="{{ asset('assets/vendors/slick/slick.js') }}"></script>
+    <script src="{{ asset('assets/vendors/sweetalert/sweetalert.min.js') }}"></script>
 
+    @if (Session::has('failed'))
+        <script>
+            swal({
+                icon: "error",
+                title: "ຄຳເຕືອນ",
+                text: "{{ session('failed') }}",
+                button: "ຕົກລົງ",
+                dangerMode: true,
+            })
+        </script>
+    @endif
+
+    @if (Session::has('success'))
+        <script>
+            swal({
+                icon: "success",
+                title: "ຄຳເຕືອນ",
+                text: "{{ session('success') }}",
+                button: "ຕົກລົງ",
+            })
+        </script>
+    @endif
 </body>
 
 </html>

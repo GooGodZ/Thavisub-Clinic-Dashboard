@@ -8,13 +8,6 @@
                     <h1 class="m-0">ຟອມຂໍ້ມູນວາງຢາ</h1>
                 </div>
             </div>
-            @if (Session::has('success'))
-                <div class="alert alert-success" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    <strong>{{ session('success') }}</strong>
-                </div>
-            @endif
         </div>
     </div>
     <section class="content">
@@ -34,7 +27,7 @@
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">ຊື່ຄົນເຈັບ</label>
                                     <div class="col-9">
-                                        <select name="c_id" class="form-control selectpicker" data-live-search="true">
+                                        <select name="c_id" class="form-select">
                                             <option value="{{ $cases->id }}">
                                                 {{ $cases->c_no . ' ' . $cases->patients->name }}
                                             </option>
@@ -51,8 +44,10 @@
                                     <div class="col-9">
                                         <div class="form-group">
                                             <div class="form-check d-inline">
+                                                <input name="take[]" class="form-check-input" value=""
+                                                    type="hidden">
                                                 <input name="take[]" class="form-check-input" value="1ເມັດ"
-                                                    type="checkbox">
+                                                    @if (old('take[]') == '1ເມັດ') checked @endif type="checkbox">
                                                 <label class="form-check-label">1ເມັດ</label>
                                             </div>
                                             <div class="form-check d-inline">
@@ -60,6 +55,8 @@
                                                     type="checkbox">
                                                 <label class="form-check-label">2ເມັດ</label>
                                             </div>
+                                        </div>
+                                        <div class="form-group">
                                             <div class="form-check d-inline">
                                                 <input name="take[]" class="form-check-input" value="ກ່ອນອາຫານ"
                                                     type="checkbox">
@@ -103,13 +100,15 @@
                                     <label class="col-3 col-form-label">ຊື່ຢາ</label>
                                     <div class="col-9">
                                         <select name="p_id" class="form-control selectpicker" data-live-search="true">
-                                            <option selected>ເລືອກຢາ</option>
+                                            <option value="" {{ old('p_id') == '' ? 'selected' : '' }}>ເລືອກຢາ
+                                            </option>
                                             @foreach ($products as $products)
-                                                <option value="{{ $products->id }}">
+                                                <option value="{{ $products->id }}"
+                                                    {{ old('p_id') == $products->id ? 'selected' : '' }}>
                                                     {{ $products->name }}</option>
                                             @endforeach
                                         </select>
-                                        @error('detail')
+                                        @error('p_id')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror
                                     </div>
@@ -120,7 +119,7 @@
                                     <label class="col-3 col-form-label">ຈຳນວນຢາ</label>
                                     <div class="col-9">
                                         <input type="text" name="quantity" class="form-control"
-                                            placeholder="ປ້ອນຈຳນວນຢາ">
+                                            value="{{ old('quantity') }}" placeholder="ປ້ອນຈຳນວນຢາ">
                                         @error('quantity')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror

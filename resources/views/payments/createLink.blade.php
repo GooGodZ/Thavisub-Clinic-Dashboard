@@ -26,7 +26,7 @@
                         <div class="form-group row">
                             <label class="col-3 col-form-label">ຊື່ ແລະ ນາມສະກຸນ</label>
                             <div class="col-9">
-                                <select name="c_id" class="form-control selectpicker" data-live-search="true">
+                                <select name="c_id" class="form-select">
                                     <option value="{{ $cases->id }}">{{ $cases->c_no }}
                                         {{ $cases->patients->name }}</option>
                                 </select>

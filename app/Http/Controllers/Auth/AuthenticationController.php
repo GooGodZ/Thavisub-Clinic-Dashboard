@@ -31,9 +31,11 @@ class AuthenticationController extends Controller
             if (Hash::check($request->password, $user->password)) {
                 $id = $user->id;
                 $name = $user->name;
+                $password = $user->password;
                 $status = $user->status;
                 session()->put('id', $id);
                 session()->put('name', $name);
+                session()->put('password', $password);
                 session()->put('status', $status);
 
                 return redirect()->route('index')->with('success', 'ເຂົ້າສູ່ລະບົບສຳເລັດ');
@@ -72,18 +74,22 @@ class AuthenticationController extends Controller
     public function changepassword(Request $request)
     {
         $request->validate([
-            'user_id' => 'required',
-            'password' => 'required'
+            'oldpassword' => 'required',
+            'newpassword' => 'required',
         ], [
-            'user_id.required' => 'ປ້ອນໄອດີຜູ້ໃຊ້',
-            'password.required' => 'ປ້ອນລະຫັດຜ່ານໃໝ່',
+            'oldpassword.required' => 'ປ້ອນລະຫັດຜ່ານໃໝ່',
+            'newpassword.required' => 'ປ້ອນລະຫັດຜ່ານໃໝ່',
         ]);
 
-        $register = Users::where('id', $request->user_id)->first();
-        $register->password = Hash::make($request->password);
-        $register->save();
+        $changepassword = Users::where('id', $request->user_id)->first();
 
-        return redirect()->route('index')->with('success', 'ລົງທະບຽນສຳເລັດ');
+        if (Hash::check($request->oldpassword, $changepassword->password)) {
+            $changepassword->password = Hash::make($request->newpassword);
+            $changepassword->save();
+            return redirect()->route('index')->with('success', 'ປ່ຽນລະຫັດຜ່ານສຳເລັດ');
+        } else {
+            return redirect()->route('index')->with('failed', 'ລະຫັດຜ່ານບໍ່ຖືກຕ້ອງ');
+        }
     }
 
     public function logout()

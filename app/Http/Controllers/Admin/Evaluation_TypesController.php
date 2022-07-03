@@ -112,7 +112,7 @@ class Evaluation_TypesController extends Controller
      */
     public function destroy($id)
     {
-        $evaluation_types = Evaluation_Types::findOrFail($id);
+        $evaluation_types = Evaluation_Types::find($id);
         $evaluation_types->delete();
 
         return redirect()->back()->with('success', 'ລົບຂໍ້ມູນປະເພດຜົນກວດສຳເລັດ');

@@ -22,7 +22,8 @@
                                 <div class="form-group row">
                                     <label class="col-4 col-form-label">ຕັ້ງແຕ່ວັນທີ</label>
                                     <div class="col-8">
-                                        <input type="date" class="form-control" name="startdate" id="startdate">
+                                        <input type="date" class="form-control" name="startdate" id="startdate"
+                                            value="{{ request()->input('startdate') }}">
                                     </div>
                                 </div>
                             </div>
@@ -30,7 +31,8 @@
                                 <div class="form-group row">
                                     <label class="col-4 col-form-label">ເຖີງວັນທີ</label>
                                     <div class="col-8">
-                                        <input type="date" class="form-control" name="enddate" id="enddate">
+                                        <input type="date" class="form-control" name="enddate" id="enddate"
+                                            value="{{ request()->input('enddate') }}">
                                     </div>
                                 </div>
                             </div>

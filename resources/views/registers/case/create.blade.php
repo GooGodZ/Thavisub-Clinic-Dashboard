@@ -15,7 +15,7 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-header" style="background-color: white">
-                    <a href="{{ redirect()->back()->getTargetUrl() }}" class="btn float-end"
+                    <a href="{{ route('cases.index') }}" class="btn float-end"
                         style="background-color: #8ebaa8; color: white">
                         <i class="bi bi-arrow-return-left"></i>&nbsp;ຍ້ອນກັບ
                     </a>
@@ -29,10 +29,12 @@
                                     <label class="col-3 col-form-label">ຊື່ຄົນເຈັບ</label>
                                     <div class="col-9">
                                         <select name="pt_id" class="form-control selectpicker" data-live-search="true">
-                                            <option selected>ເລືອກຄົນເຈັບ</option>
+                                            <option value="" {{ old('pt_id') == '' ? 'selected' : '' }}>ເລືອກຄົນເຈັບ
+                                            </option>
                                             @foreach ($patients as $patients)
-                                                <option value="{{ $patients->id }}">{{ $patients->pt_no }}
-                                                    {{ $patients->name }}</option>
+                                                <option value="{{ $patients->id }}"
+                                                    {{ old('pt_id') == $patients->id ? 'selected' : '' }}>
+                                                    {{ $patients->pt_no }} {{ $patients->name }}</option>
                                             @endforeach
                                         </select>
                                         @error('pt_id')
@@ -46,9 +48,12 @@
                                     <label class="col-3 col-form-label">ຊື່ທ່ານໝໍ</label>
                                     <div class="col-9">
                                         <select name="doc_id" class="form-control selectpicker" data-live-search="true">
-                                            <option selected>ເລືອກທ່ານໝໍ</option>
+                                            <option value="" {{ old('doc_id') == '' ? 'selected' : '' }}>ເລືອກທ່ານໝໍ
+                                            </option>
                                             @foreach ($doctors as $doctors)
-                                                <option value="{{ $doctors->id }}">{{ $doctors->name }}</option>
+                                                <option value="{{ $doctors->id }}"
+                                                    {{ old('doc_id') == $doctors->id ? 'selected' : '' }}>
+                                                    {{ $doctors->name }}</option>
                                             @endforeach
                                         </select>
                                         @error('doc_id')
@@ -64,14 +69,14 @@
                                     <label class="col-3 col-form-label">ຄວາມດັນ</label>
                                     <div class="col">
                                         <input type="text" name="pressure1" class="form-control"
-                                            placeholder="ປ້ອນຄວາມດັນ">
+                                            value="{{ old('pressure1') }}" placeholder="ປ້ອນຄວາມດັນ">
                                         @error('pressure1')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror
                                     </div>
                                     <div class="col">
                                         <input type="text" name="pressure2" class="form-control"
-                                            placeholder="ປ້ອນຄວາມດັນ">
+                                            value="{{ old('pressure2') }}" placeholder="ປ້ອນຄວາມດັນ">
                                         @error('pressure2')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror
@@ -83,7 +88,7 @@
                                     <label class="col-3 col-form-label">ອຸນຫະພູມ</label>
                                     <div class="col-9">
                                         <input type="text" name="temper" class="form-control"
-                                            placeholder="ປ້ອນອຸນຫະພູມ (ອົງສາ °C)">
+                                            value="{{ old('temper') }}" placeholder="ປ້ອນອຸນຫະພູມ (ອົງສາ °C)">
                                         @error('temper')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror
@@ -97,7 +102,7 @@
                                     <label class="col-3 col-form-label">ອັດຕາການຫາຍໃຈ</label>
                                     <div class="col-9">
                                         <input type="text" name="respira" class="form-control"
-                                            placeholder="ປ້ອນອັດຕາການຫາຍໃຈ">
+                                            value="{{ old('respira') }}" placeholder="ປ້ອນອັດຕາການຫາຍໃຈ">
                                         @error('respira')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror
@@ -109,7 +114,7 @@
                                     <label class="col-3 col-form-label">ຊີບພະຈອນ</label>
                                     <div class="col-9">
                                         <input type="text" name="pulse" class="form-control"
-                                            placeholder="ປ້ອນຊີບພະຈອນ">
+                                            value="{{ old('pulse') }}" placeholder="ປ້ອນຊີບພະຈອນ">
                                         @error('pulse')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror
@@ -122,7 +127,7 @@
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">ອາການ</label>
                                     <div class="col-9">
-                                        <textarea type="text" name="disea" class="form-control" placeholder="ປ້ອນອາການ" rows="3"></textarea>
+                                        <textarea type="text" name="disea" class="form-control" placeholder="ປ້ອນອາການ" rows="3">{{ old('disea') }}</textarea>
                                         @error('disea')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror

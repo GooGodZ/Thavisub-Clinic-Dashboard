@@ -8,13 +8,6 @@
                     <h1 class="m-0">ຟອມຂໍ້ມູນການຊື້ສິນຄ້າເຂົ້າ</h1>
                 </div>
             </div>
-            @if (Session::has('success'))
-                <div class="alert alert-success" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    <strong>{{ session('success') }}</strong>
-                </div>
-            @endif
         </div>
     </div>
 
@@ -35,7 +28,7 @@
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">ຊື່ໃບສັ່ງຊື້</label>
                                     <div class="col-9">
-                                        <select name="buy_id" class="form-control selectpicker" data-live-search="true">
+                                        <select name="buy_id" class="form-select">
                                             <option value="{{ $buys->id }}">
                                                 {{ $buys->buy_no . ' ' . $buys->orders->name }}
                                             </option>
@@ -51,9 +44,11 @@
                                     <label class="col-3 col-form-label">ຊື່ຢາ</label>
                                     <div class="col-9">
                                         <select name="p_id" class="form-control selectpicker" data-live-search="true">
-                                            <option selected>ເລືອກຢາ</option>
+                                            <option value="" {{ old('p_id') == '' ? 'selected' : '' }}>ເລືອກຢາ
+                                            </option>
                                             @foreach ($order_details as $order_details)
-                                                <option value="{{ $order_details->p_id }}">
+                                                <option value="{{ $order_details->p_id }}"
+                                                    {{ old('p_id') == $order_details->p_id ? 'selected' : '' }}>
                                                     {{ $order_details->products->name }}</option>
                                             @endforeach
                                         </select>
@@ -70,7 +65,7 @@
                                     <label class="col-3 col-form-label">ຈຳນວນຢາ</label>
                                     <div class="col-9">
                                         <input type="text" name="quantity" class="form-control"
-                                            placeholder="ປ້ອນຈຳນວນຢາ">
+                                            value="{{ old('quantity') }}" placeholder="ປ້ອນຈຳນວນຢາ">
                                         @error('quantity')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror
@@ -81,7 +76,8 @@
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">ລາຄາຢາ</label>
                                     <div class="col-9">
-                                        <input type="text" name="price" class="form-control" placeholder="ປ້ອນລາຄາຢາ">
+                                        <input type="text" name="price" class="form-control"
+                                            value="{{ old('price') }}" placeholder="ປ້ອນລາຄາຢາ">
                                         @error('price')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror

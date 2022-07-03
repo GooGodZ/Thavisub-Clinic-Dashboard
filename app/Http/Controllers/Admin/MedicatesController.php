@@ -53,9 +53,11 @@ class MedicatesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'p_id' => 'required',
             'quantity' => 'required',
             'take' => 'required',
         ], [
+            'p_id.required' => 'ເລືອກຢາ',
             'quantity.required' => 'ປ້ອນຈຳນວນຢາ',
             'take.required' => 'ເລືອກເວລາກິນຢາ',
         ]);

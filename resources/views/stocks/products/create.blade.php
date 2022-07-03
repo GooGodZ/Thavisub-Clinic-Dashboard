@@ -29,7 +29,7 @@
                                     <label class="col-3 col-form-label">ຊື່ສິນຄ້າ</label>
                                     <div class="col-9">
                                         <input type="text" name="name" class="form-control"
-                                            placeholder="ປ້ອນຊື່ສິນຄ້າ">
+                                            value="{{ old('name') }}" placeholder="ປ້ອນຊື່ສິນຄ້າ">
                                         @error('name')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror
@@ -40,10 +40,13 @@
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">ປະເພດສິນຄ້າ</label>
                                     <div class="col-9">
-                                        <select name="pt_id" class="form-control selectpicker" data-live-search="true">
-                                            <option selected>ເລືອກປະເພດສິນຄ້າ</option>
+                                        <select name="pt_id" class="form-select">
+                                            <option value="" {{ old('pt_id') == '' ? 'selected' : '' }}>
+                                                ເລືອກປະເພດສິນຄ້າ</option>
                                             @foreach ($product_types as $product_types)
-                                                <option value="{{ $product_types->id }}">{{ $product_types->name }}
+                                                <option value="{{ $product_types->id }}"
+                                                    {{ old('pt_id') == $product_types->id ? 'selected' : '' }}>
+                                                    {{ $product_types->name }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -60,7 +63,7 @@
                                     <label class="col-3 col-form-label">ຈຳນວນສິນຄ້າ</label>
                                     <div class="col-9">
                                         <input type="number" name="quantity" class="form-control"
-                                            placeholder="ປ້ອນຈຳນວນສິນຄ້າ">
+                                            value="{{ old('quantity') }}" placeholder="ປ້ອນຈຳນວນສິນຄ້າ">
                                         @error('quantity')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror
@@ -72,7 +75,7 @@
                                     <label class="col-3 col-form-label">ລາຄາສິນຄ້າ</label>
                                     <div class="col-9">
                                         <input type="number" name="price" class="form-control"
-                                            placeholder="ປ້ອນລາຄາສິນຄ້າ">
+                                            value="{{ old('price') }}" placeholder="ປ້ອນລາຄາສິນຄ້າ">
                                         @error('price')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror

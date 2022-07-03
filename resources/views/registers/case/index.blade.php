@@ -8,13 +8,6 @@
                     <h1 class="m-0">ຂໍ້ມູນລົງທະບຽນກວດ</h1>
                 </div>
             </div>
-            @if (Session::has('success'))
-                <div class="alert alert-success" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    <strong>{{ session('success') }}</strong>
-                </div>
-            @endif
         </div>
     </div>
 
@@ -25,11 +18,11 @@
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
                             <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#cases"
-                                type="button">ລໍຖ້າຜົນກວດ</button>
+                                type="button" style="font-weight: 600">ລໍຖ້າກວດ</button>
                         </li>
                         <li class="nav-item">
                             <button class="nav-link" data-bs-toggle="tab" data-bs-target="#casestoday"
-                                type="button">ກວດແລ້ວ</button>
+                                type="button" style="font-weight: 600">ກວດແລ້ວ</button>
                         </li>
                     </ul>
                     <div class="tab-content">

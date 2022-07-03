@@ -28,7 +28,7 @@
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">ຊື່ ແລະ ນາມສະກຸນ</label>
                                     <div class="col-9">
-                                        <input type="text" name="name" class="form-control"
+                                        <input type="text" name="name" class="form-control" value="{{ old('name') }}"
                                             placeholder="ປ້ອນຊື່ ແລະ ນາມສະກຸນ">
                                         @error('name')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -40,7 +40,7 @@
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">ວັນ ເດືອນ ປີເກິດ</label>
                                     <div class="col-9">
-                                        <input type="date" name="dob" class="form-control" placeholder="ປ້ອນວັນ">
+                                        <input type="date" name="dob" class="form-control" value="{{ old('dob') }}" placeholder="ປ້ອນວັນ">
                                         @error('dob')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror
@@ -53,10 +53,10 @@
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">ເພດ</label>
                                     <div class="col-9">
-                                        <select name="gender" class="form-control selectpicker" data-live-search="true">
-                                            <option selected>ເລືອກເພດ</option>
-                                            <option value="ຊາຍ">ຊາຍ</option>
-                                            <option value="ຍິງ">ຍິງ</option>
+                                        <select name="gender" class="form-select">
+                                            <option value="" {{ old('gender') == '' ? 'selected' : '' }}>ເລືອກເພດ</option>
+                                            <option value="ຊາຍ" {{ old('gender') == 'ຊາຍ' ? 'selected' : '' }}>ຊາຍ</option>
+                                            <option value="ຍິງ" {{ old('gender') == 'ຍິງ' ? 'selected' : '' }}>ຍິງ</option>
                                         </select>
                                         @error('gender')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -68,7 +68,7 @@
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">ທີ່ຢູ່</label>
                                     <div class="col-9">
-                                        <input type="text" name="address" class="form-control" placeholder="ປ້ອນທີ່ຢູ່">
+                                        <input type="text" name="address" class="form-control" value="{{ old('address') }}" placeholder="ປ້ອນທີ່ຢູ່">
                                         @error('address')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror
@@ -81,7 +81,7 @@
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">ເບີໂທຕິດຕໍ່</label>
                                     <div class="col-9">
-                                        <input type="text" name="tel" class="form-control"
+                                        <input type="text" name="tel" class="form-control" value="{{ old('tel') }}"
                                             placeholder="ປ້ອນເບີໂທຕິດຕໍ່">
                                         @error('tel')
                                             <strong class="text-danger">{{ $message }}</strong>

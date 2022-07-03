@@ -8,13 +8,6 @@
                     <h1 class="m-0">ຂໍ້ມູນປະເພດສິນຄ້າ</h1>
                 </div>
             </div>
-            @if (Session::has('success'))
-                <div class="alert alert-success" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    <strong>{{ session('success') }}</strong>
-                </div>
-            @endif
         </div>
     </div>
 

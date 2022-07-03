@@ -39,7 +39,7 @@
                             <label class="col-3 col-form-label">ວັນ ເດືອນ ປີເກິດ</label>
                             <div class="col-9">
                                 <input type="date" name="dob"
-                                    value="{{ old('patients', date('d-M-Y', strtotime($patients->dob)) ?? null) }}"
+                                    value="{{ old('patients', date('Y-m-d', strtotime($patients->dob)) ?? null) }}"
                                     class="form-control" placeholder="ປ້ອນວັນ">
                                 @error('dob')
                                     <strong class="text-danger">{{ $message }}</strong>
@@ -49,8 +49,8 @@
                         <div class="form-group row">
                             <label class="col-3 col-form-label">ເພດ</label>
                             <div class="col-9">
-                                <select name="gender" class="form-control selectpicker" data-live-search="true">
-                                    <option selected>ເລືອກເພດ</option>
+                                <select name="gender" class="form-select">
+                                    <option value="">ເລືອກເພດ</option>
                                     <option value="ຊາຍ"
                                         {{ old('patients', $patients->gender ?? null) == 'ຊາຍ' ? 'selected' : '' }}>
                                         ຊາຍ</option>

@@ -27,7 +27,7 @@
                             <div class="form-group row">
                                 <label class="col-3 col-form-label label-start">ຊື່ປະເພດສິນຄ້າ</label>
                                 <div class="col-9">
-                                    <input type="text" name="name" class="form-control"
+                                    <input type="text" name="name" class="form-control" value="{{ old('name') }}"
                                         placeholder="ປ້ອນຊື່ປະເພດສິນຄ້າ">
                                     @error('name')
                                         <strong class="text-danger">{{ $message }}</strong>

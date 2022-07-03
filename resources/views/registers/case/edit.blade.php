@@ -29,7 +29,7 @@
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">ຊື່ຄົນເຈັບ</label>
                                     <div class="col-9">
-                                        <select name="pt_id" class="form-control selectpicker" data-live-search="true">
+                                        <select name="pt_id" class="form-select">
                                             @foreach ($patients as $patients)
                                                 <option value="{{ $patients->id }}"
                                                     @if (old('patients') == $patients->id || $patients->id == $cases->pt_id) selected @endif>

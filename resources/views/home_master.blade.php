@@ -82,11 +82,14 @@
                             </div>
                             <div class="mb-3">
                                 <label for="Password">ສະຖານະ</label>
-                                <select name="status" class="form-control selectpicker" data-live-search="true">
-                                    <option selected>ເລືອກສະຖານະ</option>
+                                <select name="status" class="form-select">
+                                    <option value="">ເລືອກສະຖານະ</option>
                                     <option value="2">ທ່ານໝໍ</option>
                                     <option value="3">ຜູ້ບໍລິຫານ</option>
                                 </select>
+                                @error('status')
+                                    <strong class="text-danger">{{ $message }}</strong>
+                                @enderror
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -112,13 +115,18 @@
                             <div class="mb-3">
                                 <input type="hidden" name="user_id" class="form-control"
                                     value="{{ session()->get('id') }}">
+                                <label for="Password">ລະຫັດຜ່ານເກົ່າ</label>
+                                <input type="password" name="oldpassword" class="form-control"
+                                    placeholder="ປ້ອນລະຫັດຜ່ານເກົ່າ">
+                            </div>
+                            <div class="mb-3">
                                 <label for="Password">ລະຫັດຜ່ານໃໝ່</label>
-                                <input type="password" name="password" class="form-control"
-                                    placeholder="ປ້ອນລະຫັດຜ່ານ">
+                                <input type="password" name="newpassword" class="form-control"
+                                    placeholder="ປ້ອນລະຫັດຜ່ານໃໝ່">
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-success mx-auto w-25">ລົງທະບຽນ</button>
+                            <button type="submit" class="btn btn-success mx-auto w-25">ບັນທືກ</button>
                         </div>
                     </form>
                 </div>
@@ -132,7 +140,7 @@
             </a>
 
             <div class="sidebar">
-                <nav class="">
+                <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="true">
                         <li class="nav-item">
@@ -229,23 +237,6 @@
                                 @endif
                             </ul>
                         </li>
-                        @if ($permission === 1 || $permission === 3)
-                            <li class="nav-item">
-                                <a href="#"
-                                    class="nav-link {{ request()->is('suppliers*') ? 'active' : '' }}">
-                                    <i class="nav-icon fas fa-users"></i>
-                                    <p>ຜູ້ສະໝອງ<i class="fas fa-angle-left right"></i></p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="{{ route('suppliers.index') }}"
-                                            class="nav-link {{ request()->is('suppliers*') ? 'active' : '' }}">
-                                            <p style="margin-left: 32.5px;">ຂໍ້ມູນຜູ້ສະໜອງ</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
                         <li class="nav-item">
                             <a href="#"
                                 class="nav-link {{ request()->is('reportpatient*') || request()->is('reportcase*') || request()->is('reportevaluation*') || request()->is('reportappointment*') || request()->is('reporttreatment*') || request()->is('reportsupplier*') || request()->is('reportproduct*') || request()->is('reportexpense*') || request()->is('reportincome*') ? 'active' : '' }}">
@@ -318,7 +309,7 @@
                         @if ($permission === 1 || $permission === 3)
                             <li class="nav-item">
                                 <a href="#"
-                                    class="nav-link {{ request()->is('doctors*') || request()->is('evaluation_types*') || request()->is('product_types*') ? 'active' : '' }}">
+                                    class="nav-link {{ request()->is('doctors*') || request()->is('suppliers*') || request()->is('evaluation_types*') || request()->is('product_types*') ? 'active' : '' }}">
                                     <i class="nav-icon bi bi-file-bar-graph"></i>
                                     <p>ຈັດການຂໍ້ມູນ<i class="fas fa-angle-left right"></i></p>
                                 </a>
@@ -327,6 +318,12 @@
                                         <a href="{{ route('doctors.index') }}"
                                             class="nav-link {{ request()->is('doctors*') ? 'active' : '' }}">
                                             <p style="margin-left: 32.5px;">ຂໍ້ມູນທ່ານໝໍ</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('suppliers.index') }}"
+                                            class="nav-link {{ request()->is('suppliers*') ? 'active' : '' }}">
+                                            <p style="margin-left: 32.5px;">ຂໍ້ມູນຜູ້ສະໜອງ</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
@@ -365,6 +362,7 @@
     <script src="{{ asset('assets/vendors/datatable/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/datatable/js/dataTables.bootstrap5.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/sweetalert/sweetalert.min.js') }}"></script>
 
     <!-- JS Script -->
     <script>
@@ -409,6 +407,28 @@
             });
         }, 2000);
     </script>
+
+    @if (Session::has('failed'))
+        <script>
+            swal({
+                icon: "error",
+                text: "{{ session('failed') }}",
+                button: "ຕົກລົງ",
+                dangerMode: true,
+            })
+        </script>
+    @endif
+
+    @if (Session::has('success'))
+        <script>
+            swal({
+                icon: "success",
+                title: "{{ session('success') }}",
+                button: "ຕົກລົງ",
+            })
+        </script>
+    @endif
+
 
     @yield('script')
 

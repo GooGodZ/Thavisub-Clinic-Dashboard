@@ -29,7 +29,7 @@
                                     <label class="col-3 col-form-label">ຊື່ໃບສັ່ງຊື້</label>
                                     <div class="col-9">
                                         <input type="text" name="name" class="form-control"
-                                            placeholder="ປ້ອນຊື່ໃບສັ່ງຊື້">
+                                            value="{{ old('name') }}" placeholder="ປ້ອນຊື່ໃບສັ່ງຊື້">
                                         @error('name')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror
@@ -41,9 +41,12 @@
                                     <label class="col-3 col-form-label">ຜູ້ສະໜອງ</label>
                                     <div class="col-9">
                                         <select name="sup_id" class="form-control selectpicker" data-live-search="true">
-                                            <option selected>ເລືອກຜູ້ສະໜອງ</option>
+                                            <option value="" {{ old('sup_id') == '' ? 'selected' : '' }}>
+                                                ເລືອກຜູ້ສະໜອງ</option>
                                             @foreach ($suppliers as $suppliers)
-                                                <option value="{{ $suppliers->id }}">{{ $suppliers->name }}</option>
+                                                <option value="{{ $suppliers->id }}"
+                                                    {{ old('sup_id') == $suppliers->id ? 'selected' : '' }}>
+                                                    {{ $suppliers->name }}</option>
                                             @endforeach
                                         </select>
                                         @error('sup_id')

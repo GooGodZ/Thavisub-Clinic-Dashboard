@@ -8,13 +8,6 @@
                     <h1 class="m-0">ຂໍ້ມູນການຊຳລະ</h1>
                 </div>
             </div>
-            @if (Session::has('success'))
-                <div class="alert alert-success" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    <strong>{{ session('success') }}</strong>
-                </div>
-            @endif
         </div>
     </div>
 
@@ -25,11 +18,11 @@
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
                             <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#payments"
-                                type="button">ຍັງບໍ່ທັນຊຳລະ</button>
+                                type="button" style="font-weight: 600">ຍັງບໍ່ທັນຊຳລະ</button>
                         </li>
                         <li class="nav-item">
                             <button class="nav-link" data-bs-toggle="tab" data-bs-target="#paymentstoday"
-                                type="button">ຊຳລະແລ້ວ</button>
+                                type="button" style="font-weight: 600">ຊຳລະແລ້ວ</button>
                         </li>
                     </ul>
                     <div class="tab-content mt-3">

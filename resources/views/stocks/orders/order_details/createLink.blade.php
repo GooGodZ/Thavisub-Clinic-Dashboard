@@ -8,13 +8,6 @@
                     <h1 class="m-0">ຟອມຂໍ້ມູນການສັ່ງຊື້ສິນຄ້າ</h1>
                 </div>
             </div>
-            @if (Session::has('success'))
-                <div class="alert alert-success" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    <strong>{{ session('success') }}</strong>
-                </div>
-            @endif
         </div>
     </div>
 
@@ -35,7 +28,7 @@
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">ຊື່ໃບສັ່ງຊື້</label>
                                     <div class="col-9">
-                                        <select name="or_id" class="form-control selectpicker" data-live-search="true">
+                                        <select name="or_id" class="form-select">
                                             <option value="{{ $orders->id }}">
                                                 {{ $orders->or_no . ' ' . $orders->name }}
                                             </option>
@@ -50,7 +43,7 @@
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">ຜູ້ສະໜອງ</label>
                                     <div class="col-9">
-                                        <select class="form-control selectpicker" data-live-search="true">
+                                        <select class="form-select">
                                             <option value="{{ $orders->id }}">
                                                 {{ $orders->suppliers->name }}
                                             </option>
@@ -68,9 +61,9 @@
                                     <label class="col-3 col-form-label">ຊື່ຢາ</label>
                                     <div class="col-9">
                                         <select name="p_id" class="form-control selectpicker" data-live-search="true">
-                                            <option selected>ເລືອກຢາ</option>
+                                            <option value="" {{ old('p_id') == '' ? 'selected' : '' }}>ເລືອກຢາ</option>
                                             @foreach ($products as $products)
-                                                <option value="{{ $products->id }}">
+                                                <option value="{{ $products->id }}" {{ old('p_id') == $products->id ? 'selected' : '' }}>
                                                     {{ $products->name }}</option>
                                             @endforeach
                                         </select>
@@ -84,7 +77,7 @@
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">ຈຳນວນຢາ</label>
                                     <div class="col-9">
-                                        <input type="text" name="quantity" class="form-control"
+                                        <input type="text" name="quantity" class="form-control" value="{{ old('quantity') }}"
                                             placeholder="ປ້ອນຈຳນວນຢາ">
                                         @error('quantity')
                                             <strong class="text-danger">{{ $message }}</strong>
