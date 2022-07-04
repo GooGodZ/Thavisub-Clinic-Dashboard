@@ -134,9 +134,9 @@
                                             method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="bg-transparent border-0 text-danger"
-                                                data-bs-toggle="tooltip" data-bs-placement="bottom" title="ລົບຂໍ້ມູນ"
-                                                onclick="return confirm('ທ່ານຕ້ອງການລົບຂໍ້ມູນນີ້ ຫຼື ບໍ?')">
+                                            <button type="submit"
+                                                class="bg-transparent border-0 text-danger delete-confirm"
+                                                data-bs-toggle="tooltip" data-bs-placement="bottom" title="ລົບຂໍ້ມູນ">
                                                 <i class="fa-solid fa-trash-can"></i>
                                             </button>
                                         </form>

@@ -17,12 +17,12 @@
                 <div class="card-body">
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
-                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#orders"
-                                type="button" style="font-weight: 600">ສັ່ງຊື້ສິນຄ້າ</button>
+                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#orders" type="button"
+                                style="font-weight: 600">ສັ່ງຊື້ສິນຄ້າ</button>
                         </li>
                         <li class="nav-item">
-                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#buys"
-                                type="button" style="font-weight: 600">ຊື້ສິນຄ້າເຂົ້າ</button>
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#buys" type="button"
+                                style="font-weight: 600">ຊື້ສິນຄ້າເຂົ້າ</button>
                         </li>
                     </ul>
                     <div class="tab-content">
@@ -73,10 +73,10 @@
                                                             <i class="bi bi-printer"></i>
                                                         </a>
                                                         </a>
-                                                        <button type="submit" class="bg-transparent border-0 text-danger"
+                                                        <button type="submit"
+                                                            class="bg-transparent border-0 text-danger delete-confirm"
                                                             data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                                            title="ລົບຂໍ້ມູນ"
-                                                            onclick="return confirm('ທ່ານຕ້ອງການລົບຂໍ້ມູນນີ້ ຫຼື ບໍ?')">
+                                                            title="ລົບຂໍ້ມູນ">
                                                             <i class="fa-solid fa-trash-can"></i>
                                                         </button>
                                                     </form>
@@ -120,10 +120,10 @@
                                                             title="ລາຍການສິນຄ້າເຂົ້າ">
                                                             <i class="fa-regular fa-file-lines"></i>
                                                         </a>
-                                                        <button type="submit" class="bg-transparent border-0 text-danger"
+                                                        <button type="submit"
+                                                            class="bg-transparent border-0 text-danger delete-confirm"
                                                             data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                                            title="ລົບຂໍ້ມູນ"
-                                                            onclick="return confirm('ທ່ານຕ້ອງການລົບຂໍ້ມູນນີ້ ຫຼື ບໍ?')">
+                                                            title="ລົບຂໍ້ມູນ">
                                                             <i class="fa-solid fa-trash-can"></i>
                                                         </button>
                                                     </form>

@@ -395,8 +395,6 @@
                 else
                     $("#btn-submit").attr("disabled", "disabled");
             });
-
-
         });
     </script>
 
@@ -413,6 +411,23 @@
                 $(this).remove();
             });
         }, 2000);
+    </script>
+
+    <script>
+        $('.delete-confirm').click(function(event) {
+            var form = $(this).closest("form");
+            event.preventDefault();
+            swal({
+                title: "ທ່ານຕ້ອງການລົບຂໍ້ມູນນີ້ຫຼືບໍ່?",
+                icon: "warning",
+                buttons: ["ຍົກເລີກ", "ຕົກລົງ"],
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    form.submit();
+                }
+            });
+        });
     </script>
 
     @if (Session::has('failed'))
