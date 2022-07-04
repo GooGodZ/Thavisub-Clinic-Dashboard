@@ -50,7 +50,7 @@
                                             <option selected>ເລືອກທ່ານໝໍ</option>
                                             @foreach ($doctors as $doctors)
                                                 <option value="{{ $doctors->id }}"
-                                                    @if (old('doctors') == $doctors->id || $doctors->id == $cases->doc_id) selected @endif>
+                                                    {{ old('doctors') == $doctors->id || $doctors->id == $cases->doc_id ? 'selected' : '' }}>
                                                     {{ $doctors->name }}</option>
                                             @endforeach
                                         </select>
@@ -67,7 +67,7 @@
                                     <label class="col-3 col-form-label">ຄວາມດັນ</label>
                                     <div class="col">
                                         <input type="text" name="pressure1"
-                                            value="{{ old('cases', Str::substr($cases->pressure, 0, 3) ?? null) }}"
+                                            value="{{ old('cases', $errors->has('pressure1') ? '' : Str::substr($cases->pressure, 0, 3)) }}"
                                             class="form-control" placeholder="ປ້ອນຄວາມດັນ">
                                         @error('pressure1')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -75,7 +75,7 @@
                                     </div>
                                     <div class="col">
                                         <input type="text" name="pressure2"
-                                            value="{{ old('cases', Str::substr($cases->pressure, 5, 8) ?? null) }}"
+                                            value="{{ old('cases', $errors->has('pressure2') ? '' : Str::substr($cases->pressure, 5, 8)) }}"
                                             class="form-control" placeholder="ປ້ອນຄວາມດັນ">
                                         @error('pressure2')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -88,8 +88,8 @@
                                     <label class="col-3 col-form-label">ອຸນຫະພູມ</label>
                                     <div class="col-9">
                                         <input type="text" name="temper"
-                                            value="{{ old('cases', $cases->temper ?? null) }}" class="form-control"
-                                            placeholder="ປ້ອນອຸນຫະພູມ (ອົງສາ °C)">
+                                            value="{{ old('cases', $errors->has('temper') ? '' : $cases->temper) }}"
+                                            class="form-control" placeholder="ປ້ອນອຸນຫະພູມ (ອົງສາ °C)">
                                         @error('temper')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror
@@ -103,8 +103,8 @@
                                     <label class="col-3 col-form-label">ອັດຕາການຫາຍໃຈ</label>
                                     <div class="col-9">
                                         <input type="text" name="respira"
-                                            value="{{ old('cases', $cases->respira ?? null) }}" class="form-control"
-                                            placeholder="ປ້ອນອັດຕາການຫາຍໃຈ">
+                                            value="{{ old('cases', $errors->has('respira') ? '' : $cases->respira) }}"
+                                            class="form-control" placeholder="ປ້ອນອັດຕາການຫາຍໃຈ">
                                         @error('respira')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror
@@ -116,8 +116,8 @@
                                     <label class="col-3 col-form-label">ຊີບພະຈອນ</label>
                                     <div class="col-9">
                                         <input type="text" name="pulse"
-                                            value="{{ old('cases', $cases->pulse ?? null) }}" class="form-control"
-                                            placeholder="ປ້ອນຊີບພະຈອນ">
+                                            value="{{ old('cases', $errors->has('pulse') ? '' : $cases->pulse) }}"
+                                            class="form-control" placeholder="ປ້ອນຊີບພະຈອນ">
                                         @error('pulse')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror
@@ -130,7 +130,7 @@
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">ອາການ</label>
                                     <div class="col-9">
-                                        <textarea type="text" name="disea" class="form-control" placeholder="ປ້ອນອາການ" rows="3">{{ old('cases', $cases->disea ?? null) }}</textarea>
+                                        <textarea type="text" name="disea" class="form-control" placeholder="ປ້ອນອາການ" rows="3">{{ old('cases', $errors->has('disea') ? '' : $cases->disea) }}</textarea>
                                         @error('disea')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror

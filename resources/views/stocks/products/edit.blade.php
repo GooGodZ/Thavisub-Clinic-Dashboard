@@ -47,7 +47,7 @@
                                                 ເລືອກປະເພດສິນຄ້າ</option>
                                             @foreach ($product_types as $product_types)
                                                 <option value="{{ $product_types->id }}"
-                                                    @if (old('product_types') == $product_types->id || $product_types->id == $products->pt_id) selected @endif>
+                                                    {{ old('product_types') == $product_types->id || $product_types->id == $products->pt_id ? 'selected' : '' }}>
                                                     {{ $product_types->name }}
                                                 </option>
                                             @endforeach
