@@ -30,7 +30,7 @@
                                     <label class="col-3 col-form-label">ຊື່ສິນຄ້າ</label>
                                     <div class="col-9">
                                         <input type="text" name="name" class="form-control"
-                                            value="{{ old('products', $products->name ?? null) }}"
+                                            value="{{ old('products', $errors->has('name') ? '' : $products->name) }}"
                                             placeholder="ປ້ອນຊື່ສິນຄ້າ">
                                         @error('name')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -43,7 +43,8 @@
                                     <label class="col-3 col-form-label">ປະເພດສິນຄ້າ</label>
                                     <div class="col-9">
                                         <select name="pt_id" class="form-select">
-                                            <option value="" {{ old('pt_id') == '' ? 'selected' : '' }}>ເລືອກປະເພດສິນຄ້າ</option>
+                                            <option value="" {{ old('pt_id') == '' ? 'selected' : '' }}>
+                                                ເລືອກປະເພດສິນຄ້າ</option>
                                             @foreach ($product_types as $product_types)
                                                 <option value="{{ $product_types->id }}"
                                                     @if (old('product_types') == $product_types->id || $product_types->id == $products->pt_id) selected @endif>
@@ -64,7 +65,7 @@
                                     <label class="col-3 col-form-label">ຈຳນວນສິນຄ້າ</label>
                                     <div class="col-9">
                                         <input type="number" name="quantity" class="form-control"
-                                            value="{{ old('products', $products->quantity ?? null) }}"
+                                            value="{{ old('products', $errors->has('quantity') ? '' : $products->quantity) }}"
                                             placeholder="ປ້ອນຈຳນວນສິນຄ້າ">
                                         @error('quantity')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -77,7 +78,7 @@
                                     <label class="col-3 col-form-label">ລາຄາສິນຄ້າ</label>
                                     <div class="col-9">
                                         <input type="number" name="price" class="form-control"
-                                            value="{{ old('products', $products->price ?? null) }}"
+                                            value="{{ old('products', $errors->has('price') ? '' : $products->price) }}"
                                             placeholder="ປ້ອນລາຄາສິນຄ້າ">
                                         @error('price')
                                             <strong class="text-danger">{{ $message }}</strong>

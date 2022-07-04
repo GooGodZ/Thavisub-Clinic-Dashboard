@@ -29,7 +29,7 @@
                                 <label class="col-3 col-form-label label-start">ຊື່ປະເພດສິນຄ້າ</label>
                                 <div class="col-9">
                                     <input type="text" name="name"
-                                        value="{{ old('product_types', $product_types->name ?? null) }}"
+                                        value="{{ old('product_types', $errors->has('name') ? '' : $product_types->name) }}"
                                         class="form-control" placeholder="ປ້ອນຊື່ປະເພດສິນຄ້າ">
                                     @error('name')
                                         <strong class="text-danger">{{ $message }}</strong>

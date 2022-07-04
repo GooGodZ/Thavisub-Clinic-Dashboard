@@ -30,7 +30,7 @@
                                     <label class="col-3 col-form-label">ຊື່ຜູ້ສະໝອງ</label>
                                     <div class="col-9">
                                         <input type="text" name="name"
-                                            value="{{ old('suppliers', $suppliers->name ?? null) }}" class="form-control"
+                                            value="{{ old('suppliers', $errors->has('name') ? '' : $suppliers->name) }}" class="form-control"
                                             placeholder="ປ້ອນຊື່ຜູ້ສະໝອງ">
                                         @error('name')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -43,7 +43,7 @@
                                     <label class="col-3 col-form-label">ເບີໂທຕິດຕໍ່</label>
                                     <div class="col-9">
                                         <input type="text" name="tel"
-                                            value="{{ old('suppliers', $suppliers->tel ?? null) }}" class="form-control"
+                                            value="{{ old('suppliers', $errors->has('tel') ? '' : $suppliers->tel) }}" class="form-control"
                                             placeholder="ປ້ອນເບີໂທ">
                                         @error('tel')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -58,7 +58,7 @@
                                     <label class="col-3 col-form-label">ອີເມວ</label>
                                     <div class="col-9">
                                         <input type="email" name="email"
-                                            value="{{ old('suppliers', $suppliers->email ?? null) }}" class="form-control"
+                                            value="{{ old('suppliers', $errors->has('email') ? '' : $suppliers->email) }}" class="form-control"
                                             placeholder="ປ້ອນອີເມວ">
                                         @error('email')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -71,7 +71,7 @@
                                     <label class="col-3 col-form-label">ທີ່ຢູ່</label>
                                     <div class="col-9">
                                         <input type="text" name="address"
-                                            value="{{ old('suppliers', $suppliers->address ?? null) }}"
+                                            value="{{ old('suppliers', $errors->has('address') ? '' : $suppliers->address) }}"
                                             class="form-control" placeholder="ປ້ອນທີ່ຢູ່">
                                         @error('address')
                                             <strong class="text-danger">{{ $message }}</strong>

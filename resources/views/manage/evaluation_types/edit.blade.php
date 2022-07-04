@@ -17,7 +17,7 @@
                 <div class="card-header" style="background-color: white">
                     <a href="{{ route('evaluation_types.index') }}"class="btn float-end"
                         style="background-color: #28635a; color: white">
-                        <i class="fa-solid fa-backward"></i>&nbsp;ຍ້ອນກັບ
+                        <i class="bi bi-arrow-return-left"></i>&nbsp;ຍ້ອນກັບ
                     </a>
                 </div>
                 <form action="{{ route('evaluation_types.update', $evaluation_types->id) }}" method="post">
@@ -30,7 +30,7 @@
                                     <label class="col-3 col-form-label label-start">ຊື່ປະເພດຜົນກວດ</label>
                                     <div class="col-9">
                                         <input type="text" name="name"
-                                            value="{{ old('evaluation_types', $evaluation_types->name ?? null) }}"
+                                            value="{{ old('evaluation_types', $errors->has('name') ? '' : $evaluation_types->name) }}"
                                             class="form-control" placeholder="ປ້ອນຊື່ປະເພດຜົນກວດ">
                                         @error('name')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -43,7 +43,7 @@
                                     <label class="col-3 col-form-label label-start">ລາຄາຜົນກວດ</label>
                                     <div class="col-9">
                                         <input type="number" name="price"
-                                            value="{{ old('evaluation_types', $evaluation_types->price ?? null) }}"
+                                            value="{{ old('evaluation_types', $errors->has('price') ? '' : $evaluation_types->price) }}"
                                             class="form-control" placeholder="ປ້ອນລາຄາຜົນກວດ">
                                         @error('price')
                                             <strong class="text-danger">{{ $message }}</strong>

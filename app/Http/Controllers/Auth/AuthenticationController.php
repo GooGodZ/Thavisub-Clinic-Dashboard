@@ -38,7 +38,7 @@ class AuthenticationController extends Controller
                 session()->put('password', $password);
                 session()->put('status', $status);
 
-                return redirect()->route('index')->with('successfully', 'ເຂົ້າສູ່ລະບົບສຳເລັດ');
+                return redirect()->route('index');
             } else {
                 return redirect()->back()->with('failed', 'ອີເມວ ແລະ ລະຫັດຜ່ານບໍ່ຖືກຕ້ອງ');
             }

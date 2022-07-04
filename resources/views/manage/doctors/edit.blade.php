@@ -30,7 +30,7 @@
                                     <label class="col-3 col-form-label">ຊື່ ແລະ ນາມສະກຸນ</label>
                                     <div class="col-9">
                                         <input type="text" name="name" class="form-control"
-                                            value="{{ old('doctors', $doctors->name ?? null) }}"
+                                            value="{{ old('doctors', $errors->has('name') ? '' : $doctors->name) }}"
                                             placeholder="ປ້ອນຊື່ ແລະ ນາມສະກຸນ">
                                         @error('name')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -43,7 +43,7 @@
                                     <label class="col-3 col-form-label">ວັນ ເດືອນ ປີເກິດ</label>
                                     <div class="col-9">
                                         <input type="date" name="dob"
-                                            value="{{ old('doctors', date('Y-m-d', strtotime($doctors->dob)) ?? null) }}"
+                                            value="{{ old('doctors', $errors->has('dob') ? '' : date('Y-m-d', strtotime($doctors->dob))) }}"
                                             class="form-control" placeholder="ປ້ອນວັນ">
                                         @error('dob')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -58,12 +58,12 @@
                                     <label class="col-3 col-form-label">ເພດ</label>
                                     <div class="col-9">
                                         <select name="gender" class="form-select">
-                                            <option selected>ເລືອກເພດ</option>
+                                            <option value="">ເລືອກເພດ</option>
                                             <option value="ຊາຍ"
-                                                {{ old('doctors', $doctors->gender ?? null) == 'ຊາຍ' ? 'selected' : '' }}>
+                                                {{ old('doctors', $errors->has('gender') ? '' : $doctors->gender) == 'ຊາຍ' ? 'selected' : '' }}>
                                                 ຊາຍ</option>
                                             <option value="ຍິງ"
-                                                {{ old('doctors', $doctors->gender ?? null) == 'ຍິງ' ? 'selected' : '' }}>
+                                                {{ old('doctors', $errors->has('gender') ? '' : $doctors->gender) == 'ຍິງ' ? 'selected' : '' }}>
                                                 ຍິງ</option>
                                         </select>
                                         @error('gender')
@@ -77,7 +77,7 @@
                                     <label class="col-3 col-form-label">ທີ່ຢູ່</label>
                                     <div class="col-9">
                                         <input type="text" name="address" class="form-control"
-                                            value="{{ old('doctors', $doctors->address ?? null) }}"
+                                            value="{{ old('doctors', $errors->has('address') ? '' : $doctors->address) }}"
                                             placeholder="ປ້ອນທີ່ຢູ່">
                                         @error('address')
                                             <strong class="text-danger">{{ $message }}</strong>
@@ -92,7 +92,7 @@
                                     <label class="col-3 col-form-label">ເບີໂທຕິດຕໍ່</label>
                                     <div class="col-9">
                                         <input type="text" name="tel" class="form-control"
-                                            value="{{ old('doctors', $doctors->tel ?? null) }}"
+                                            value="{{ old('doctors', $errors->has('tel') ? '' : $doctors->tel) }}"
                                             placeholder="ປ້ອນເບີໂທຕິດຕໍ່">
                                         @error('tel')
                                             <strong class="text-danger">{{ $message }}</strong>

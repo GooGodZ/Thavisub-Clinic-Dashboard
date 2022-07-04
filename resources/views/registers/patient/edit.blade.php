@@ -28,7 +28,7 @@
                             <label class="col-3 col-form-label">ຊື່ ແລະ ນາມສະກຸນ</label>
                             <div class="col-9">
                                 <input type="text" name="name" class="form-control"
-                                    value="{{ old('patients', $patients->name ?? null) }}"
+                                    value="{{ old('patients', $errors->has('name') ? '' : $patients->name) }}"
                                     placeholder="ປ້ອນຊື່ ແລະ ນາມສະກຸນ">
                                 @error('name')
                                     <strong class="text-danger">{{ $message }}</strong>
@@ -39,7 +39,7 @@
                             <label class="col-3 col-form-label">ວັນ ເດືອນ ປີເກິດ</label>
                             <div class="col-9">
                                 <input type="date" name="dob"
-                                    value="{{ old('patients', date('Y-m-d', strtotime($patients->dob)) ?? null) }}"
+                                    value="{{ old('patients', $errors->has('dob') ? '' : date('Y-m-d', strtotime($patients->dob))) }}"
                                     class="form-control" placeholder="ປ້ອນວັນ">
                                 @error('dob')
                                     <strong class="text-danger">{{ $message }}</strong>
@@ -50,12 +50,12 @@
                             <label class="col-3 col-form-label">ເພດ</label>
                             <div class="col-9">
                                 <select name="gender" class="form-select">
-                                    <option value="">ເລືອກເພດ</option>
+                                    <option value="" >ເລືອກເພດ</option>
                                     <option value="ຊາຍ"
-                                        {{ old('patients', $patients->gender ?? null) == 'ຊາຍ' ? 'selected' : '' }}>
+                                        {{ old('patients', $errors->has('gender') ? '' : $patients->gender) == 'ຊາຍ' ? 'selected' : '' }}>
                                         ຊາຍ</option>
                                     <option value="ຍິງ"
-                                        {{ old('patients', $patients->gender ?? null) == 'ຍິງ' ? 'selected' : '' }}>
+                                        {{ old('patients', $errors->has('gender') ? '' : $patients->gender) == 'ຍິງ' ? 'selected' : '' }}>
                                         ຍິງ</option>
                                 </select>
                                 @error('gender')
@@ -67,7 +67,8 @@
                             <label class="col-3 col-form-label">ເບີໂທຕິດຕໍ່</label>
                             <div class="col-9">
                                 <input type="number" name="tel" class="form-control"
-                                    value="{{ old('patients', $patients->tel ?? null) }}" placeholder="ປ້ອນເບີໂທຕິດຕໍ່">
+                                    value="{{ old('patients', $errors->has('tel') ? '' : $patients->tel) }}"
+                                    placeholder="ປ້ອນເບີໂທຕິດຕໍ່">
                                 @error('tel')
                                     <strong class="text-danger">{{ $message }}</strong>
                                 @enderror
