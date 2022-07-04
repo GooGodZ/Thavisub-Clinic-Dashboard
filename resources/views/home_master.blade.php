@@ -151,7 +151,8 @@
                             </a>
                         </li>
                         @if ($permission === 1 || $permission === 2)
-                            <li class="nav-item">
+                            <li
+                                class="nav-item {{ request()->is('patients*') || request()->is('cases*') ? 'menu-is-opening menu-open' : '' }}">
                                 <a href="#"
                                     class="nav-link {{ request()->is('patients*') || request()->is('cases*') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-book-medical"></i>
@@ -172,7 +173,8 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="nav-item">
+                            <li
+                                class="nav-item {{ request()->is('evaluations*') || request()->is('medicates*') || request()->is('appointments*') ? 'menu-is-opening menu-open' : '' }}">
                                 <a href="#"
                                     class="nav-link {{ request()->is('evaluations*') || request()->is('medicates*') || request()->is('appointments*') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-hand-holding-medical"></i>
@@ -200,7 +202,7 @@
                                 </ul>
                             </li>
                         @endif
-                        <li class="nav-item">
+                        <li class="nav-item {{ request()->is('payments*') ? 'menu-is-opening menu-open' : '' }}">
                             <a href="#" class="nav-link {{ request()->is('payments*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-cash-register"></i>
                                 <p>ການເງິນ<i class="fas fa-angle-left right"></i></p>
@@ -214,7 +216,8 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item">
+                        <li
+                            class="nav-item {{ request()->is('products*') || request()->is('orders*') || request()->is('buys*') || request()->is('order_details*') || request()->is('buy_details*') ? 'menu-is-opening menu-open' : '' }}">
                             <a href="#"
                                 class="nav-link {{ request()->is('products*') || request()->is('orders*') || request()->is('buys*') || request()->is('order_details*') || request()->is('buy_details*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-boxes"></i>
@@ -237,7 +240,8 @@
                                 @endif
                             </ul>
                         </li>
-                        <li class="nav-item">
+                        <li
+                            class="nav-item {{ request()->is('reportpatient*') || request()->is('reportcase*') || request()->is('reportevaluation*') || request()->is('reportappointment*') || request()->is('reporttreatment*') || request()->is('reportsupplier*') || request()->is('reportproduct*') || request()->is('reportexpense*') || request()->is('reportincome*') ? 'menu-is-opening menu-open' : '' }}">
                             <a href="#"
                                 class="nav-link {{ request()->is('reportpatient*') || request()->is('reportcase*') || request()->is('reportevaluation*') || request()->is('reportappointment*') || request()->is('reporttreatment*') || request()->is('reportsupplier*') || request()->is('reportproduct*') || request()->is('reportexpense*') || request()->is('reportincome*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-table"></i>
@@ -307,7 +311,8 @@
                             </ul>
                         </li>
                         @if ($permission === 1 || $permission === 3)
-                            <li class="nav-item">
+                            <li
+                                class="nav-item {{ request()->is('doctors*') || request()->is('suppliers*') || request()->is('evaluation_types*') || request()->is('product_types*') ? 'menu-is-opening menu-open' : '' }}">
                                 <a href="#"
                                     class="nav-link {{ request()->is('doctors*') || request()->is('suppliers*') || request()->is('evaluation_types*') || request()->is('product_types*') ? 'active' : '' }}">
                                     <i class="nav-icon bi bi-file-bar-graph"></i>
@@ -400,33 +405,6 @@
         var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
             return new bootstrap.Tooltip(tooltipTriggerEl)
         })
-    </script>
-
-    <script type="text/javascript">
-        $(function() {
-            var params = window.location.pathname;
-            params = params.toLowerCase();
-
-            if (params != "/") {
-                $(".nav-sidebar li a").each(function(i) {
-                    var obj = this;
-                    var url = $(this).attr("href");
-                    if (url == "" || url == "#") {
-                        return true;
-                    }
-                    url = url.toLowerCase();
-                    if (url.indexOf(params) > -1) {
-                        $(this).parent().addClass("active open menu-open");
-                        $(this).parent().parent().addClass("active open menu-open");
-                        $(this).parent().parent().parent().addClass("active open menu-open");
-                        $(this).parent().parent().parent().parent().addClass("active open menu-open");
-                        $(this).parent().parent().parent().parent().parent().addClass(
-                            "active open menu-open");
-                        return false;
-                    }
-                });
-            }
-        });
     </script>
 
     @if (Session::has('failed'))
