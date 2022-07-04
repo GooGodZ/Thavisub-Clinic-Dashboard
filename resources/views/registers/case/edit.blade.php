@@ -16,7 +16,7 @@
             <div class="card">
                 <div class="card-header" style="background-color: white">
                     <a href="{{ route('cases.index') }}" class="btn float-end"
-                        style="background-color: #8ebaa8; color: white">
+                        style="background-color: #28635a; color: white">
                         <i class="bi bi-arrow-return-left"></i>&nbsp;ຍ້ອນກັບ
                     </a>
                 </div>
@@ -139,7 +139,7 @@
                             </div>
                         </div>
                         <div class="text-center">
-                            <button type="submit" class="btn" style="background-color: #8ebaa8; color: white">
+                            <button type="submit" class="btn" style="background-color: #28635a; color: white">
                                 <i class="bi bi-save2"></i>&nbsp;ບັນທືກ</button>
                         </div>
                     </div>

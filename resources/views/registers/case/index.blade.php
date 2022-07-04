@@ -29,7 +29,7 @@
                         <div class="tab-pane fade show active" id="cases">
                             <div class="card-header" style="background-color: white">
                                 <a href="{{ route('cases.create') }}"class="btn float-end"
-                                    style="background-color: #8ebaa8; color: white">
+                                    style="background-color: #28635a; color: white">
                                     <i class="fa-solid fa-plus"></i>&nbsp;ເພີ່ມ</button>
                                 </a>
                             </div>

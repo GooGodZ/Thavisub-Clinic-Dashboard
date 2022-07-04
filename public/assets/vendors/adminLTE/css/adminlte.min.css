@@ -13916,7 +13916,7 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
 }
 
 [class*=sidebar-light] .brand-link {
-    border-bottom: 1px solid #dee2e6
+    border-bottom: 0px solid #dee2e6 /* Change */
 }
 
 [class*=sidebar-light] .brand-link,
@@ -14280,7 +14280,7 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
 }
 
 [class*=sidebar-light-] .nav-treeview>.nav-item>.nav-link {
-    color: #777
+    color: #000 /* Change */
 }
 
 [class*=sidebar-light-] .nav-treeview>.nav-item>.nav-link:focus,
@@ -14292,7 +14292,7 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
 [class*=sidebar-light-] .nav-treeview>.nav-item>.nav-link.active,
 [class*=sidebar-light-] .nav-treeview>.nav-item>.nav-link.active:hover {
     background-color: #8ebaa8; /* Change Active */
-    color: #212529
+    color: #fff
 }
 
 [class*=sidebar-light-] .nav-treeview>.nav-item>.nav-link:hover {

@@ -23,7 +23,7 @@
             <div class="card">
                 <div class="card-header" style="background-color: white">
                     <a href="{{ route('evaluations.index') }}" class="btn float-end"
-                        style="background-color: #8ebaa8; color: white">
+                        style="background-color: #28635a; color: white">
                         <i class="bi bi-arrow-return-left"></i>&nbsp;ໜ້າຜົນກວດ
                     </a>
                 </div>
@@ -79,10 +79,10 @@
                             </div>
                         </div>
                         <div class="text-center">
-                            <button type="submit" class="btn" style="background-color: #8ebaa8; color: white">
+                            <button type="submit" class="btn" style="background-color: #28635a; color: white">
                                 <i class="bi bi-save2"></i>&nbsp;ບັນທືກ</button>
                             <a href="{{ route('medicatesCreateLink', $cases->id) }}" class="btn"
-                                style="background-color: #8ebaa8; color: white">ວາງຢາ</a>
+                                style="background-color: #28635a; color: white">ວາງຢາ</a>
                         </div>
                     </div>
                 </form>

@@ -15,7 +15,7 @@
             <div class="card">
                 <div class="card-header" style="background-color: white">
                     <a href="{{ route('medicates.index') }}" class="btn float-end"
-                        style="background-color: #8ebaa8; color: white">
+                        style="background-color: #28635a; color: white">
                         <i class="bi bi-arrow-return-left"></i>&nbsp;ກັບໄປໜ້າວາງຢາ
                     </a>
                 </div>
@@ -44,49 +44,71 @@
                                     <div class="col-9">
                                         <div class="form-group">
                                             <div class="form-check d-inline">
-                                                <input name="take[]" class="form-check-input" value=""
-                                                    type="hidden">
+                                                <input name="take[]" class="form-check-input" value="" type="hidden"
+                                                    {{ is_array(old('take')) && in_array('', old('take')) ? 'checked' : '' }}>
                                                 <input name="take[]" class="form-check-input" value="1ເມັດ"
-                                                    @if (old('take[]') == '1ເມັດ') checked @endif type="checkbox">
+                                                    type="checkbox"
+                                                    {{ is_array(old('take')) && in_array('1ເມັດ', old('take')) ? 'checked' : '' }}>
                                                 <label class="form-check-label">1ເມັດ</label>
                                             </div>
                                             <div class="form-check d-inline">
                                                 <input name="take[]" class="form-check-input" value="2ເມັດ"
-                                                    type="checkbox">
+                                                    type="checkbox"
+                                                    {{ is_array(old('take')) && in_array('2ເມັດ', old('take')) ? 'checked' : '' }}>
                                                 <label class="form-check-label">2ເມັດ</label>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="form-check d-inline">
+                                                <input name="take[]" class="form-check-input" value="1ບ່ວງ"
+                                                    type="checkbox"
+                                                    {{ is_array(old('take')) && in_array('1ບ່ວງ', old('take')) ? 'checked' : '' }}>
+                                                <label class="form-check-label">1ບ່ວງ</label>
+                                            </div>
+                                            <div class="form-check d-inline">
+                                                <input name="take[]" class="form-check-input" value="2ບ່ວງ"
+                                                    type="checkbox"
+                                                    {{ is_array(old('take')) && in_array('2ບ່ວງ', old('take')) ? 'checked' : '' }}>
+                                                <label class="form-check-label">2ບ່ວງ</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="form-check d-inline">
                                                 <input name="take[]" class="form-check-input" value="ກ່ອນອາຫານ"
-                                                    type="checkbox">
+                                                    type="checkbox"
+                                                    {{ is_array(old('take')) && in_array('ກ່ອນອາຫານ', old('take')) ? 'checked' : '' }}>
                                                 <label class="form-check-label">ກ່ອນອາຫານ</label>
                                             </div>
                                             <div class="form-check d-inline">
                                                 <input name="take[]" class="form-check-input" value="ຫຼັງອາຫານ"
-                                                    type="checkbox">
+                                                    type="checkbox"
+                                                    {{ is_array(old('take')) && in_array('ຫຼັງອາຫານ', old('take')) ? 'checked' : '' }}>
                                                 <label class="form-check-label">ຫຼັງອາຫານ</label>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="form-check d-inline">
                                                 <input name="take[]" class="form-check-input" value="ເຊົ້າ"
-                                                    type="checkbox">
+                                                    type="checkbox"
+                                                    {{ is_array(old('take')) && in_array('ເຊົ້າ', old('take')) ? 'checked' : '' }}>
                                                 <label class="form-check-label">ເຊົ້າ</label>
                                             </div>
                                             <div class="form-check d-inline">
                                                 <input name="take[]" class="form-check-input" value="ສວຍ"
-                                                    type="checkbox">
+                                                    type="checkbox"
+                                                    {{ is_array(old('take')) && in_array('ສວຍ', old('take')) ? 'checked' : '' }}>
                                                 <label class="form-check-label">ສວຍ</label>
                                             </div>
                                             <div class="form-check d-inline">
                                                 <input name="take[]" class="form-check-input" value="ແລງ"
-                                                    type="checkbox">
+                                                    type="checkbox"
+                                                    {{ is_array(old('take')) && in_array('ແລງ', old('take')) ? 'checked' : '' }}>
                                                 <label class="form-check-label">ແລງ</label>
                                             </div>
                                             <div class="form-check d-inline">
                                                 <input name="take[]" class="form-check-input" value="ກ່ອນນອນ"
-                                                    type="checkbox">
+                                                    type="checkbox"
+                                                    {{ is_array(old('take')) && in_array('ກ່ອນນອນ', old('take')) ? 'checked' : '' }}>
                                                 <label class="form-check-label">ກ່ອນນອນ</label>
                                             </div>
                                         </div>
@@ -128,10 +150,10 @@
                             </div>
                         </div>
                         <div class="text-center">
-                            <button type="submit" class="btn" style="background-color: #8ebaa8; color: white">
+                            <button type="submit" class="btn" style="background-color: #28635a; color: white">
                                 <i class="bi bi-save2"></i>&nbsp;ບັນທືກ</button>
                             <a href="{{ route('appointmentsCreateLink', $cases->id) }}" class="btn"
-                                style="background-color: #8ebaa8; color: white">ອອກໃບນັດກວດ</a>
+                                style="background-color: #28635a; color: white">ອອກໃບນັດກວດ</a>
                         </div>
                     </div>
                 </form>
