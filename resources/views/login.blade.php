@@ -45,7 +45,7 @@
                                     @enderror
                                 </div>
                                 <button class="btn btn-lg px-5 text-white" type="submit"
-                                    style="background-color: #8ebaa8">ເຂົ້າສູ່ລະບົບ</button>
+                                    style="background-color: #28635a; color: white">ເຂົ້າສູ່ລະບົບ</button>
                             </form>
                         </div>
                     </div>

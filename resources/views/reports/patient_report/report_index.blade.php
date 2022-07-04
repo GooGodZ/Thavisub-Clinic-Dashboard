@@ -38,7 +38,7 @@
                             </div>
                             <div class="col-12 col-sm-12 col-md-4 col-lg-4">
                                 <button type="submit" class="btn float-start" id="btn-submit"
-                                    style="background-color: #8ebaa8; color: white" disabled>
+                                    style="background-color: #28635a; color: white" disabled>
                                     <i class="bi bi-search"></i>&nbsp;ຄົ້ນຫາ</button>
                             </div>
                         </div>
