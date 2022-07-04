@@ -8,6 +8,13 @@
                     <h1 class="m-0">ຟອມຂໍ້ມູນການສັ່ງຊື້ສິນຄ້າ</h1>
                 </div>
             </div>
+            @if (Session::has('success'))
+                <div class="alert alert-success" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <strong>{{ session('success') }}</strong>
+                </div>
+            @endif
         </div>
     </div>
 
@@ -61,9 +68,11 @@
                                     <label class="col-3 col-form-label">ຊື່ຢາ</label>
                                     <div class="col-9">
                                         <select name="p_id" class="form-control selectpicker" data-live-search="true">
-                                            <option value="" {{ old('p_id') == '' ? 'selected' : '' }}>ເລືອກຢາ</option>
+                                            <option value="" {{ old('p_id') == '' ? 'selected' : '' }}>ເລືອກຢາ
+                                            </option>
                                             @foreach ($products as $products)
-                                                <option value="{{ $products->id }}" {{ old('p_id') == $products->id ? 'selected' : '' }}>
+                                                <option value="{{ $products->id }}"
+                                                    {{ old('p_id') == $products->id ? 'selected' : '' }}>
                                                     {{ $products->name }}</option>
                                             @endforeach
                                         </select>
@@ -77,8 +86,8 @@
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">ຈຳນວນຢາ</label>
                                     <div class="col-9">
-                                        <input type="text" name="quantity" class="form-control" value="{{ old('quantity') }}"
-                                            placeholder="ປ້ອນຈຳນວນຢາ">
+                                        <input type="text" name="quantity" class="form-control"
+                                            value="{{ old('quantity') }}" placeholder="ປ້ອນຈຳນວນຢາ">
                                         @error('quantity')
                                             <strong class="text-danger">{{ $message }}</strong>
                                         @enderror

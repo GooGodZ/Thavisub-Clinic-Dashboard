@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\SuppliersController;
 use App\Http\Controllers\Auth\AuthenticationController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,6 +31,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Auth::routes();
 
 Route::get('/login', [AuthenticationController::class, 'login'])->name('login');
 Route::post('/authenticate', [AuthenticationController::class, 'authenticate'])->name('authenticate');

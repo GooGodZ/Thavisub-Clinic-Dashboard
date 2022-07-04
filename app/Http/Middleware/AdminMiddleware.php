@@ -18,7 +18,7 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next)
     {
         if (!Session()->has('id')) {
-            return redirect()->route('login')->with('failed', 'ທ່ານບໍ່ສາມາດເຂົ້າສູ່ລະບົບໄດ້');
+            return redirect()->route('login');
         }
         return $next($request);
     }

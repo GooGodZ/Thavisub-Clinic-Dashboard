@@ -38,12 +38,12 @@ class AuthenticationController extends Controller
                 session()->put('password', $password);
                 session()->put('status', $status);
 
-                return redirect()->route('index')->with('success', 'ເຂົ້າສູ່ລະບົບສຳເລັດ');
+                return redirect()->route('index')->with('successfully', 'ເຂົ້າສູ່ລະບົບສຳເລັດ');
             } else {
                 return redirect()->back()->with('failed', 'ອີເມວ ແລະ ລະຫັດຜ່ານບໍ່ຖືກຕ້ອງ');
             }
         } else {
-            return redirect()->back()->with('failed', 'ອີເມວ ແລະ ລະຫັດຜ່ານບໍ່ຖືກຕ້ອງ');
+            return redirect()->back()->with('failed', 'ບໍ່ສາມາດຊອກຫາບັນຊີຂອງທ່ານໄດ້ໃນລະບົບ');
         }
     }
 
@@ -68,7 +68,7 @@ class AuthenticationController extends Controller
         $register->status = $request->status;
         $register->save();
 
-        return redirect()->route('index')->with('success', 'ລົງທະບຽນສຳເລັດ');
+        return redirect()->route('index')->with('successfully', 'ລົງທະບຽນສຳເລັດ');
     }
 
     public function changepassword(Request $request)
@@ -86,7 +86,7 @@ class AuthenticationController extends Controller
         if (Hash::check($request->oldpassword, $changepassword->password)) {
             $changepassword->password = Hash::make($request->newpassword);
             $changepassword->save();
-            return redirect()->route('index')->with('success', 'ປ່ຽນລະຫັດຜ່ານສຳເລັດ');
+            return redirect()->route('index')->with('successfully', 'ປ່ຽນລະຫັດຜ່ານສຳເລັດ');
         } else {
             return redirect()->route('index')->with('failed', 'ລະຫັດຜ່ານບໍ່ຖືກຕ້ອງ');
         }
@@ -97,6 +97,6 @@ class AuthenticationController extends Controller
         Session::flush();
         Auth::logout();
 
-        return redirect()->route('login')->with('success', 'ທ່ານອອກຈາກລະບົບສຳເລັດ');
+        return redirect()->route('login')->with('successfully', 'ທ່ານອອກຈາກລະບົບສຳເລັດ');
     }
 }

@@ -71,13 +71,14 @@
         </script>
     @endif
 
-    @if (Session::has('success'))
+    @if (Session::has('successfully'))
         <script>
             swal({
                 icon: "success",
                 title: "ຄຳເຕືອນ",
-                text: "{{ session('success') }}",
+                text: "{{ session('successfully') }}",
                 button: "ຕົກລົງ",
+                dangerMode: true,
             })
         </script>
     @endif

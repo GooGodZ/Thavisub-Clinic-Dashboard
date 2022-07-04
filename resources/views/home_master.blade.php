@@ -407,6 +407,14 @@
         })
     </script>
 
+    <script>
+        window.setTimeout(function() {
+            $(".alert").fadeTo(500, 0).slideUp(500, function() {
+                $(this).remove();
+            });
+        }, 2000);
+    </script>
+
     @if (Session::has('failed'))
         <script>
             swal({
@@ -418,11 +426,11 @@
         </script>
     @endif
 
-    @if (Session::has('success'))
+    @if (Session::has('successfully'))
         <script>
             swal({
                 icon: "success",
-                title: "{{ session('success') }}",
+                title: "{{ session('successfully') }}",
                 button: "ຕົກລົງ",
             })
         </script>
