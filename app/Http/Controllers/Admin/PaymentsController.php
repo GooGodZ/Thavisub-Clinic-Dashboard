@@ -128,9 +128,6 @@ class PaymentsController extends Controller
      */
     public function destroy($id)
     {
-        $payments = Payments::find($id);
-        $payments->delete();
-
-        return redirect()->back()->with('success', 'ລົບຂໍ້ມູນການຊຳລະສຳເລັດ');
+        //
     }
 }

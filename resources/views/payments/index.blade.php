@@ -17,12 +17,12 @@
                 <div class="card-body">
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
-                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#payments"
-                                type="button" style="font-weight: 600">ຍັງບໍ່ທັນຊຳລະ</button>
+                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#payments" type="button"
+                                style="font-weight: 600">ຍັງບໍ່ທັນຊຳລະ</button>
                         </li>
                         <li class="nav-item">
-                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#paymentstoday"
-                                type="button" style="font-weight: 600">ຊຳລະແລ້ວ</button>
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#paymentstoday" type="button"
+                                style="font-weight: 600">ຊຳລະແລ້ວ</button>
                         </li>
                     </ul>
                     <div class="tab-content mt-3">
@@ -79,22 +79,11 @@
                                             <td>{{ $payments->pay_no }}</td>
                                             <td>{{ $payments->cases->patients->name }}</td>
                                             <td>
-                                                <form action="{{ route('payments.destroy', $payments->id) }}"
-                                                    method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <a href="{{ route('payments.show', $payments->id) }}"
-                                                        class="text-primary text-decoration-none" data-bs-toggle="tooltip"
-                                                        data-bs-placement="bottom" title="ພີມໃບບິນ" target="_blank">
-                                                        <i class="bi bi-printer"></i>
-                                                    </a>
-                                                    <button type="submit" class="bg-transparent border-0 text-danger"
-                                                        data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                                        title="ລົບຂໍ້ມູນ"
-                                                        onclick="return confirm('ທ່ານຕ້ອງການລົບຂໍ້ມູນນີ້ ຫຼື ບໍ?')">
-                                                        <i class="fa-solid fa-trash-can"></i>
-                                                    </button>
-                                                </form>
+                                                <a href="{{ route('payments.show', $payments->id) }}"
+                                                    class="text-primary text-decoration-none" data-bs-toggle="tooltip"
+                                                    data-bs-placement="bottom" title="ພີມໃບບິນ" target="_blank">
+                                                    <i class="bi bi-printer"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                     @endforeach
